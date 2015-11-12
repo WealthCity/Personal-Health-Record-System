@@ -1,0 +1,8 @@
+ .profile-avatar img {
+    border-radius: 50%;
+    border: 1px solid #e7e7e2;
+    padding:10px;
+    margin:20px;    
+    height:210px;
+    width:210px;
+}
