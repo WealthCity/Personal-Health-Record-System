@@ -1,7 +1,9 @@
 <?php include("connection.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
-
+<?php
+    session_start();
+?>
 <head>
 
     <meta charset="utf-8">
@@ -48,7 +50,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">PHR System</a>
+                <a class="navbar-brand" href="index.html">PHR System</a>            
             </div>
             <!-- /.navbar-header -->
 
@@ -73,14 +75,24 @@
                     <ul class="nav" id="side-menu">
                         <li>
                             <div class="profile-avatar">
-                                <img class="img-responsive" src="http://lorempixel.com/600/600/people/9" alt="profile picture">
+                                <img class="img-responsive" src="avatar.jpg" alt="profile picture">
+                                <center><h5 style="font-weight:bold;">Welcome John</h5></center>
                             </div>
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Chart And Tables<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="flot.html">Flot Charts</a>
+                                </li>
+                                <li>
+                                    <a href="morris.html">Morris.js Charts</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
@@ -102,10 +114,10 @@
             <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-5">
-                                    <div class="table-responsive">
+                                    <div class="table-responsive" style="border:1px solid lightgrey;border-radius:7px;height:500px;margin-right:20px;">
                                         <div class="panel panel-default">
                                         <div class="panel-heading"><b>VITALS</b></div>
-                                        <div style="height:500px">
+                                        <div >
                                         <table  class="table table-bordered table-hover table-striped" id="vitalsTable">                                            
                                             <tbody>                                                
                                                 <?php
@@ -119,8 +131,9 @@
                                                     else
                                                     {
                                                         while($row = $results->fetch_row())
-                                                            $jsonString.='{"vitalsign":"'.$row[1].'","value":'. $row[2].',"unit":"'. $row[3].'","measurement_time":"'. $row[4].'"},';
+                                                            $jsonString.='{"vitalsign":"'.$row[1].'","value":'. $row[2].',"unit":"'. $row[3].'","measurement_time":"'. $row[4].'"},';                                                        
                                                     }
+                                                    $_SESSION["vitalJsonString"]=$jsonString;
                                                 ?>
                                                 <script type="text/javascript">
                                                     var result1 = '<?php echo $jsonString; ?>';                                                    
@@ -157,9 +170,9 @@
                                 <!-- /.col-lg-5 -->
                                 <div class="col-lg-6">
                                     <div class="table-responsive">
-                                        <div class="panel panel-default">
+                                        <div style="border:1px solid lightgrey;border-radius:7px;height:500px;" class="panel panel-default">
                                         <div class="panel-heading"><b>LAB TESTS</b></div>
-                                        <div style="height:500px">
+                                        <div >
                                         <table  class="table table-bordered table-hover table-striped" id="labTestsTable">                                            
                                             <tbody>                                                
                                                 <?php
@@ -175,6 +188,7 @@
                                                         while($row = $results->fetch_row())
                                                             $jsonString.='{"testname":"'.$row[1].'","value":'. $row[2].',"reference_min":'. $row[3].',"reference_max":'. $row[4].',"unit":"'. $row[5].'","testdate":"'. $row[6].'"},';
                                                     }
+                                                    $_SESSION["labTestsJsonString"]=$jsonString;
                                                 ?>
                                                 <script type="text/javascript">
                                                     var result1 = '<?php echo $jsonString; ?>';                                                    
@@ -220,7 +234,7 @@
                             <!-- /.row -->
                             <div class="row">
                             <div class="col-lg-5">
-                                    <div class="table-responsive">
+                                    <div style="border:1px solid lightgrey;border-radius:7px;height:500px;margin-top:20px;" class="table-responsive">
                                         <div class="panel panel-default">
                                         <div class="panel-heading"><b>MEDICATION</b></div>
                                         <div style="height:500px">
@@ -239,6 +253,8 @@
                                                         while($row = $results->fetch_row())
                                                             $jsonString.='{"medic":"'.$row[1].'","presc_date":"'. $row[2].'","quantity":'. $row[3].'},';
                                                     }
+                                                    $_SESSION["medicationJsonString"]=$jsonString;
+
                                                 ?>
                                                 <script type="text/javascript">
                                                     var result1 = '<?php echo $jsonString; ?>';                                                    
