@@ -10,6 +10,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="stylesheet" type="text/css" href="../css/linechart.css">
+    <!-- load the d3.js library -->    
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript" src="../js/linechart.js"></script>
 
     <title>SB Admin 2 - Bootstrap Admin Theme</title>
 
@@ -31,7 +35,7 @@
 
     <!-- jQuery -->
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
-
+\
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -96,6 +100,8 @@
                     <h1 class="page-header">Vitals History</h1>
                 </div>
                 <!-- /.col-lg-12 -->
+                <div  id="linechart" ></div>
+                <script type="text/javascript">fun();</script>
             </div>
             <center>
              <div class="panel-body">
@@ -164,7 +170,6 @@
     <!-- Morris Charts JavaScript -->
     <script src="../bower_components/raphael/raphael-min.js"></script>
     <script src="../bower_components/morrisjs/morris.min.js"></script>
-    <script src="../js/morris-data.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
@@ -172,3 +177,5 @@
 </body>
 
 </html>
+
+
