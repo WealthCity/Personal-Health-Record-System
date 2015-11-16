@@ -69,7 +69,29 @@
                 <!-- /.dropdown -->
             </ul>
             <!-- /.navbar-top-links -->
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    // hide all second level
+                    $('.nav-second-level').hide();
 
+                    /*// show all second level whose anchor has matching href
+                    $('a').each(function(){
+                      if(document.location.href.indexOf($(this).attr('href')) > 0)
+                      {
+                        // add class to matching anchor
+                        $(this).addClass('active-me');
+                        // find its parent 'nav-second-level' and make visible
+                        $(this).closest('.nav-second-level').show();
+                          }
+
+                    });*/
+
+                    // open submenu on click of main menu
+                    $('a[href="#"]').click(function(){
+                       $(this).next('.nav-second-level').slideToggle();
+                    });
+                });
+            </script>
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
@@ -83,17 +105,20 @@
                             <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Chart And Tables<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> History<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="flot.html">Flot Charts</a>
+                                    <a href="vitals.php">Vitals</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">Morris.js Charts</a>
+                                    <a href="labtests.php">Lab Test Results</a>
+                                </li>
+                                <li>
+                                    <a href="medication.php">Medication</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
-                        </li>
+                        </li>                        
                         <li>
                             <a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
@@ -114,7 +139,7 @@
             <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-5">
-                                    <div class="table-responsive" style="border:1px solid lightgrey;border-radius:7px;height:500px;margin-right:20px;">
+                                    <div class="table-responsive" style="margin-right:20px;">
                                         <div class="panel panel-default">
                                         <div class="panel-heading"><b>VITALS</b></div>
                                         <div >
@@ -149,12 +174,18 @@
                                                     jsonresult = jsonresult.sort(comp);
 
                                                     var vitalCols = "<tr><th>Vital SIgn</th><th>Value</th><th>Unit</th><th>Measurement Time</th></tr>";
+                                                    var latestDate = new Date(jsonresult[0]["measurement_time"]);
+                                                    //console.log(latestDate.getDate()+"/"+latestDate.getMonth()+"/"+latestDate.getFullYear());
                                                     for(var i in jsonresult)
                                                     {
-                                                        vitalCols += "<tr><td>"+jsonresult[i]["vitalsign"]+"</td>";
-                                                        vitalCols += "<td>" +jsonresult[i]["value"] +"</td>"
-                                                        vitalCols += "<td>" + jsonresult[i]["unit"]+"</td>"
-                                                        vitalCols += "<td>" + jsonresult[i]["measurement_time"]+"</td></tr>"
+                                                        var newDate = new Date(jsonresult[i]["measurement_time"]);
+                                                        if(latestDate.getDate() == newDate.getDate() && latestDate.getMonth() == newDate.getMonth() && latestDate.getFullYear() == newDate.getFullYear())                                 
+                                                        {
+                                                            vitalCols += "<tr><td>"+jsonresult[i]["vitalsign"]+"</td>";
+                                                            vitalCols += "<td>" + jsonresult[i]["value"]+"</td>";
+                                                            vitalCols += "<td>" + jsonresult[i]["unit"]+"</td>";
+                                                            vitalCols += "<td>" + jsonresult[i]["measurement_time"]+"</td></tr>";
+                                                        }
                                                     }
 
                                                     $("#vitalsTable").html(vitalCols);
@@ -168,13 +199,14 @@
                                     <!-- /.table-responsive -->
                                 </div>
                                 <!-- /.col-lg-5 -->
+
                                 <div class="col-lg-6">
-                                    <div class="table-responsive">
-                                        <div style="border:1px solid lightgrey;border-radius:7px;height:500px;" class="panel panel-default">
+                                    <div style="" class="table-responsive">
+                                        <div  class="panel panel-default">
                                         <div class="panel-heading"><b>LAB TESTS</b></div>
                                         <div >
-                                        <table  class="table table-bordered table-hover table-striped" id="labTestsTable">                                            
-                                            <tbody>                                                
+                                        <table class="table table-bordered table-hover table-striped table-fixed" id="labTestsTable">                                            
+                                                                                            
                                                 <?php
                                                     $pid=1001;
                                                     $sqllabtests ="SELECT * FROM labtests WHERE pid=$pid";
@@ -194,7 +226,7 @@
                                                     var result1 = '<?php echo $jsonString; ?>';                                                    
                                                     var result = result1.substring(0, result1.length - 1); 
                                                     var jsonresult = $.parseJSON("["+result+"]");
-                                                    console.log(jsonresult[0]["value"]);
+                                                    //console.log(jsonresult[0]["value"]);
 
                                                     function comp(a, b) 
                                                     {
@@ -203,21 +235,26 @@
 
                                                     jsonresult = jsonresult.sort(comp);
 
-                                                    var vitalCols = "<tr><th>Test Name</th><th>Value</th><th>Reference Min</th><th>Reference Max</th><th>Unit</th><th>Test Date</th></tr>";
+                                                    var latestDate = new Date(jsonresult[0]["testdate"]);
+                                                    var vitalCols = "<thead><tr><th width='15%'>Test Name</th><th width='10%'>Value</th><th width='20%'>Reference Min</th><th width='20%'>Reference Max</th><th width='10%'>Unit</th><th width='25%'>Test Date</th></tr></thead><tbody height=300px>";
                                                     for(var i in jsonresult)
                                                     {
-                                                        vitalCols += "<tr><td>"+jsonresult[i]["testname"]+"</td>";
-                                                        vitalCols += "<td>" +jsonresult[i]["value"] +"</td>"
-                                                        vitalCols += "<td>" + jsonresult[i]["reference_min"]+"</td>"
-                                                        vitalCols += "<td>" + jsonresult[i]["reference_max"]+"</td>"
-                                                        vitalCols += "<td>" + jsonresult[i]["unit"]+"</td>"
-                                                        vitalCols += "<td>" + jsonresult[i]["testdate"]+"</td></tr>"
+                                                        var newDate = new Date(jsonresult[i]["testdate"]);
+                                                        if(latestDate.getDate() == newDate.getDate() && latestDate.getMonth() == newDate.getMonth() && latestDate.getFullYear() == newDate.getFullYear())                                 
+                                                        {
+                                                            vitalCols += "<tr><td width='15%'>"+jsonresult[i]["testname"]+"</td>";
+                                                            vitalCols += "<td width='10%'>" +jsonresult[i]["value"] +"</td>"
+                                                            vitalCols += "<td width='20%'>" + jsonresult[i]["reference_min"]+"</td>"
+                                                            vitalCols += "<td width='20%'>" + jsonresult[i]["reference_max"]+"</td>"
+                                                            vitalCols += "<td width='10%'>" + jsonresult[i]["unit"]+"</td>"
+                                                            vitalCols += "<td width='25%'>" + jsonresult[i]["testdate"]+"</td></tr>"
+                                                        }
                                                     }
 
-                                                    $("#labTestsTable").html(vitalCols);
+                                                    $("#labTestsTable").html(vitalCols + "</tbody>");
 
                                                 </script>
-                                            </tbody>
+                                        
                                         </table>
                                         </div>
                                     </div>
@@ -234,10 +271,10 @@
                             <!-- /.row -->
                             <div class="row">
                             <div class="col-lg-5">
-                                    <div style="border:1px solid lightgrey;border-radius:7px;height:500px;margin-top:20px;" class="table-responsive">
+                                    <div style="height:500px;margin-top:20px;" class="table-responsive">
                                         <div class="panel panel-default">
                                         <div class="panel-heading"><b>MEDICATION</b></div>
-                                        <div style="height:500px">
+                                        <div style="">
                                         <table  class="table table-bordered table-hover table-striped" id="medicTable">                                            
                                             <tbody>                                                
                                                 <?php
@@ -260,7 +297,7 @@
                                                     var result1 = '<?php echo $jsonString; ?>';                                                    
                                                     var result = result1.substring(0, result1.length - 1); 
                                                     var jsonresult = $.parseJSON("["+result+"]");
-                                                    console.log(jsonresult[0]["medic"]);
+                                                    //console.log(jsonresult[0]["medic"]);
 
                                                     function comp(a, b) 
                                                     {
@@ -269,12 +306,17 @@
 
                                                     jsonresult = jsonresult.sort(comp);
 
+                                                    var latestDate = new Date(jsonresult[0]["presc_date"]);
                                                     var vitalCols = "<tr><th>Medication</th><th>Prescription Date</th><th>Quantity</th></tr>";
                                                     for(var i in jsonresult)
                                                     {
-                                                        vitalCols += "<tr><td>"+jsonresult[i]["medic"]+"</td>";
-                                                        vitalCols += "<td>" +jsonresult[i]["presc_date"] +"</td>"
-                                                        vitalCols += "<td>" + jsonresult[i]["quantity"]+"</td></tr>"
+                                                        var newDate = new Date(jsonresult[i]["presc_date"]);
+                                                        if(latestDate.getDate() == newDate.getDate() && latestDate.getMonth() == newDate.getMonth() && latestDate.getFullYear() == newDate.getFullYear())                                 
+                                                        {
+                                                            vitalCols += "<tr><td>"+jsonresult[i]["medic"]+"</td>";
+                                                            vitalCols += "<td>" +jsonresult[i]["presc_date"] +"</td>";
+                                                            vitalCols += "<td>" + jsonresult[i]["quantity"]+"</td></tr>";
+                                                        }
                                                     }
 
                                                     $("#medicTable").html(vitalCols);
