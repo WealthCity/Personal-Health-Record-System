@@ -158,13 +158,21 @@
                                                         while($row = $results->fetch_row())
                                                             $jsonString.='{"vitalsign":"'.$row[1].'","value":'. $row[2].',"unit":"'. $row[3].'","measurement_time":"'. $row[4].'"},';                                                        
                                                     }
+
+                                                    /*
+                                                    // Write JSON to the file for reference in line chart
+                                                    $myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
+                                                    $txt = $jsonString;
+                                                    fwrite($myfile, $txt);
+                                                    fclose($myfile);*/
+
                                                     $_SESSION["vitalJsonString"]=$jsonString;
                                                 ?>
                                                 <script type="text/javascript">
                                                     var result1 = '<?php echo $jsonString; ?>';                                                    
                                                     var result = result1.substring(0, result1.length - 1); 
                                                     var jsonresult = $.parseJSON("["+result+"]");
-                                                    console.log(jsonresult[0]["value"]);
+                                                    //console.log(jsonresult[0]["value"]);
 
                                                     function comp(a, b) 
                                                     {
