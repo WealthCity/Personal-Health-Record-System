@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Nov 16, 2015 at 02:34 AM
+-- Generation Time: Nov 17, 2015 at 05:52 AM
 -- Server version: 5.5.38
 -- PHP Version: 5.5.14
 
@@ -201,9 +201,13 @@ CREATE TABLE `tbl_users` (
   `pid` int(4) NOT NULL,
   `FirstName` varchar(30) NOT NULL,
   `LastName` varchar(30) NOT NULL,
+  `DOB` date NOT NULL,
+  `Gender` varchar(30) NOT NULL,
+  `profileimage` varchar(300) NOT NULL,
   `MobileNumber` decimal(10,0) NOT NULL,
   `EmergencyContact` decimal(10,0) NOT NULL,
   `EmailId` varchar(30) NOT NULL,
+  `Password` varchar(30) NOT NULL,
   `Street` varchar(30) NOT NULL,
   `City` varchar(30) NOT NULL,
   `State` varchar(30) NOT NULL,
@@ -215,9 +219,9 @@ CREATE TABLE `tbl_users` (
 -- Dumping data for table `tbl_users`
 --
 
-INSERT INTO `tbl_users` (`pid`, `FirstName`, `LastName`, `MobileNumber`, `EmergencyContact`, `EmailId`, `Street`, `City`, `State`, `Zip`, `Country`) VALUES
-(1001, 'Jonh', 'Deo', 2246768899, 2247678888, 'jonhdeo@gmail.com', '22 Taylor Ave', 'NYC', 'NY', 12601, 'USA'),
-(1002, 'Ben', 'Cuban', 8458956778, 8452206577, 'ben.cuban@gmail.com', 'Washington St', 'Poughkeepsie ', 'NY', 12601, 'USA');
+INSERT INTO `tbl_users` (`pid`, `FirstName`, `LastName`, `DOB`, `Gender`, `profileimage`, `MobileNumber`, `EmergencyContact`, `EmailId`, `Password`, `Street`, `City`, `State`, `Zip`, `Country`) VALUES
+(1001, 'John', 'Doe', '1990-11-16', 'Male', '', 2246768899, 2247678888, 'jonhdeo@gmail.com', 'jonh123111', '22 Taylor Ave', 'NYC', 'NY', 12601, 'USA'),
+(1002, 'Ben', 'Cuban', '0000-00-00', '', '', 8458956778, 8452206577, 'ben.cuban@gmail.com', '123', 'Washington St', 'Poughkeepsie ', 'NY', 12601, 'USA');
 
 -- --------------------------------------------------------
 
