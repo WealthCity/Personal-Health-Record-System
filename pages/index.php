@@ -50,7 +50,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">PHR System</a>            
+                <a class="navbar-brand" href="index.html">PHR System <?php echo "PID = ".$_SESSION["pid"]; ?>  </a>            
             </div>
             <!-- /.navbar-header -->
 
@@ -109,7 +109,7 @@
                             <!-- /.nav-second-level -->
                         </li>                        
                         <li>
-                            <a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                            <a href="userprofile.php"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
                     </ul>
                 </div>
@@ -135,7 +135,7 @@
                                         <table  class="table table-bordered table-hover table-striped" id="vitalsTable">                                            
                                                                                             
                                                 <?php
-                                                    $pid=1001;
+                                                    $pid= $_SESSION["pid"];
                                                     $sqlvitals ="SELECT * FROM vitals WHERE pid=$pid";
                                                     $jsonString="";
 
@@ -204,7 +204,7 @@
                                         <table class="table table-bordered table-hover table-striped" id="labTestsTable">                                            
                                                                                             
                                                 <?php
-                                                    $pid=1001;
+                                                    $pid = $_SESSION["pid"];
                                                     $sqllabtests ="SELECT * FROM labtests WHERE pid=$pid";
                                                     $jsonString="";
 
@@ -273,7 +273,7 @@
                                         <table  class="table table-bordered table-hover table-striped" style="height:150px;" id="medicTable">                                            
                                                                                             
                                                 <?php
-                                                    $pid=1001;
+                                                    $pid=$_SESSION["pid"];
                                                     $sqlvitals ="SELECT * FROM medication WHERE pid=$pid";
                                                     $jsonString="";
 
