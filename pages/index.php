@@ -73,22 +73,11 @@
                 $(document).ready(function() {
                     // hide all second level
                     $('.nav-second-level').hide();
-
-                    /*// show all second level whose anchor has matching href
-                    $('a').each(function(){
-                      if(document.location.href.indexOf($(this).attr('href')) > 0)
-                      {
-                        // add class to matching anchor
-                        $(this).addClass('active-me');
-                        // find its parent 'nav-second-level' and make visible
-                        $(this).closest('.nav-second-level').show();
-                          }
-
-                    });*/
-
+                    
                     // open submenu on click of main menu
                     $('a[href="#"]').click(function(){
-                       $(this).next('.nav-second-level').slideToggle();
+                        $(this).toggleClass('active-me');
+                       $(this).next('.nav-second-level').slideToggle(1000);
                     });
                 });
             </script>
@@ -139,12 +128,12 @@
             <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-5">
-                                    <div class="table-responsive" style="margin-right:20px;">
+                                    <div class="table-responsive" >
                                         <div class="panel panel-default">
                                         <div class="panel-heading"><b>VITALS</b></div>
                                         <div >
                                         <table  class="table table-bordered table-hover table-striped" id="vitalsTable">                                            
-                                            <tbody>                                                
+                                                                                            
                                                 <?php
                                                     $pid=1001;
                                                     $sqlvitals ="SELECT * FROM vitals WHERE pid=$pid";
@@ -181,7 +170,7 @@
 
                                                     jsonresult = jsonresult.sort(comp);
 
-                                                    var vitalCols = "<tr><th>Vital SIgn</th><th>Value</th><th>Unit</th><th>Measurement Time</th></tr>";
+                                                    var vitalCols = "<thead><tr><th width=30%>Vital SIgn</th><th width=20%>Value</th><th width=20%>Unit</th><th width=30%>Measurement Time</th></tr></thead><tbody>";
                                                     var latestDate = new Date(jsonresult[0]["measurement_time"]);
                                                     //console.log(latestDate.getDate()+"/"+latestDate.getMonth()+"/"+latestDate.getFullYear());
                                                     for(var i in jsonresult)
@@ -189,17 +178,16 @@
                                                         var newDate = new Date(jsonresult[i]["measurement_time"]);
                                                         if(latestDate.getDate() == newDate.getDate() && latestDate.getMonth() == newDate.getMonth() && latestDate.getFullYear() == newDate.getFullYear())                                 
                                                         {
-                                                            vitalCols += "<tr><td>"+jsonresult[i]["vitalsign"]+"</td>";
-                                                            vitalCols += "<td>" + jsonresult[i]["value"]+"</td>";
-                                                            vitalCols += "<td>" + jsonresult[i]["unit"]+"</td>";
-                                                            vitalCols += "<td>" + jsonresult[i]["measurement_time"]+"</td></tr>";
+                                                            vitalCols += "<tr><td width=30%>"+jsonresult[i]["vitalsign"]+"</td>";
+                                                            vitalCols += "<td width=20%>" + jsonresult[i]["value"]+"</td>";
+                                                            vitalCols += "<td width=20%>" + jsonresult[i]["unit"]+"</td>";
+                                                            vitalCols += "<td width=30%>" + jsonresult[i]["measurement_time"]+"</td></tr>";
                                                         }
                                                     }
 
-                                                    $("#vitalsTable").html(vitalCols);
+                                                    $("#vitalsTable").html(vitalCols+"</tbody>");
 
                                                 </script>
-                                            </tbody>
                                         </table>
                                         </div>
                                     </div>
@@ -213,7 +201,7 @@
                                         <div  class="panel panel-default">
                                         <div class="panel-heading"><b>LAB TESTS</b></div>
                                         <div >
-                                        <table class="table table-bordered table-hover table-striped table-fixed" id="labTestsTable">                                            
+                                        <table class="table table-bordered table-hover table-striped" id="labTestsTable">                                            
                                                                                             
                                                 <?php
                                                     $pid=1001;
@@ -279,12 +267,11 @@
                             <!-- /.row -->
                             <div class="row">
                             <div class="col-lg-5">
-                                    <div style="height:500px;margin-top:20px;" class="table-responsive">
+                                    <div class="table-responsive">
                                         <div class="panel panel-default">
                                         <div class="panel-heading"><b>MEDICATION</b></div>
-                                        <div style="">
-                                        <table  class="table table-bordered table-hover table-striped" id="medicTable">                                            
-                                            <tbody>                                                
+                                        <table  class="table table-bordered table-hover table-striped" style="height:150px;" id="medicTable">                                            
+                                                                                            
                                                 <?php
                                                     $pid=1001;
                                                     $sqlvitals ="SELECT * FROM medication WHERE pid=$pid";
@@ -315,24 +302,22 @@
                                                     jsonresult = jsonresult.sort(comp);
 
                                                     var latestDate = new Date(jsonresult[0]["presc_date"]);
-                                                    var vitalCols = "<tr><th>Medication</th><th>Prescription Date</th><th>Quantity</th></tr>";
+                                                    var vitalCols = "<thead><tr><th width=35%>Medication</th><th width=35%>Prescription Date</th><th width=30%>Quantity</th></tr></thead><tbody>";
                                                     for(var i in jsonresult)
                                                     {
                                                         var newDate = new Date(jsonresult[i]["presc_date"]);
                                                         if(latestDate.getDate() == newDate.getDate() && latestDate.getMonth() == newDate.getMonth() && latestDate.getFullYear() == newDate.getFullYear())                                 
                                                         {
-                                                            vitalCols += "<tr><td>"+jsonresult[i]["medic"]+"</td>";
-                                                            vitalCols += "<td>" +jsonresult[i]["presc_date"] +"</td>";
-                                                            vitalCols += "<td>" + jsonresult[i]["quantity"]+"</td></tr>";
+                                                            vitalCols += "<tr><td width=35%>"+jsonresult[i]["medic"]+"</td>";
+                                                            vitalCols += "<td width=35%>" +jsonresult[i]["presc_date"] +"</td>";
+                                                            vitalCols += "<td width=30%>" + jsonresult[i]["quantity"]+"</td></tr>";
                                                         }
                                                     }
 
-                                                    $("#medicTable").html(vitalCols);
+                                                    $("#medicTable").html(vitalCols+"</tbody>");
 
                                                 </script>
-                                            </tbody>
                                         </table>
-                                        </div>
                                     </div>
                                     </div>
                                     <!-- /.table-responsive -->
