@@ -9,6 +9,35 @@
 	padding: 10px;
 }
 
+tbody tr {
+width: 103%;
+display: inline-table;
+}
+
+table{
+ height:300px; 
+}
+tbody{
+  overflow-y: scroll;
+  !height: 200px;
+  width: 100%;
+  position: absolute;
+}
+
+.col-lg-6,.col-lg-5{
+  margin-right: 50px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.table-responsive{
+  margin-right: 0px;
+  margin-top: 100px;
+  margin-bottom: 50px;
+}
+
+
+
 #chartholder {
 	height: 400px;
 	width: 600px;
