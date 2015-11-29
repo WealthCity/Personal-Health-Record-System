@@ -3,6 +3,7 @@
 <html lang="en">
 <?php
     session_start();
+    $_SESSION["pid"] = 1001;
 ?>
 <head>
 
