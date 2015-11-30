@@ -1,5 +1,4 @@
 
-
 // Mouse hover event for tooltip
 // The tooltip appears on hover over a polygon displaying the student ID
 // d3.event gives the co-ordinates to display the tooltip 
@@ -12,7 +11,7 @@ var mousemove = function(d)
     .style("left", xPosition + "px")
     .style("top", yPosition + "px");
   d3.select("#tooltip #heading")
-    .text("Test");
+    .text(d.ALTERNATIVE_ID);
 
   d3.select("#tooltip").classed("hidden", false);
 };
@@ -24,68 +23,19 @@ var mouseout = function()
   d3.select("#tooltip").classed("hidden", true);
 };
 
-var benchMarkData = {
-      "Height":20,
-      "Respiratory Rate":20,
-      "Diastolic Blood Pressure":80,
-      "Oral Temperature":98.6,
-      "Systolic Blood Pressure":120,
-      "Apical Heart Rate":100,
-      "Weight":242.5
-  };
-
-var d=[
-    {
-      "label" : "Respiratory Rate",     // label is the name to be displayed on the axis
-      "metric" : "Respiratory Rate",  // metric is the name of th field that is to be plotted on the current axes
-      "domain" : [0, 200]           // Domain for the scale and input values. 
-    },
-    {
-      "label": "Diastolic Blood Pressure",
-      "metric": "Diastolic Blood Pressure",
-      "domain" : [0, 200]
-    },
-    {
-      "label": "Oral Temperature",
-      "metric": "Oral Temperature",
-      "domain" : [0, 200]
-    },
-    {
-      "label": "Systolic Blood Pressure",
-      "metric": "Systolic Blood Pressure",
-      "domain" : [0, 200]
-    },
-    {
-      "label": "Apical Heart Rate",
-      "metric": "Apical Heart Rate",
-      "domain" : [0, 200]
-    },
-    {
-      "label": "Weight",
-      "metric": "Weight",
-      "domain" : [0, 200]
-    }];   
-
-function color(field){
-  if(field === "Respiratory Rate")
-    return d3.scale.linear().domain([0,20,200]).range(["red","green"]);
-  else if(field === "Diastolic Blood Pressure")
-    return d3.scale.linear().domain([0,80,200]).range(["red","green"]);
-  else if(field === "Oral Temperatur")
-    return d3.scale.linear().domain([0,98.6,200]).range(["red","green"]);
-  else if(field === "Systolic Blood Pressure")
-    return d3.scale.linear().domain([0,20,200]).range(["red","green"]);
-  else if(field === "Apical Heart Rate")
-    return d3.scale.linear().domain([0,20,200]).range(["red","green"]);
-  else if(field === "Weight")
-    return d3.scale.linear().domain([0,20,200]).range(["red","green"]);
-}
 
 // metricConfiguration is label , metric and domain sent 
 // while calling the function. (check d variable in the mainscript.js)
 function radar(metricConfiguration) 
 {
-  
+  // Color provides the range of the colors that can be alloted to the polygons 
+  // depending on the risk category of the data that is being plotted
+  // for NO RISK and LOW RISK, Green color
+  // for MEDIUM RISK , Orange color
+  // for HIGH RISK, Red color
+  var color=d3.scale.ordinal()
+            .domain(["NO RISK","LOW RISK","MEDIUM RISK","HIGH RISK","BENCHMARK"])
+            .range(["green","orange","#A6038D","#F70000","black"]);
   
   // Metrics is the label, field (or metric) and domain 
   // for the axes provided while calling the function
@@ -126,6 +76,10 @@ function radar(metricConfiguration)
         return metric;
       });
 
+      //console.log(selection);
+      var scaleGPA =d3.scale.linear()
+                    .range([0,62.5,125,187.5,250])
+                    .domain([0,1,2,3,4]);
 
       // Augment data.
       // Generate X & Y co-ordinates for the data according to the data values and scale
@@ -134,7 +88,16 @@ function radar(metricConfiguration)
                 d.points = metrics.map(function (metric,i) 
                 {
                     var origX;
-                    origX= metric.scale(d[metric.metric]);
+                    if(metric.metric=='GPA_CUMULATIVE')
+                    { 
+                        // Use different scale for GPA as GPA goes from 1 to 4 only
+                        origX = scaleGPA(d[metric.metric])
+                    }                    
+                    else
+                    { 
+                        // Default scale for all other fields
+                        origX= metric.scale(d[metric.metric]);
+                    }
 
                     return {
                       'x': origX * Math.cos(metric.angle),
