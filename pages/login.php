@@ -1,3 +1,5 @@
+<?php include("connection.php"); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,6 +33,54 @@
     <![endif]-->
 
 </head>
+<script type="text/javascript">
+
+function login()
+{
+    var username = $("#email").val();
+    var pwd = $("#password").val();
+
+    
+    //alert("username = "+username);
+    //alert("password = "+pwd);
+}
+
+</script>
+
+<?php
+    session_start();
+
+      if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+         
+            $username = $_POST["email"];
+            $pwd = $_POST["password"];
+            $sqlLogin ="SELECT count(pid), pid FROM tbl_users WHERE EmailId = '$username' and Password = '$pwd'";
+            $results = $conn->query($sqlLogin);
+        
+        if(!$results)
+            echo "Sorry!! Information not found";
+        else
+        {
+            $row = $results->fetch_row();
+            $number_rows = $row[0];
+            $pid = $row[1];
+            
+            if($number_rows == 0)
+            {
+                echo "<script type='text/javascript'>alert('Please enter valid username and password');</script> ";    
+            }
+            else
+            {
+                $_SESSION["pid"] = $pid;
+                error_reporting(E_ALL | E_WARNING | E_NOTICE);
+                ini_set('display_errors', TRUE);
+                flush();
+                echo("<script>location.href = 'index.php';</script>");
+            }
+        }
+    }
+?>
+
 
 <body>
 
@@ -42,13 +92,13 @@
                         <h3 class="panel-title">Please Sign In</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form">
+                        <form role="form" method="POST">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+                                    <input class="form-control" placeholder="E-mail" id="email" name="email" type="email" autofocus>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                    <input class="form-control" placeholder="Password" id="password" name="password" type="password" value="">
                                 </div>
                                 <div class="checkbox">
                                     <label>
@@ -56,7 +106,7 @@
                                     </label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <a href="index.html" class="btn btn-lg btn-success btn-block">Login</a>
+                                <input type="submit" class="btn btn-lg btn-success btn-block" value = "Login"  onclick = "login()">
                             </fieldset>
                         </form>
                     </div>

@@ -1,8 +1,13 @@
 <?php
 $servername = "localhost";
 $username = "root";
+<<<<<<< HEAD
+$password = "root";
+=======
 $password = "";
+>>>>>>> refs/remotes/origin/master
 $db = "phr";
+
 // Create connection
 $conn = new mysqli($servername, $username, $password,$db);
 

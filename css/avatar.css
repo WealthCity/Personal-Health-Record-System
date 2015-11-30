@@ -6,3 +6,97 @@
     height:210px;
     width:210px;
 }
+
+<<<<<<< HEAD
+/*table{
+	width:97%;
+}
+
+.table-fixed thead {
+  width: 97%;
+}
+.table-fixed tbody {
+  height: 255px;
+  overflow-y: auto;
+  width: 100%;
+}
+.table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
+  display: block;
+}
+.table-fixed tbody td, .table-fixed thead > tr> th {
+  float: left;
+  border-bottom-width: 0;
+<<<<<<< HEAD
+}*/
+
+tbody tr {
+width: 103%;
+display: inline-table;
+}
+
+table{
+ height:300px; 
+}
+tbody{
+  overflow-y: scroll;
+  !height: 200px;
+  width: 100%;
+  position: absolute;
+}
+
+.col-lg-6,.col-lg-5{
+  margin-right: 50px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.table-responsive{
+  margin-right: 0px;
+  margin-top: 100px;
+  margin-bottom: 50px;
+}
+=======
+}
+
+
+
+=======
+>>>>>>> refs/remotes/origin/master
+.user-row {
+    margin-bottom: 14px;
+}
+
+.user-row:last-child {
+    margin-bottom: 0;
+}
+
+.dropdown-user {
+    margin: 13px 0;
+    padding: 5px;
+    height: 100%;
+}
+
+.dropdown-user:hover {
+    cursor: pointer;
+}
+
+.table-user-information > tbody > tr {
+    border-top: 1px solid rgb(221, 221, 221);
+}
+
+.table-user-information > tbody > tr:first-child {
+    border-top: 0;
+}
+
+
+.table-user-information > tbody > tr > td {
+    border-top: 0;
+}
+.toppad
+{
+  margin-top:20px;
+}
+<<<<<<< HEAD
+>>>>>>> 9aeeacf2c957bf232a266e0ffa43f2e34607baf3
+=======
+>>>>>>> refs/remotes/origin/master

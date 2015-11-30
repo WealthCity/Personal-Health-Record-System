@@ -1,7 +1,13 @@
 <?php include("connection.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
-
+<?php
+    session_start();
+<<<<<<< HEAD
+=======
+    $_SESSION["pid"] = 1001;
+>>>>>>> refs/remotes/origin/master
+?>
 <head>
 
     <meta charset="utf-8">
@@ -48,7 +54,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">PHR System</a>
+                <a class="navbar-brand" href="index.html">PHR System <?php echo "PID = ".$_SESSION["pid"]; ?>  </a>            
             </div>
             <!-- /.navbar-header -->
 
@@ -67,23 +73,47 @@
                 <!-- /.dropdown -->
             </ul>
             <!-- /.navbar-top-links -->
-
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    // hide all second level
+                    $('.nav-second-level').hide();
+                    
+                    // open submenu on click of main menu
+                    $('a[href="#"]').click(function(){
+                        $(this).toggleClass('active-me');
+                       $(this).next('.nav-second-level').slideToggle(1000);
+                    });
+                });
+            </script>
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
                             <div class="profile-avatar">
-                                <img class="img-responsive" src="http://lorempixel.com/600/600/people/9" alt="profile picture">
+                                <img class="img-responsive" src="avatar.jpg" alt="profile picture">
+                                <center><h5 style="font-weight:bold;">Welcome John</h5></center>
                             </div>
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
-                        </li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> History<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="vitals.php">Vitals</a>
+                                </li>
+                                <li>
+                                    <a href="labtests.php">Lab Test Results</a>
+                                </li>
+                                <li>
+                                    <a href="medication.php">Medication</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>                        
                         <li>
-                            <a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                            <a href="userprofile.php"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
                     </ul>
                 </div>
@@ -102,13 +132,14 @@
             <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-5">
-                                    <div class="table-responsive">
+                                    <div class="table-responsive" >
                                         <div class="panel panel-default">
                                         <div class="panel-heading"><b>VITALS</b></div>
-                                        <table class="table table-bordered table-hover table-striped" id="vitalsTable">                                            
-                                            <tbody>                                                
+                                        <div >
+                                        <table  class="table table-bordered table-hover table-striped" id="vitalsTable">                                            
+                                                                                            
                                                 <?php
-                                                    $pid=1001;
+                                                    $pid= $_SESSION["pid"];
                                                     $sqlvitals ="SELECT * FROM vitals WHERE pid=$pid";
                                                     $jsonString="";
 
@@ -118,24 +149,23 @@
                                                     else
                                                     {
                                                         while($row = $results->fetch_row())
-                                                        {
-                                                            /*echo "<tr>
-                                                                    <td>$row[1]</td>
-                                                                    <td>$row[2]</td>
-                                                                    <td>$row[3]</td>
-                                                                    <td>$row[4]</td>
-                                                                </tr>";*/
-                                                                $jsonString.='{"vitalsign":"'.$row[1].'","value":'. $row[2].',"unit":"'. $row[3].'","measurement_time":"'. $row[4].'"},';
-
-                                                        }
-
+                                                            $jsonString.='{"vitalsign":"'.$row[1].'","value":'. $row[2].',"unit":"'. $row[3].'","measurement_time":"'. $row[4].'"},';                                                        
                                                     }
+
+                                                    /*
+                                                    // Write JSON to the file for reference in line chart
+                                                    $myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
+                                                    $txt = $jsonString;
+                                                    fwrite($myfile, $txt);
+                                                    fclose($myfile);*/
+
+                                                    $_SESSION["vitalJsonString"]=$jsonString;
                                                 ?>
                                                 <script type="text/javascript">
                                                     var result1 = '<?php echo $jsonString; ?>';                                                    
                                                     var result = result1.substring(0, result1.length - 1); 
                                                     var jsonresult = $.parseJSON("["+result+"]");
-                                                    console.log(jsonresult[0]["value"]);
+                                                    //console.log(jsonresult[0]["value"]);
 
                                                     function comp(a, b) 
                                                     {
@@ -144,33 +174,178 @@
 
                                                     jsonresult = jsonresult.sort(comp);
 
-                                                    var vitalCols = "<tr><th>Vital SIgn</th><th>Value</th><th>Unit</th><th>Measurement Time</th></tr>";
+<<<<<<< HEAD
+=======
+                                                    var radarJSON ="[{";
+>>>>>>> refs/remotes/origin/master
+                                                    var vitalCols = "<thead><tr><th width=30%>Vital SIgn</th><th width=20%>Value</th><th width=20%>Unit</th><th width=30%>Measurement Time</th></tr></thead><tbody>";
+                                                    var latestDate = new Date(jsonresult[0]["measurement_time"]);
+                                                    //console.log(latestDate.getDate()+"/"+latestDate.getMonth()+"/"+latestDate.getFullYear());
                                                     for(var i in jsonresult)
                                                     {
-                                                        //console.log(jsonresult[i])
-                                                        vitalCols += "<tr><td>"+jsonresult[i]["vitalsign"]+"</td>";
-                                                        vitalCols += "<td>" +jsonresult[i]["value"] +"</td>"
-                                                        vitalCols += "<td>" + jsonresult[i]["unit"]+"</td>"
-                                                        vitalCols += "<td>" + jsonresult[i]["measurement_time"]+"</td></tr>"
-
+                                                        var newDate = new Date(jsonresult[i]["measurement_time"]);
+                                                        if(latestDate.getDate() == newDate.getDate() && latestDate.getMonth() == newDate.getMonth() && latestDate.getFullYear() == newDate.getFullYear())                                 
+                                                        {
+                                                            vitalCols += "<tr><td width=30%>"+jsonresult[i]["vitalsign"]+"</td>";
+                                                            vitalCols += "<td width=20%>" + jsonresult[i]["value"]+"</td>";
+                                                            vitalCols += "<td width=20%>" + jsonresult[i]["unit"]+"</td>";
+                                                            vitalCols += "<td width=30%>" + jsonresult[i]["measurement_time"]+"</td></tr>";
+<<<<<<< HEAD
+                                                        }
                                                     }
+=======
+                                                            radarJSON += "\""+jsonresult[i]["vitalsign"] + "\":" + jsonresult[i]["value"] +"," ;                     
 
-                                                    $("#vitalsTable").html(vitalCols);
+                                                        }
+                                                    }
+                                                    radarJSON = radarJSON.substring(0, radarJSON.length - 1) + "}]";
+                                                    var json = $.parseJSON(radarJSON);
+                                                    //var (key,value) = json[0];
+                                                    //console.log(key+value)
+>>>>>>> refs/remotes/origin/master
+
+                                                    $("#vitalsTable").html(vitalCols+"</tbody>");
 
                                                 </script>
-                                            </tbody>
                                         </table>
+                                        </div>
                                     </div>
                                     </div>
                                     <!-- /.table-responsive -->
                                 </div>
-                                <!-- /.col-lg-4 (nested) -->
+                                <!-- /.col-lg-5 -->
+
+                                <div class="col-lg-6">
+                                    <div style="" class="table-responsive">
+                                        <div  class="panel panel-default">
+                                        <div class="panel-heading"><b>LAB TESTS</b></div>
+                                        <div >
+                                        <table class="table table-bordered table-hover table-striped" id="labTestsTable">                                            
+                                                                                            
+                                                <?php
+                                                    $pid = $_SESSION["pid"];
+                                                    $sqllabtests ="SELECT * FROM labtests WHERE pid=$pid";
+                                                    $jsonString="";
+
+                                                    $results = $conn->query($sqllabtests);
+                                                    if(!$results)
+                                                        echo "Sorry!! Information not found";
+                                                    else
+                                                    {
+                                                        while($row = $results->fetch_row())
+                                                            $jsonString.='{"testname":"'.$row[1].'","value":'. $row[2].',"reference_min":'. $row[3].',"reference_max":'. $row[4].',"unit":"'. $row[5].'","testdate":"'. $row[6].'"},';
+                                                    }
+                                                    $_SESSION["labTestsJsonString"]=$jsonString;
+                                                ?>
+                                                <script type="text/javascript">
+                                                    var result1 = '<?php echo $jsonString; ?>';                                                    
+                                                    var result = result1.substring(0, result1.length - 1); 
+                                                    var jsonresult = $.parseJSON("["+result+"]");
+                                                    //console.log(jsonresult[0]["value"]);
+
+                                                    function comp(a, b) 
+                                                    {
+                                                        return new Date(b["testdate"]).getTime() - new Date(a["testdate"]).getTime();
+                                                    }
+
+                                                    jsonresult = jsonresult.sort(comp);
+<<<<<<< HEAD
+
+=======
+>>>>>>> refs/remotes/origin/master
+                                                    var latestDate = new Date(jsonresult[0]["testdate"]);
+                                                    var vitalCols = "<thead><tr><th width='15%'>Test Name</th><th width='10%'>Value</th><th width='20%'>Reference Min</th><th width='20%'>Reference Max</th><th width='10%'>Unit</th><th width='25%'>Test Date</th></tr></thead><tbody height=300px>";
+                                                    for(var i in jsonresult)
+                                                    {
+                                                        var newDate = new Date(jsonresult[i]["testdate"]);
+                                                        if(latestDate.getDate() == newDate.getDate() && latestDate.getMonth() == newDate.getMonth() && latestDate.getFullYear() == newDate.getFullYear())                                 
+                                                        {
+                                                            vitalCols += "<tr><td width='15%'>"+jsonresult[i]["testname"]+"</td>";
+                                                            vitalCols += "<td width='10%'>" +jsonresult[i]["value"] +"</td>"
+                                                            vitalCols += "<td width='20%'>" + jsonresult[i]["reference_min"]+"</td>"
+                                                            vitalCols += "<td width='20%'>" + jsonresult[i]["reference_max"]+"</td>"
+                                                            vitalCols += "<td width='10%'>" + jsonresult[i]["unit"]+"</td>"
+                                                            vitalCols += "<td width='25%'>" + jsonresult[i]["testdate"]+"</td></tr>"
+                                                        }
+                                                    }
+
+                                                    $("#labTestsTable").html(vitalCols + "</tbody>");
+
+                                                </script>
+                                        
+                                        </table>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <!-- /.table-responsive -->
+                                </div>
+                                <!-- /.col-lg-6  -->
+                                
                                 <div class="col-lg-8">
                                     <div id="morris-bar-chart"></div>
                                 </div>
                                 <!-- /.col-lg-8 (nested) -->
                             </div>
                             <!-- /.row -->
+                            <div class="row">
+                            <div class="col-lg-5">
+                                    <div class="table-responsive">
+                                        <div class="panel panel-default">
+                                        <div class="panel-heading"><b>MEDICATION</b></div>
+                                        <table  class="table table-bordered table-hover table-striped" style="height:150px;" id="medicTable">                                            
+                                                                                            
+                                                <?php
+                                                    $pid=$_SESSION["pid"];
+                                                    $sqlvitals ="SELECT * FROM medication WHERE pid=$pid";
+                                                    $jsonString="";
+
+                                                    $results = $conn->query($sqlvitals);
+                                                    if(!$results)
+                                                        echo "Sorry!! Information not found";
+                                                    else
+                                                    {
+                                                        while($row = $results->fetch_row())
+                                                            $jsonString.='{"medic":"'.$row[1].'","presc_date":"'. $row[2].'","quantity":'. $row[3].'},';
+                                                    }
+                                                    $_SESSION["medicationJsonString"]=$jsonString;
+
+                                                ?>
+                                                <script type="text/javascript">
+                                                    var result1 = '<?php echo $jsonString; ?>';                                                    
+                                                    var result = result1.substring(0, result1.length - 1); 
+                                                    var jsonresult = $.parseJSON("["+result+"]");
+                                                    //console.log(jsonresult[0]["medic"]);
+
+                                                    function comp(a, b) 
+                                                    {
+                                                        return new Date(b["presc_date"]).getTime() - new Date(a["presc_date"]).getTime();
+                                                    }
+
+                                                    jsonresult = jsonresult.sort(comp);
+
+                                                    var latestDate = new Date(jsonresult[0]["presc_date"]);
+                                                    var vitalCols = "<thead><tr><th width=35%>Medication</th><th width=35%>Prescription Date</th><th width=30%>Quantity</th></tr></thead><tbody>";
+                                                    for(var i in jsonresult)
+                                                    {
+                                                        var newDate = new Date(jsonresult[i]["presc_date"]);
+                                                        if(latestDate.getDate() == newDate.getDate() && latestDate.getMonth() == newDate.getMonth() && latestDate.getFullYear() == newDate.getFullYear())                                 
+                                                        {
+                                                            vitalCols += "<tr><td width=35%>"+jsonresult[i]["medic"]+"</td>";
+                                                            vitalCols += "<td width=35%>" +jsonresult[i]["presc_date"] +"</td>";
+                                                            vitalCols += "<td width=30%>" + jsonresult[i]["quantity"]+"</td></tr>";
+                                                        }
+                                                    }
+
+                                                    $("#medicTable").html(vitalCols+"</tbody>");
+
+                                                </script>
+                                        </table>
+                                    </div>
+                                    </div>
+                                    <!-- /.table-responsive -->
+                                </div>
+                                <!-- /.col-lg-5 -->
+                            </div>
                         </div>
             
         </div>
@@ -188,7 +363,10 @@
     <!-- Morris Charts JavaScript -->
     <script src="../bower_components/raphael/raphael-min.js"></script>
     <script src="../bower_components/morrisjs/morris.min.js"></script>
+<<<<<<< HEAD
     <script src="../js/morris-data.js"></script>
+=======
+>>>>>>> refs/remotes/origin/master
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
