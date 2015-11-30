@@ -1,5 +1,8 @@
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> refs/remotes/origin/master
 // Mouse hover event for tooltip
 // The tooltip appears on hover over a polygon displaying the student ID
 // d3.event gives the co-ordinates to display the tooltip 
@@ -12,7 +15,11 @@ var mousemove = function(d)
     .style("left", xPosition + "px")
     .style("top", yPosition + "px");
   d3.select("#tooltip #heading")
+<<<<<<< HEAD
+    .text(d.ALTERNATIVE_ID);
+=======
     .text("Test");
+>>>>>>> refs/remotes/origin/master
 
   d3.select("#tooltip").classed("hidden", false);
 };
@@ -24,6 +31,8 @@ var mouseout = function()
   d3.select("#tooltip").classed("hidden", true);
 };
 
+<<<<<<< HEAD
+=======
 var benchMarkData = {
       "Height":20,
       "Respiratory Rate":20,
@@ -80,12 +89,24 @@ function color(field){
   else if(field === "Weight")
     return d3.scale.linear().domain([0,20,200]).range(["red","green"]);
 }
+>>>>>>> refs/remotes/origin/master
 
 // metricConfiguration is label , metric and domain sent 
 // while calling the function. (check d variable in the mainscript.js)
 function radar(metricConfiguration) 
 {
+<<<<<<< HEAD
+  // Color provides the range of the colors that can be alloted to the polygons 
+  // depending on the risk category of the data that is being plotted
+  // for NO RISK and LOW RISK, Green color
+  // for MEDIUM RISK , Orange color
+  // for HIGH RISK, Red color
+  var color=d3.scale.ordinal()
+            .domain(["NO RISK","LOW RISK","MEDIUM RISK","HIGH RISK","BENCHMARK"])
+            .range(["green","orange","#A6038D","#F70000","black"]);
+=======
   
+>>>>>>> refs/remotes/origin/master
   
   // Metrics is the label, field (or metric) and domain 
   // for the axes provided while calling the function
@@ -126,6 +147,13 @@ function radar(metricConfiguration)
         return metric;
       });
 
+<<<<<<< HEAD
+      //console.log(selection);
+      var scaleGPA =d3.scale.linear()
+                    .range([0,62.5,125,187.5,250])
+                    .domain([0,1,2,3,4]);
+=======
+>>>>>>> refs/remotes/origin/master
 
       // Augment data.
       // Generate X & Y co-ordinates for the data according to the data values and scale
@@ -134,7 +162,20 @@ function radar(metricConfiguration)
                 d.points = metrics.map(function (metric,i) 
                 {
                     var origX;
+<<<<<<< HEAD
+                    if(metric.metric=='GPA_CUMULATIVE')
+                    { 
+                        // Use different scale for GPA as GPA goes from 1 to 4 only
+                        origX = scaleGPA(d[metric.metric])
+                    }                    
+                    else
+                    { 
+                        // Default scale for all other fields
+                        origX= metric.scale(d[metric.metric]);
+                    }
+=======
                     origX= metric.scale(d[metric.metric]);
+>>>>>>> refs/remotes/origin/master
 
                     return {
                       'x': origX * Math.cos(metric.angle),
