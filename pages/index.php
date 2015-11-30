@@ -3,6 +3,10 @@
 <html lang="en">
 <?php
     session_start();
+<<<<<<< HEAD
+=======
+    $_SESSION["pid"] = 1001;
+>>>>>>> refs/remotes/origin/master
 ?>
 <head>
 
@@ -170,6 +174,10 @@
 
                                                     jsonresult = jsonresult.sort(comp);
 
+<<<<<<< HEAD
+=======
+                                                    var radarJSON ="[{";
+>>>>>>> refs/remotes/origin/master
                                                     var vitalCols = "<thead><tr><th width=30%>Vital SIgn</th><th width=20%>Value</th><th width=20%>Unit</th><th width=30%>Measurement Time</th></tr></thead><tbody>";
                                                     var latestDate = new Date(jsonresult[0]["measurement_time"]);
                                                     //console.log(latestDate.getDate()+"/"+latestDate.getMonth()+"/"+latestDate.getFullYear());
@@ -182,8 +190,19 @@
                                                             vitalCols += "<td width=20%>" + jsonresult[i]["value"]+"</td>";
                                                             vitalCols += "<td width=20%>" + jsonresult[i]["unit"]+"</td>";
                                                             vitalCols += "<td width=30%>" + jsonresult[i]["measurement_time"]+"</td></tr>";
+<<<<<<< HEAD
                                                         }
                                                     }
+=======
+                                                            radarJSON += "\""+jsonresult[i]["vitalsign"] + "\":" + jsonresult[i]["value"] +"," ;                     
+
+                                                        }
+                                                    }
+                                                    radarJSON = radarJSON.substring(0, radarJSON.length - 1) + "}]";
+                                                    var json = $.parseJSON(radarJSON);
+                                                    //var (key,value) = json[0];
+                                                    //console.log(key+value)
+>>>>>>> refs/remotes/origin/master
 
                                                     $("#vitalsTable").html(vitalCols+"</tbody>");
 
@@ -230,7 +249,10 @@
                                                     }
 
                                                     jsonresult = jsonresult.sort(comp);
+<<<<<<< HEAD
 
+=======
+>>>>>>> refs/remotes/origin/master
                                                     var latestDate = new Date(jsonresult[0]["testdate"]);
                                                     var vitalCols = "<thead><tr><th width='15%'>Test Name</th><th width='10%'>Value</th><th width='20%'>Reference Min</th><th width='20%'>Reference Max</th><th width='10%'>Unit</th><th width='25%'>Test Date</th></tr></thead><tbody height=300px>";
                                                     for(var i in jsonresult)
@@ -341,7 +363,10 @@
     <!-- Morris Charts JavaScript -->
     <script src="../bower_components/raphael/raphael-min.js"></script>
     <script src="../bower_components/morrisjs/morris.min.js"></script>
+<<<<<<< HEAD
     <script src="../js/morris-data.js"></script>
+=======
+>>>>>>> refs/remotes/origin/master
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
