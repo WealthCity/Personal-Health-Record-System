@@ -4,6 +4,23 @@
 <?php
     session_start();
     $_SESSION["pid"] = 1001;
+    $pid = $_SESSION["pid"];    
+
+    $sqlProfile ="SELECT * FROM tbl_users WHERE pid = $pid ";
+    
+            $results = $conn->query($sqlProfile);
+        
+        if(!$results)
+        {
+            echo "Sorry!! Information not found";
+        }
+        else
+        {
+            $row = $results->fetch_row();
+            $username = $row[1]." ".$row[2];
+            $imageName = "../profilePictures/".$row[5];
+          }
+
 ?>
 <head>
 
@@ -37,6 +54,7 @@
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 </head>
+
 
 <body>
 
@@ -87,8 +105,8 @@
                     <ul class="nav" id="side-menu">
                         <li>
                             <div class="profile-avatar">
-                                <img class="img-responsive" src="avatar.jpg" alt="profile picture">
-                                <center><h5 style="font-weight:bold;">Welcome John</h5></center>
+                                <img class="img-responsive" src=<?php echo $imageName ?> alt="profile picture">
+                                <center><h5 style="font-weight:bold;">Welcome <?php echo $username; ?></h5></center>
                             </div>
                         </li>
                         <li>
