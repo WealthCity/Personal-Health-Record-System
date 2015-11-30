@@ -1,0 +1,338 @@
+pid,Vital Sign,Value,Unit,Measurement Time
+1001,Oral Temperature,98.6,F,6/29/2011 12:15
+1001,Systolic Blood Pressure,150,mmHg,6/29/2011 12:15
+1001,Peripheral Pulse Rate,106,bpm,6/29/2011 12:15
+1001,Diastolic Blood Pressure,90,mmHg,6/29/2011 12:15
+1001,Respiratory Rate,20,br/min,9/13/2011 14:30
+1001,Systolic Blood Pressure,140,mmHg,9/13/2011 14:30
+1001,Weight,243,lb,9/13/2011 14:30
+1001,Height,66,in,9/13/2011 14:30
+1001,Diastolic Blood Pressure,90,mmHg,9/13/2011 14:30
+1001,Peripheral Pulse Rate,80,bpm,9/13/2011 14:30
+1001,Oral Temperature,97.6,F,9/13/2011 14:30
+1001,Diastolic Blood Pressure,70,mmHg,6/30/2011 16:00
+1001,Height,64,in,6/30/2011 16:00
+1001,Oral Temperature,98.1,F,6/30/2011 16:00
+1001,Weight,235,lb,6/30/2011 16:00
+1001,Systolic Blood Pressure,120,mmHg,6/30/2011 16:00
+1001,Peripheral Pulse Rate,90,bpm,6/30/2011 16:00
+1001,Respiratory Rate,20,br/min,6/30/2011 16:00
+1001,Respiratory Rate,20,br/min,7/1/2011 7:00
+1001,Weight,234,lb,7/1/2011 7:00
+1001,Peripheral Pulse Rate,92,bpm,7/1/2011 7:00
+1001,Systolic Blood Pressure,140,mmHg,7/1/2011 7:00
+1001,Height,66,in,7/1/2011 7:00
+1001,Oral Temperature,98.2,F,7/1/2011 7:00
+1001,Apical Heart Rate,92,bpm,7/1/2011 7:00
+1001,Diastolic Blood Pressure,92,mmHg,7/1/2011 7:00
+1001,Systolic Blood Pressure,140,mmHg,11/14/2011 9:45
+1001,Oral Temperature,98.2,F,11/14/2011 9:45
+1001,Respiratory Rate,18,br/min,11/14/2011 9:45
+1001,Diastolic Blood Pressure,70,mmHg,11/14/2011 9:45
+1001,Peripheral Pulse Rate,80,bpm,11/14/2011 9:45
+1001,Weight,243,lb,11/14/2011 9:45
+1001,Height,65,in,11/14/2011 9:45
+1001,Peripheral Pulse Rate,76,bpm,7/9/2011 1:15
+1001,Oral Temperature,98.1,F,7/9/2011 1:15
+1001,Respiratory Rate,18,br/min,7/9/2011 1:15
+1001,Systolic Blood Pressure,107,mmHg,7/9/2011 1:15
+1001,Diastolic Blood Pressure,86,mmHg,7/9/2011 1:15
+1001,Weight,235,lb,7/9/2011 1:15
+1001,Height,67,in,7/9/2011 1:15
+1001,Respiratory Rate,18,br/min,7/11/2011 7:30
+1001,Diastolic Blood Pressure,90,mmHg,7/11/2011 7:30
+1001,Weight,234,lb,7/11/2011 7:30
+1001,Height,64,in,7/11/2011 7:30
+1001,Peripheral Pulse Rate,70,bpm,7/11/2011 7:30
+1001,Systolic Blood Pressure,140,mmHg,7/11/2011 7:30
+1001,Oral Temperature,98.7,F,7/11/2011 7:30
+1001,Peripheral Pulse Rate,100,bpm,7/28/2011 21:00
+1001,Diastolic Blood Pressure,84,mmHg,7/28/2011 21:00
+1001,Oral Temperature,98.7,F,7/28/2011 21:00
+1001,Systolic Blood Pressure,114,mmHg,7/28/2011 21:00
+1001,Respiratory Rate,16,br/min,7/28/2011 21:00
+1001,Respiratory Rate,20,br/min,7/29/2011 17:15
+1001,Oral Temperature,98.3,F,7/29/2011 17:15
+1001,Peripheral Pulse Rate,78,bpm,7/29/2011 17:15
+1001,Height,66,in,7/29/2011 17:15
+1001,Weight,239,lb,7/29/2011 17:15
+1001,Systolic Blood Pressure,142,mmHg,7/29/2011 17:15
+1001,Diastolic Blood Pressure,98,mmHg,7/29/2011 17:15
+1001,Oral Temperature,98.7,F,8/3/2011 12:00
+1001,Respiratory Rate,20,br/min,8/3/2011 12:00
+1001,Peripheral Pulse Rate,84,bpm,8/3/2011 12:00
+1001,Diastolic Blood Pressure,80,mmHg,8/3/2011 12:00
+1001,Height,62,in,8/3/2011 12:00
+1001,Weight,235,lb,8/3/2011 12:00
+1001,Systolic Blood Pressure,128,mmHg,8/3/2011 12:00
+1001,Height,66,in,8/2/2011 18:45
+1001,Peripheral Pulse Rate,80,bpm,8/2/2011 18:45
+1001,Diastolic Blood Pressure,80,mmHg,8/2/2011 18:45
+1001,Oral Temperature,97.8,F,8/2/2011 18:45
+1001,Systolic Blood Pressure,118,mmHg,8/2/2011 18:45
+1001,Respiratory Rate,18,br/min,8/2/2011 18:45
+1001,Weight,195,lb,8/5/2011 14:15
+1001,Oral Temperature,98.6,F,8/5/2011 14:15
+1001,Systolic Blood Pressure,140,mmHg,8/5/2011 14:15
+1001,Peripheral Pulse Rate,88,bpm,8/5/2011 14:15
+1001,Height,62,in,8/5/2011 14:15
+1001,Respiratory Rate,20,br/min,8/5/2011 14:15
+1001,Diastolic Blood Pressure,86,mmHg,8/5/2011 14:15
+1001,Weight,233,lb,8/13/2011 13:45
+1001,Height,62,in,8/13/2011 13:45
+1001,Oral Temperature,98.8,F,8/13/2011 13:45
+1001,Systolic Blood Pressure,140,mmHg,8/13/2011 13:45
+1001,Diastolic Blood Pressure,80,mmHg,8/13/2011 13:45
+1001,Peripheral Pulse Rate,78,bpm,8/13/2011 13:45
+1001,Respiratory Rate,20,br/min,8/13/2011 13:45
+1001,Systolic Blood Pressure,134,mmHg,8/14/2011 22:30
+1001,Diastolic Blood Pressure,103,mmHg,8/14/2011 22:30
+1001,Peripheral Pulse Rate,85,bpm,8/14/2011 22:30
+1001,Respiratory Rate,16,br/min,8/14/2011 22:30
+1001,Oral Temperature,98.3,F,8/14/2011 22:30
+1001,Systolic Blood Pressure,115,mmHg,8/15/2011 5:45
+1001,Oral Temperature,98.3,F,8/15/2011 5:45
+1001,Diastolic Blood Pressure,92,mmHg,8/15/2011 5:45
+1001,Peripheral Pulse Rate,80,bpm,8/15/2011 5:45
+1001,Weight,230,lb,8/15/2011 5:45
+1001,Respiratory Rate,16,br/min,8/15/2011 5:45
+1001,Height,66,in,8/15/2011 5:45
+1001,Diastolic Blood Pressure,98,mmHg,11/24/2011 16:45
+1001,Respiratory Rate,20,br/min,11/24/2011 16:45
+1001,Weight,246,lb,11/24/2011 16:45
+1001,Systolic Blood Pressure,146,mmHg,11/24/2011 16:45
+1001,Peripheral Pulse Rate,90,bpm,11/24/2011 16:45
+1001,Oral Temperature,98.9,F,11/24/2011 16:45
+1001,Height,64,in,10/21/2011 15:45
+1001,Weight,242,lb,10/21/2011 15:45
+1001,Oral Temperature,98.4,F,10/21/2011 15:45
+1001,Diastolic Blood Pressure,100,mmHg,10/21/2011 15:45
+1001,Peripheral Pulse Rate,80,bpm,10/21/2011 15:45
+1001,Respiratory Rate,16,br/min,10/21/2011 15:45
+1001,Systolic Blood Pressure,150,mmHg,10/21/2011 15:45
+1001,Weight,254,lb,10/24/2011 18:00
+1001,Respiratory Rate,20,br/min,10/24/2011 18:00
+1001,Height,64,in,10/24/2011 18:00
+1001,Diastolic Blood Pressure,72,mmHg,10/24/2011 18:00
+1001,Oral Temperature,98.4,F,10/24/2011 18:00
+1001,Systolic Blood Pressure,124,mmHg,10/24/2011 18:00
+1001,Peripheral Pulse Rate,88,bpm,10/24/2011 18:00
+1001,Diastolic Blood Pressure,118,mmHg,10/29/2011 23:00
+1001,Oral Temperature,98.3,F,10/29/2011 23:00
+1001,Apical Heart Rate,93,bpm,10/29/2011 23:00
+1001,Systolic Blood Pressure,158,mmHg,10/29/2011 23:00
+1001,Respiratory Rate,18,br/min,10/29/2011 23:00
+1001,Oral Temperature,98.1,F,11/26/2011 14:30
+1001,Systolic Blood Pressure,136,mmHg,11/26/2011 14:30
+1001,Respiratory Rate,18,br/min,11/26/2011 14:30
+1001,Diastolic Blood Pressure,75,mmHg,11/26/2011 14:30
+1001,Peripheral Pulse Rate,80,bpm,11/26/2011 14:30
+1001,Oral Temperature,97.2,F,11/29/2011 7:00
+1001,Weight,292,lb,11/29/2011 7:00
+1001,Systolic Blood Pressure,112,mmHg,11/29/2011 7:00
+1001,Peripheral Pulse Rate,60,bpm,11/29/2011 7:00
+1001,Height,64,in,11/29/2011 7:00
+1001,Respiratory Rate,18,br/min,11/29/2011 7:00
+1001,Diastolic Blood Pressure,78,mmHg,11/29/2011 7:00
+1001,Systolic Blood Pressure,120,mmHg,11/28/2011 8:15
+1001,Weight,245,lb,11/28/2011 8:15
+1001,Peripheral Pulse Rate,78,bpm,11/28/2011 8:15
+1001,Height,65,in,11/28/2011 8:15
+1001,Oral Temperature,98.6,F,11/28/2011 8:15
+1001,Respiratory Rate,20,br/min,11/28/2011 8:15
+1001,Diastolic Blood Pressure,76,mmHg,11/28/2011 8:15
+1001,Diastolic Blood Pressure,84,mmHg,2/1/2012 8:30
+1001,Systolic Blood Pressure,140,mmHg,2/1/2012 8:30
+1001,Respiratory Rate,20,br/min,2/1/2012 8:30
+1001,Weight,237,lb,2/1/2012 8:30
+1001,Peripheral Pulse Rate,86,bpm,2/1/2012 8:30
+1001,Oral Temperature,97.9,F,2/1/2012 8:30
+1001,Diastolic Blood Pressure,92,mmHg,12/6/2011 13:30
+1001,Weight,240,lb,12/6/2011 13:30
+1001,Height,64,in,12/6/2011 13:30
+1001,Peripheral Pulse Rate,55,bpm,12/6/2011 13:30
+1001,Systolic Blood Pressure,126,mmHg,12/6/2011 13:30
+1001,Oral Temperature,97.4,F,12/6/2011 13:30
+1001,Respiratory Rate,16,br/min,12/6/2011 13:30
+1001,Peripheral Pulse Rate,100,bpm,2/13/2012 16:45
+1001,Systolic Blood Pressure,136,mmHg,2/13/2012 16:45
+1001,Respiratory Rate,16,br/min,2/13/2012 16:45
+1001,Height,64,in,2/13/2012 16:45
+1001,Diastolic Blood Pressure,90,mmHg,2/13/2012 16:45
+1001,Oral Temperature,98.1,F,2/13/2012 16:45
+1001,Respiratory Rate,18,br/min,2/5/2012 16:30
+1001,Diastolic Blood Pressure,80,mmHg,2/5/2012 16:30
+1001,Weight,233,lb,2/5/2012 16:30
+1001,Apical Heart Rate,76,bpm,2/5/2012 16:30
+1001,Systolic Blood Pressure,130,mmHg,2/5/2012 16:30
+1001,Oral Temperature,98,F,2/5/2012 16:30
+1001,Peripheral Pulse Rate,70,bpm,2/7/2012 9:00
+1001,Diastolic Blood Pressure,84,mmHg,2/7/2012 9:00
+1001,Height,64,in,2/7/2012 9:00
+1001,Weight,240,lb,12/16/2011 12:30
+1001,Peripheral Pulse Rate,78,bpm,12/16/2011 12:30
+1001,Height,64,in,12/16/2011 12:30
+1001,Respiratory Rate,18,br/min,12/16/2011 12:30
+1001,Diastolic Blood Pressure,70,mmHg,12/16/2011 12:30
+1001,Oral Temperature,98.1,F,12/16/2011 12:30
+1001,Systolic Blood Pressure,126,mmHg,12/16/2011 12:30
+1001,Systolic Blood Pressure,138,mmHg,2/7/2012 9:00
+1001,Weight,235,lb,2/7/2012 9:00
+1001,Respiratory Rate,18,br/min,2/7/2012 9:00
+1001,Respiratory Rate,20,br/min,12/26/2011 9:15
+1001,Diastolic Blood Pressure,110,mmHg,12/26/2011 9:15
+1001,Systolic Blood Pressure,160,mmHg,12/26/2011 9:15
+1001,Peripheral Pulse Rate,100,bpm,12/26/2011 9:15
+1001,Height,68,in,12/25/2011 1:00
+1001,Weight,180,lb,12/25/2011 1:00
+1001,Peripheral Pulse Rate,68,bpm,12/25/2011 1:00
+1001,Respiratory Rate,18,br/min,12/25/2011 1:00
+1001,Systolic Blood Pressure,160,mmHg,12/25/2011 1:00
+1001,Oral Temperature,97.3,F,12/25/2011 1:00
+1001,Diastolic Blood Pressure,128,mmHg,12/25/2011 1:00
+1001,Respiratory Rate,20,br/min,12/26/2011 10:00
+1001,Diastolic Blood Pressure,110,mmHg,12/26/2011 10:00
+1001,Systolic Blood Pressure,160,mmHg,12/26/2011 10:00
+1001,Peripheral Pulse Rate,100,bpm,12/26/2011 10:00
+1001,Respiratory Rate,18,br/min,1/4/2012 8:45
+1001,Systolic Blood Pressure,140,mmHg,1/4/2012 8:45
+1001,Oral Temperature,98.7,F,1/4/2012 8:45
+1001,Peripheral Pulse Rate,82,bpm,1/4/2012 8:45
+1001,Weight,234,lb,1/4/2012 8:45
+1001,Diastolic Blood Pressure,90,mmHg,1/4/2012 8:45
+1001,Oral Temperature,98.2,F,1/24/2012 20:45
+1001,Respiratory Rate,16,br/min,1/24/2012 20:45
+1001,Diastolic Blood Pressure,87,mmHg,1/24/2012 20:45
+1001,Systolic Blood Pressure,135,mmHg,1/24/2012 20:45
+1001,Peripheral Pulse Rate,84,bpm,1/24/2012 20:45
+1001,Diastolic Blood Pressure,78,mmHg,1/25/2012 12:45
+1001,Weight,236,lb,1/25/2012 12:45
+1001,Oral Temperature,97.7,F,1/25/2012 12:45
+1001,Systolic Blood Pressure,130,mmHg,1/25/2012 12:45
+1001,Respiratory Rate,16,br/min,1/25/2012 12:45
+1001,Peripheral Pulse Rate,78,bpm,1/25/2012 12:45
+1001,Diastolic Blood Pressure,80,mmHg,2/16/2012 9:30
+1001,Respiratory Rate,20,br/min,2/16/2012 9:30
+1001,Oral Temperature,99.1,F,2/16/2012 9:30
+1001,Height,64,in,2/16/2012 9:30
+1001,Peripheral Pulse Rate,84,bpm,2/16/2012 9:30
+1001,Systolic Blood Pressure,140,mmHg,2/16/2012 9:30
+1001,Oral Temperature,98,F,2/19/2012 5:00
+1001,Systolic Blood Pressure,138,mmHg,2/19/2012 5:00
+1001,Peripheral Pulse Rate,60,bpm,2/19/2012 5:00
+1001,Diastolic Blood Pressure,84,mmHg,2/19/2012 5:00
+1001,Peripheral Pulse Rate,97,bpm,2/23/2012 10:15
+1001,Systolic Blood Pressure,138,mmHg,2/23/2012 10:15
+1001,Respiratory Rate,18,br/min,2/23/2012 10:15
+1001,Diastolic Blood Pressure,92,mmHg,2/23/2012 10:15
+1001,Height,66,in,2/23/2012 10:15
+1001,Weight,227,lb,2/23/2012 10:15
+1001,Weight,236,lb,12/3/2012 14:30
+1001,Height,68,in,12/3/2012 14:30
+1001,Peripheral Pulse Rate,68,bpm,12/3/2012 14:30
+1001,Respiratory Rate,18,br/min,12/3/2012 14:30
+1001,Systolic Blood Pressure,140,mmHg,12/3/2012 14:30
+1001,Diastolic Blood Pressure,100,mmHg,12/3/2012 14:30
+1001,Peripheral Pulse Rate,84,bpm,12/9/2012 8:45
+1001,Respiratory Rate,18,br/min,12/9/2012 8:45
+1001,Systolic Blood Pressure,120,mmHg,12/9/2012 8:45
+1001,Diastolic Blood Pressure,96,mmHg,12/9/2012 8:45
+1001,Respiratory Rate,18,br/min,12/10/2012 14:45
+1001,Peripheral Pulse Rate,74,bpm,12/10/2012 14:45
+1001,Weight,236,lb,12/10/2012 14:45
+1001,Height,68,in,12/10/2012 14:45
+1001,Diastolic Blood Pressure,108,mmHg,12/10/2012 14:45
+1001,Systolic Blood Pressure,138,mmHg,12/10/2012 14:45
+1001,Peripheral Pulse Rate,98,bpm,1/19/2013 11:45
+1001,Systolic Blood Pressure,160,mmHg,1/19/2013 11:45
+1001,Respiratory Rate,20,br/min,1/19/2013 11:45
+1001,Diastolic Blood Pressure,90,mmHg,1/19/2013 11:45
+1001,Diastolic Blood Pressure,70,mmHg,1/21/2013 13:30
+1001,Respiratory Rate,18,br/min,1/21/2013 13:30
+1001,Oral Temperature,98.6,F,1/21/2013 13:30
+1001,Weight,233,lb,1/21/2013 13:30
+1001,Systolic Blood Pressure,112,mmHg,1/21/2013 13:30
+1001,Peripheral Pulse Rate,70,bpm,1/21/2013 13:30
+1001,Height,68,in,1/21/2013 13:30
+1001,Height,68,in,2/12/2013 9:00
+1001,Weight,234,lb,2/12/2013 9:00
+1001,Peripheral Pulse Rate,70,bpm,2/12/2013 9:00
+1001,Respiratory Rate,18,br/min,2/12/2013 9:00
+1001,Diastolic Blood Pressure,94,mmHg,2/12/2013 9:00
+1001,Oral Temperature,98,F,2/12/2013 9:00
+1001,Systolic Blood Pressure,140,mmHg,2/12/2013 9:00
+1001,Systolic Blood Pressure,150,mmHg,1/24/2013 10:45
+1001,Oral Temperature,99,F,1/24/2013 10:45
+1001,Height,66,in,1/24/2013 10:45
+1001,Respiratory Rate,20,br/min,1/24/2013 10:45
+1001,Weight,230,lb,1/24/2013 10:45
+1001,Diastolic Blood Pressure,90,mmHg,1/24/2013 10:45
+1001,Peripheral Pulse Rate,90,bpm,1/24/2013 10:45
+1001,Respiratory Rate,18,br/min,12/18/2012 11:30
+1001,Diastolic Blood Pressure,110,mmHg,12/18/2012 11:30
+1001,Peripheral Pulse Rate,80,bpm,12/18/2012 11:30
+1001,Oral Temperature,98.1,F,12/18/2012 11:30
+1001,Weight,240,lb,12/18/2012 11:30
+1001,Height,68,in,12/18/2012 11:30
+1001,Systolic Blood Pressure,162,mmHg,12/18/2012 11:30
+1001,Peripheral Pulse Rate,92,bpm,1/26/2013 16:15
+1001,Oral Temperature,98.3,F,1/26/2013 16:15
+1001,Weight,230,lb,1/26/2013 16:15
+1001,Systolic Blood Pressure,138,mmHg,1/26/2013 16:15
+1001,Height,67,in,1/26/2013 16:15
+1001,Diastolic Blood Pressure,100,mmHg,1/26/2013 16:15
+1001,Respiratory Rate,20,br/min,1/26/2013 16:15
+1001,Systolic Blood Pressure,144,mmHg,1/27/2013 1:45
+1001,Diastolic Blood Pressure,100,mmHg,1/27/2013 1:45
+1001,Respiratory Rate,18,br/min,1/27/2013 1:45
+1001,Systolic Blood Pressure,148,mmHg,1/27/2013 8:00
+1001,Diastolic Blood Pressure,100,mmHg,1/27/2013 8:00
+1001,Peripheral Pulse Rate,90,bpm,1/27/2013 8:00
+1001,Oral Temperature,98.2,F,1/27/2013 8:00
+1001,Respiratory Rate,14,br/min,1/27/2013 8:00
+1001,Diastolic Blood Pressure,98,mmHg,1/27/2013 8:15
+1001,Apical Heart Rate,102,bpm,1/27/2013 8:15
+1001,Systolic Blood Pressure,170,mmHg,1/27/2013 8:15
+1001,Respiratory Rate,20,br/min,1/27/2013 8:15
+1001,Respiratory Rate,18,br/min,1/29/2013 10:45
+1001,Diastolic Blood Pressure,90,mmHg,1/29/2013 10:45
+1001,Weight,236,lb,1/29/2013 10:45
+1001,Height,66,in,1/29/2013 10:45
+1001,Peripheral Pulse Rate,74,bpm,1/29/2013 10:45
+1001,Systolic Blood Pressure,136,mmHg,1/29/2013 10:45
+1001,Oral Temperature,98.7,F,1/31/2013 2:15
+1001,Diastolic Blood Pressure,90,mmHg,1/31/2013 2:15
+1001,Systolic Blood Pressure,148,mmHg,1/31/2013 2:15
+1001,Peripheral Pulse Rate,84,bpm,1/31/2013 2:15
+1001,Respiratory Rate,18,br/min,1/31/2013 2:15
+1001,Diastolic Blood Pressure,94,mmHg,12/29/2012 15:30
+1001,Systolic Blood Pressure,140,mmHg,12/29/2012 15:30
+1001,Weight,235,lb,12/29/2012 15:30
+1001,Respiratory Rate,20,br/min,12/29/2012 15:30
+1001,Oral Temperature,98.4,F,12/29/2012 15:30
+1001,Peripheral Pulse Rate,80,bpm,12/29/2012 15:30
+1001,Peripheral Pulse Rate,102,bpm,2/15/2013 14:00
+1001,Oxygen Saturation,98,%,2/15/2013 14:00
+1001,Respiratory Rate,22,br/min,2/15/2013 14:00
+1001,Diastolic Blood Pressure,98,mmHg,2/15/2013 14:00
+1001,Systolic Blood Pressure,136,mmHg,2/15/2013 14:00
+1001,Diastolic Blood Pressure,96,mmHg,2/2/2013 9:45
+1001,Respiratory Rate,20,br/min,2/2/2013 9:45
+1001,Peripheral Pulse Rate,88,bpm,2/2/2013 9:45
+1001,Systolic Blood Pressure,150,mmHg,2/2/2013 9:45
+1001,Systolic Blood Pressure,170,mmHg,1/9/2013 4:15
+1001,Diastolic Blood Pressure,115,mmHg,1/9/2013 4:15
+1001,Oral Temperature,98.2,F,1/9/2013 4:15
+1001,Respiratory Rate,22,br/min,1/9/2013 4:15
+1001,Apical Heart Rate,150,bpm,1/9/2013 4:15
+1001,Respiratory Rate,18,br/min,1/13/2013 13:30
+1001,Systolic Blood Pressure,140,mmHg,1/13/2013 13:30
+1001,Apical Heart Rate,150,bpm,1/13/2013 13:30
+1001,Diastolic Blood Pressure,80,mmHg,1/13/2013 13:30
+1001,Oral Temperature,98.7,F,3/1/2013 14:00
+1001,Diastolic Blood Pressure,90,mmHg,3/1/2013 14:00
+1001,Respiratory Rate,20,br/min,3/1/2013 14:00
+1001,Apical Heart Rate,100,bpm,3/1/2013 14:00
+1001,Systolic Blood Pressure,140,mmHg,3/1/2013 14:00
+1001,Weight,242.5,lb,3/1/2013 14:00
+1001,Height,66,in,3/1/2013 14:00
