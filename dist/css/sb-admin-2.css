@@ -94,11 +94,18 @@ body {
     padding: 15px;
 }
 
-.sidebar ul li {
+.sidebar ul li,.nav-second-level > div {
     border-bottom: 1px solid #e7e7e7;
+    
 }
 
-.sidebar ul li a.active {
+.nav-second-level > div > a{
+    position: relative;
+    display: block;
+    padding: 10px 50px;
+}
+
+.sidebar ul li a.active, .nav-second-level > div  a.active {
     background-color: #eee;
 }
 

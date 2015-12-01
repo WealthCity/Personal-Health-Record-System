@@ -23,6 +23,18 @@
       <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
       <!-- jQuery -->
       <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+      <script type="text/javascript">
+                $(document).ready(function() {
+                    // hide all second level
+                    $('.nav-second-level').hide();
+                    
+                    // open submenu on click of main menu
+                    $('a[href="#"]').click(function(){
+                        $(this).toggleClass('active-me');
+                       $(this).next('.nav-second-level').slideToggle(1000);
+                    });
+                });
+            </script>
    </head>
    <body>
       <div id="wrapper">
@@ -59,16 +71,37 @@
             <!-- /.navbar-top-links -->
             <div class="navbar-default sidebar" role="navigation">
                <div class="sidebar-nav navbar-collapse">
-                  <ul class="nav" id="side-menu">
-                     <li>
-                        <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                     </li>
-                     <li>
-                        <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
-                     </li>
-                  </ul>
-               </div>
-               <!-- /.sidebar-collapse -->
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <div class="profile-avatar">
+                                <img class="img-responsive" src="avatar.jpg" alt="profile picture">
+                                <center><h5 style="font-weight:bold;">Welcome John</h5></center>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> History<span class="fa arrow"></span></a>
+                            <div class="nav nav-second-level">
+                                <div>                                    
+                                    <a href="vitals.php"><i class="glyphicon glyphicon-zoom-in"></i>  Vitals</a>
+                                </div>
+                                <div>
+                                    <a href="labtests.php"><i class="glyphicon glyphicon-zoom-in"></i>  Lab Test Results</a>
+                                </div>
+                                <div>
+                                    <a href="medication.php"><i class="glyphicon glyphicon-zoom-in"></i>  Medication</a>
+                                </div>
+                            </div>
+                            <!-- /.nav-second-level -->
+                        </li>                        
+                        <li>
+                            <a href="userprofile.php"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
             </div>
             <!-- /.navbar-static-side -->
          </nav>

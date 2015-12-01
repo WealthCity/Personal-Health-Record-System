@@ -3,6 +3,12 @@
 <html lang="en">
 <?php
     session_start();
+    if(!isset($_SESSION["username"]) || $_SESSION["username"]==="")
+    {
+        header("Location: login.php"); 
+        exit();
+    }
+
 ?>
 <head>
 
@@ -50,7 +56,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">PHR System <?php echo "PID = ".$_SESSION["pid"]; ?>  </a>            
+                <a class="navbar-brand" href="index.php">PHR System </a>            
             </div>
             <!-- /.navbar-header -->
 
@@ -95,17 +101,17 @@
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> History<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="vitals.php">Vitals</a>
-                                </li>
-                                <li>
-                                    <a href="labtests.php">Lab Test Results</a>
-                                </li>
-                                <li>
-                                    <a href="medication.php">Medication</a>
-                                </li>
-                            </ul>
+                            <div class="nav nav-second-level">
+                                <div>                                    
+                                    <a href="vitals.php"><i class="glyphicon glyphicon-zoom-in"></i>  Vitals</a>
+                                </div>
+                                <div>
+                                    <a href="labtests.php"><i class="glyphicon glyphicon-zoom-in"></i>  Lab Test Results</a>
+                                </div>
+                                <div>
+                                    <a href="medication.php"><i class="glyphicon glyphicon-zoom-in"></i>  Medication</a>
+                                </div>
+                            </div>
                             <!-- /.nav-second-level -->
                         </li>                        
                         <li>
@@ -147,13 +153,6 @@
                                                         while($row = $results->fetch_row())
                                                             $jsonString.='{"vitalsign":"'.$row[1].'","value":'. $row[2].',"unit":"'. $row[3].'","measurement_time":"'. $row[4].'"},';                                                        
                                                     }
-
-                                                    /*
-                                                    // Write JSON to the file for reference in line chart
-                                                    $myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
-                                                    $txt = $jsonString;
-                                                    fwrite($myfile, $txt);
-                                                    fclose($myfile);*/
 
                                                     $_SESSION["vitalJsonString"]=$jsonString;
                                                 ?>
