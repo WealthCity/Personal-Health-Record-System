@@ -14,7 +14,10 @@
 
     <title>PHR</title>
 
-     <link href="../css/avatar.css" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <link href="../css/avatar.css" rel="stylesheet">
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -180,6 +183,9 @@
               
                 <div> 
                   <table class="table table-user-information">
+                    <style type="text/css">
+                        td{height:10%;}
+                    </style>
                     <tbody style="overflow-y: hidden;position:relative">
                       <tr>
                         <td style="border-top:0">Date of Birth:</td>
@@ -250,8 +256,6 @@
     </div>
     <!-- /#wrapper -->
 
-    <!-- jQuery -->
-    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -262,7 +266,6 @@
     <!-- Morris Charts JavaScript -->
     <script src="../bower_components/raphael/raphael-min.js"></script>
     <script src="../bower_components/morrisjs/morris.min.js"></script>
-    <script src="../js/morris-data.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
