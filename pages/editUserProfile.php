@@ -82,24 +82,27 @@
       
       
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-      
-              $target_path = "../profilePictures/";
-              $target_path = $target_path . basename( $_FILES['uploadedfile']['name']); 
-              
-              $temp = explode(".", $_FILES["uploadedfile"]["name"]);
-              $newfilename = round(microtime(true)) . '.' . end($temp);
-      
-              if(move_uploaded_file($_FILES["uploadedfile"]["tmp_name"], "../profilePictures/" . $newfilename))
+
+              if(!($_FILES['uploadedfile']['name']===""))
               {
-                echo "The file ".  basename( $_FILES['uploadedfile']['name']). 
-              " has been uploaded";
-              $profileimageName = $newfilename;
+                $target_path = "../profilePictures/";
+                $target_path = $target_path . basename( $_FILES['uploadedfile']['name']); 
+                
+                $temp = explode(".", $_FILES["uploadedfile"]["name"]);
+                $newfilename = round(microtime(true)) . '.' . end($temp);
+        
+                if(move_uploaded_file($_FILES["uploadedfile"]["tmp_name"], "../profilePictures/" . $newfilename))
+                {
+                  echo "The file ".  basename( $_FILES['uploadedfile']['name']). 
+                " has been uploaded";
+                $profileimageName = $newfilename;
+                }
+                else
+                {
+                  echo "There was an error uploading the file, please try again!";
+                }
               }
-              else
-              {
-                echo "There was an error uploading the file, please try again!";
-              }
-      
+
       
               $gender = $_POST["gender"];
               $MobileNumber = $_POST["MobileNumber"];
@@ -110,20 +113,20 @@
               $State = $_POST["State"];
               $Zip = $_POST["Zip"];
               $Country = $_POST["Country"];
+              $dob = $_POST["birthdate"];
+              echo $dob;
       
-              $sqlUpdateProfile = "UPDATE tbl_users SET Gender = '$gender', MobileNumber = $MobileNumber, 
-              EmergencyContact = $EmergencyContact, EmailId = '$EmailId', Street = '$Street', 
-              Zip = $Zip, Country = '$Country', profileimage = '$profileimageName' WHERE pid = $pid ";
+              $sqlUpdateProfile = "UPDATE tbl_users SET dob=to_date('$dob'), Gender = '$gender', MobileNumber = $MobileNumber,EmergencyContact = $EmergencyContact, EmailId = '$EmailId', Street = '$Street',Zip = $Zip, Country = '$Country' WHERE pid = $pid ";
            
-              //echo "---SQL-- ".$sqlUpdateProfile;
+              echo "---SQL-- ".$sqlUpdateProfile;
       
-                if ($conn->query($sqlUpdateProfile) === TRUE) {
-                      echo "Record updated successfully";
-                      $_SESSION["pid"] = $pid;
-                  error_reporting(E_ALL | E_WARNING | E_NOTICE);
-                  ini_set('display_errors', TRUE);
-                  flush();
-                  echo("<script>location.href = 'userprofile.php';</script>");
+              if ($conn->query($sqlUpdateProfile) === TRUE) {
+                echo "Record updated successfully";
+                $_SESSION["pid"] = $pid;
+                error_reporting(E_ALL | E_WARNING | E_NOTICE);
+                ini_set('display_errors', TRUE);
+                flush();
+                echo("<script>location.href = 'userprofile.php';</script>");
                   
               } else {
               echo "Sorry the website is down at the moment!!";
@@ -239,7 +242,7 @@
                                                    <td>Date of Birth:</td>
                                                    <td>  
                                                       <div class="input-group input-append date" id="datePicker">
-                                                        <input  type="text" id="birthdate" class="form-control" value=<?php echo $dob ?> name="date" />
+                                                        <input  type="text" id="birthdate" class="form-control" value=<?php echo $dob ?> name="birthdate" />
                                                         <span  class="input-group-addon add-on"><span id="birthdate" class="glyphicon glyphicon-calendar"></span></span>
                                                       </div>
                                                       <script type="text/javascript">                                                      
