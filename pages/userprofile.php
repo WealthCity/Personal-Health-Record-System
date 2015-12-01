@@ -45,7 +45,7 @@
     $username = "";
     $pid = $_SESSION["pid"];
 
-   $sqlProfile ="SELECT * FROM tbl_users WHERE pid = $pid ";
+   $sqlProfile ="SELECT *,DATE_FORMAT(dob, '%m/%d/%Y')  FROM tbl_users WHERE pid = $pid ";
 
             $results = $conn->query($sqlProfile);
         
@@ -57,7 +57,7 @@
         {
             $row = $results->fetch_row();
             $username = $row[1]." ".$row[2];
-            $dob = $row[3];
+            $dob = $row[15];
             $gender = $row[4];
             $imageName = "../profilePictures/".$row[5];
             $MobileNumber = $row[6];

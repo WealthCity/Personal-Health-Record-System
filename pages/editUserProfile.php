@@ -53,7 +53,7 @@
       $pid = $_SESSION["pid"];
       $profileimageName = "";
       
-      $sqlProfile = "SELECT * FROM tbl_users WHERE pid = $pid ";
+      $sqlProfile = "SELECT *,DATE_FORMAT(dob, '%m/%d/%Y') as newdob FROM tbl_users WHERE pid = $pid ";
       
               $results = $conn->query($sqlProfile);
           
@@ -65,7 +65,7 @@
           {
               $row = $results->fetch_row();
               $username = $row[1]." ".$row[2];
-              $dob = $row[3];
+              $dob = $row[15];
               $gender = $row[4];
               $imageName = "../profilePictures/".$row[5];
               $profileimageName = $row[5];
@@ -230,76 +230,67 @@
                                     <div class="row" style="">
                                        <div class=" ">
                                           <table class="table table-user-information">
-                                             <tbody style="overflow-y:inherit;position:inherit;">
-                                                <tr>
-                                                   <td colspan="2">
-                                                      <div class="well">
-                                                        <div class="input-group input-append date" id="datePicker">
-                                                            <input  type="text" id="birthdate" class="form-control" name="date" />
-                                                            <span  class="input-group-addon add-on"><span id="birthdate" class="glyphicon glyphicon-calendar"></span></span>
-                                                        </div>
-                                                        <script type="text/javascript">                                                      
-                                                          $('#birthdate').datepicker({
-                                                              locale: {
-                                                                  cancelLabel: 'Clear'
-                                                              },
-                                                              singleDatePicker: true,
-                                                              showDropdowns: true,
-                                                              autoclose: true                                                     
-
-                                                          }).on('changeDate', function (ev) {
-                                                                $(this).datepicker('hide');
-                                                            });
-                                                        </script>
-                                                      </div>
-                                                   </td>
-                                                </tr>
+                                             <tbody style="overflow-y:inherit;position:inherit;">                                               
                                                 <tr>
                                                    <td><label for="file">Upload Photo:</label> </td>
-                                                    <td>  <input type="file" name="uploadedfile" id="uploadedfile"></td>
+                                                    <td>  <input type="file" class="form-control" name="uploadedfile" id="uploadedfile"></td>
                                                 </tr>
                                                 <tr>
                                                    <td>Date of Birth:</td>
-                                                   <td> <input type="text" name="dob" id="dob" value = <?php echo $dob ?> size = 15> </td>
+                                                   <td>  
+                                                      <div class="input-group input-append date" id="datePicker">
+                                                        <input  type="text" id="birthdate" class="form-control" value=<?php echo $dob ?> name="date" />
+                                                        <span  class="input-group-addon add-on"><span id="birthdate" class="glyphicon glyphicon-calendar"></span></span>
+                                                      </div>
+                                                      <script type="text/javascript">                                                      
+                                                        $('#birthdate').datepicker({
+                                                          singleDatePicker: true,
+                                                          showDropdowns: true
+
+                                                        })/*.on('changeDate', function (ev) {
+                                                              $(this).datepicker('hide');
+                                                          });*/
+                                                      </script>
+                                                   </td>
                                                 </tr>
                                                 <tr>
                                                    <td>Gender:</td>
-                                                   <td><input type="text" name="gender" id="gender" value = <?php echo $gender ?> size = 15></td>
+                                                   <td><input class="form-control" type="text" name="gender" id="gender" value = <?php echo $gender ?> size = 15></td>
                                                 </tr>
                                                 <tr>
                                                    <td>Mobile Number:</td>
-                                                   <td><input type="text" name="MobileNumber" id="MobileNumber" value = <?php echo $MobileNumber ?> size = 15></td>
+                                                   <td><input class="form-control" type="text" name="MobileNumber" id="MobileNumber" value = <?php echo $MobileNumber ?> size = 15></td>
                                                 </tr>
                                                 <tr>
                                                    <td>Emergency Contact:</td>
-                                                   <td><input type="text" name="EmergencyContact" id="EmergencyContact" value = <?php echo $EmergencyContact ?> size = 15></td>
+                                                   <td><input class="form-control" type="text" name="EmergencyContact" id="EmergencyContact" value = <?php echo $EmergencyContact ?> size = 15></td>
                                                 </tr>
                                                 <tr>
                                                    <td>Email ID:</td>
-                                                   <td><input type="text" name="EmailId" id="EmailId" value = <?php echo $EmailId ?> size = 15></td>
+                                                   <td><input class="form-control" type="text" name="EmailId" id="EmailId" value = <?php echo $EmailId ?> size = 15></td>
                                                 </tr>
                                                 <tr>
                                                   <td colspan="2" style="text-align:center;font-weight:bold">Address</td>
                                                 </tr>
                                                 <tr>
                                                    <td>Street:</td>
-                                                   <td><input type="text" name="Street" id="Street" value = <?php echo $Street ?> size = 15></td>
+                                                   <td><input class="form-control" type="text" name="Street" id="Street" value = <?php echo $Street ?> size = 15></td>
                                                 </tr>
                                                 <tr>
                                                    <td>City:</td>
-                                                   <td><input type="text" name="City" id="City" value = <?php echo $City ?> size = 15></td>
+                                                   <td><input class="form-control" type="text" name="City" id="City" value = <?php echo $City ?> size = 15></td>
                                                 </tr>
                                                 <tr>
                                                    <td>State:</td>
-                                                   <td><input type="text" name="State" id="State" value = <?php echo $State ?> size = 15></td>
+                                                   <td><input class="form-control" type="text" name="State" id="State" value = <?php echo $State ?> size = 15></td>
                                                 </tr>
                                                 <tr>
                                                    <td>Zip:</td>
-                                                   <td><input type="text" name="Zip" id="Zip" value = <?php echo $Zip ?> size = 15></td>
+                                                   <td><input class="form-control" type="text" name="Zip" id="Zip" value = <?php echo $Zip ?> size = 15></td>
                                                 </tr>
                                                 <tr>
                                                    <td>Country:</td>
-                                                   <td><input type="text" name="Country" id="Country" value = <?php echo $Country ?> size = 15></td>
+                                                   <td><input class="form-control" type="text" name="Country" id="Country" value = <?php echo $Country ?> size = 15></td>
                                                 </tr>
                                                 <tr>
                                                    <td style="text-align:center"><input class="btn btn-primary" type="Submit" value="Update Profile" onclick = "updateProfile()" ></td>
