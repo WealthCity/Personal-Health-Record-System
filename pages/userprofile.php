@@ -164,9 +164,9 @@
 
     <div class="container">
       <div class="row">
-      <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
+      <div class="col-md-6  toppad  pull-center col-md-offset-3 ">
            <a href="editUserProfile.php"> <i class="fa fa-user fa-fw"></i> Edit Profile</a> 
-           <a href="changePassword.php"> <i class="fa fa-user fa-fw"></i> Change Password</a> 
+           <a class="pull-right" href="changePassword.php"> <i class="fa fa-user fa-fw"></i> Change Password</a> 
        <br>
 
 <p class=" text-info"></p>
@@ -183,9 +183,6 @@
               
                 <div> 
                   <table class="table table-user-information">
-                    <style type="text/css">
-                        td{height:10%;}
-                    </style>
                     <tbody style="overflow-y: hidden;position:relative">
                       <tr>
                         <td style="border-top:0">Date of Birth:</td>
