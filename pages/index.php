@@ -3,7 +3,7 @@
 <html lang="en">
 <?php
     session_start();
-    if(!isset($_SESSION["username"]) || $_SESSION["username"]==="")
+    if(!isset($_SESSION["pid"]) || $_SESSION["pid"]==="")
     {
         header("Location: login.php"); 
         exit();
