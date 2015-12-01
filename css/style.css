@@ -21,7 +21,7 @@ tbody{
   overflow-y: scroll;
   !height: 200px;
   width: 100%;
-  position: absolute;
+  !position: absolute;
 }
 
 .col-lg-6,.col-lg-5{

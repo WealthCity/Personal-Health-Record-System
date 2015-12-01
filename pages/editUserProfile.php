@@ -25,6 +25,13 @@
       <link href="../bower_components/morrisjs/morris.css" rel="stylesheet">
       <!-- Custom Fonts -->
       <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+      <!-- Include Date Range Picker -->      
+      <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+      <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+      <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+
+
    </head>
    <script>
       function buttonCancel()
@@ -227,10 +234,23 @@
                                                 <tr>
                                                    <td colspan="2">
                                                       <div class="well">
-                                                         <div class="input-append date" id="dp3" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
-                                                            <input class="span2" size="16" type="text" value="12-02-2012" readonly>
-                                                            <span class="add-on"><i class="glyphicon glyphicon-calendar"></i></span>
-                                                         </div>
+                                                        <div class="input-group input-append date" id="datePicker">
+                                                            <input  type="text" id="birthdate" class="form-control" name="date" />
+                                                            <span  class="input-group-addon add-on"><span id="birthdate" class="glyphicon glyphicon-calendar"></span></span>
+                                                        </div>
+                                                        <script type="text/javascript">                                                      
+                                                          $('#birthdate').datepicker({
+                                                              locale: {
+                                                                  cancelLabel: 'Clear'
+                                                              },
+                                                              singleDatePicker: true,
+                                                              showDropdowns: true,
+                                                              autoclose: true                                                     
+
+                                                          }).on('changeDate', function (ev) {
+                                                                $(this).datepicker('hide');
+                                                            });
+                                                        </script>
                                                       </div>
                                                    </td>
                                                 </tr>
