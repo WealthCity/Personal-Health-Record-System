@@ -1,7 +1,15 @@
 <?php
 $servername = "localhost";
 $username = "root";
+<<<<<<< HEAD
 $password = "";
+=======
+<<<<<<< HEAD
+$password = "root";
+=======
+$password = "";
+>>>>>>> refs/remotes/origin/master
+>>>>>>> c0fa1dec832f8af2f07c157930532e23576878f6
 $db = "phr";
 
 // Create connection

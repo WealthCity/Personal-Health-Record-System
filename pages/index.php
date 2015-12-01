@@ -9,6 +9,22 @@
         exit();
     }
 
+    $pid = $_SESSION["pid"];    
+
+    $sqlProfile ="SELECT * FROM tbl_users WHERE pid = $pid ";
+    
+            $results = $conn->query($sqlProfile);
+        
+        if(!$results)
+        {
+            echo "Sorry!! Information not found";
+        }
+        else
+        {
+            $row = $results->fetch_row();
+            $username = $row[1]." ".$row[2];
+            $imageName = "../profilePictures/".$row[5];
+        }
 ?>
 <head>
 
@@ -42,6 +58,7 @@
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 </head>
+
 
 <body>
 
@@ -92,8 +109,8 @@
                     <ul class="nav" id="side-menu">
                         <li>
                             <div class="profile-avatar">
-                                <img class="img-responsive" src="avatar.jpg" alt="profile picture">
-                                <center><h5 style="font-weight:bold;">Welcome John</h5></center>
+                                <img class="img-responsive" src=<?php echo $imageName ?> alt="profile picture">
+                                <center><h5 style="font-weight:bold;">Welcome <?php echo $username; ?></h5></center>
                             </div>
                         </li>
                         <li>
@@ -168,8 +185,6 @@
                                                     }
 
                                                     jsonresult = jsonresult.sort(comp);
-
-                                                    var radarJSON ="[{";
                                                     var vitalCols = "<thead><tr><th width=30%>Vital SIgn</th><th width=20%>Value</th><th width=20%>Unit</th><th width=30%>Measurement Time</th></tr></thead><tbody>";
                                                     var latestDate = new Date(jsonresult[0]["measurement_time"]);
                                                     //console.log(latestDate.getDate()+"/"+latestDate.getMonth()+"/"+latestDate.getFullYear());
@@ -182,15 +197,10 @@
                                                             vitalCols += "<td width=20%>" + jsonresult[i]["value"]+"</td>";
                                                             vitalCols += "<td width=20%>" + jsonresult[i]["unit"]+"</td>";
                                                             vitalCols += "<td width=30%>" + jsonresult[i]["measurement_time"]+"</td></tr>";
-                                                            radarJSON += "\""+jsonresult[i]["vitalsign"] + "\":" + jsonresult[i]["value"] +"," ;                     
-
                                                         }
                                                     }
-                                                    radarJSON = radarJSON.substring(0, radarJSON.length - 1) + "}]";
-                                                    var json = $.parseJSON(radarJSON);
-                                                    //var (key,value) = json[0];
-                                                    //console.log(key+value)
 
+                                                            
                                                     $("#vitalsTable").html(vitalCols+"</tbody>");
 
                                                 </script>
@@ -236,6 +246,7 @@
                                                     }
 
                                                     jsonresult = jsonresult.sort(comp);
+
                                                     var latestDate = new Date(jsonresult[0]["testdate"]);
                                                     var vitalCols = "<thead><tr><th width='15%'>Test Name</th><th width='10%'>Value</th><th width='20%'>Reference Min</th><th width='20%'>Reference Max</th><th width='10%'>Unit</th><th width='25%'>Test Date</th></tr></thead><tbody height=300px>";
                                                     for(var i in jsonresult)
