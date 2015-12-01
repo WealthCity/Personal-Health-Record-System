@@ -316,8 +316,8 @@ $results = $conn->query($sqlPassword);
                       </tr>
                       
                       <tr>
-                        <td><input type="Submit" name="submit_form" value="Update Password"  ></td>
-                        <td><input type="Button" value="Cancel" onclick = "buttonCancel()" ></td>
+                        <td><input type="Submit" class="btn btn-primary" name="submit_form" value="Update Password"  ></td>
+                        <td><input type="Button" class="btn btn-warning" value="Cancel" onclick = "buttonCancel()" ></td>
                       </tr>
                     
                      

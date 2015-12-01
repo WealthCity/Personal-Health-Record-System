@@ -188,17 +188,17 @@
                      </li>
                      <li>
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> History<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                           <li>
-                              <a href="vitals.php">Vitals</a>
-                           </li>
-                           <li>
-                              <a href="labtests.php">Lab Test Results</a>
-                           </li>
-                           <li>
-                              <a href="medication.php">Medication</a>
-                           </li>
-                        </ul>
+                        <div class="nav nav-second-level">
+                            <div>                                    
+                                <a href="vitals.php"><i class="glyphicon glyphicon-zoom-in"></i>  Vitals</a>
+                            </div>
+                            <div>
+                                <a href="labtests.php"><i class="glyphicon glyphicon-zoom-in"></i>  Lab Test Results</a>
+                            </div>
+                            <div>
+                                <a href="medication.php"><i class="glyphicon glyphicon-zoom-in"></i>  Medication</a>
+                            </div>
+                        </div>
                         <!-- /.nav-second-level -->
                      </li>
                      <li>
@@ -279,7 +279,7 @@
                                                    <td><input type="text" name="EmailId" id="EmailId" value = <?php echo $EmailId ?> size = 15></td>
                                                 </tr>
                                                 <tr>
-                                                   <td>Address:</td>
+                                                  <td colspan="2" style="text-align:center;font-weight:bold">Address</td>
                                                 </tr>
                                                 <tr>
                                                    <td>Street:</td>
