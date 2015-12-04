@@ -41,18 +41,22 @@
         
       }
    </script>
+
    <?php
+
       session_start();
-      if(!isset($_SESSION["pid"]) || $_SESSION["pid"]==="")
-      {
-          header("Location: login.php"); 
-          exit();
-      }
+
+      // if(!isset($_SESSION["pid"]) || $_SESSION["pid"]==="")
+      // {
+      //     header("Location: login.php"); 
+      //     exit();
+      // }
       
       $username = "";
       $pid = $_SESSION["pid"];
       $profileimageName = "";
       
+
       $sqlProfile = "SELECT *,DATE_FORMAT(dob, '%m/%d/%Y') as newdob FROM tbl_users WHERE pid = $pid ";
       
               $results = $conn->query($sqlProfile);
@@ -83,6 +87,18 @@
       
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+              $gender = $_POST["gender"];
+              $MobileNumber = $_POST["MobileNumber"];
+              $EmergencyContact = $_POST["EmergencyContact"];
+              $EmailId = $_POST["EmailId"];
+              $Street = $_POST["Street"];
+              $City = $_POST["City"];
+              $State = $_POST["State"];
+              $Zip = $_POST["Zip"];
+              $Country = $_POST["Country"];
+              $dob = $_POST["birthdate"];
+
+
               if(!($_FILES['uploadedfile']['name']===""))
               {
                 $target_path = "../profilePictures/";
@@ -101,24 +117,22 @@
                 {
                   echo "There was an error uploading the file, please try again!";
                 }
+                $sqlUpdateProfile = "UPDATE tbl_users SET dob=STR_TO_DATE('$dob','%m/%d/%YY'), profileimage = '$profileimageName', Gender = '$gender', MobileNumber = $MobileNumber,EmergencyContact = $EmergencyContact, EmailId = '$EmailId', Street = '$Street',Zip = $Zip, Country = '$Country' WHERE pid = $pid ";
+               //echo "---SQL-- Image= ".$sqlUpdateProfile; 
               }
+              else
+              {
 
+                $sqlUpdateProfile = "UPDATE tbl_users SET dob=STR_TO_DATE('$dob','%m/%d/%YY'), Gender = '$gender', MobileNumber = $MobileNumber,EmergencyContact = $EmergencyContact, EmailId = '$EmailId', Street = '$Street',Zip = $Zip, Country = '$Country' WHERE pid = $pid ";
+               // echo "---SQL--NoImage= ".$sqlUpdateProfile;
+              }
       
-              $gender = $_POST["gender"];
-              $MobileNumber = $_POST["MobileNumber"];
-              $EmergencyContact = $_POST["EmergencyContact"];
-              $EmailId = $_POST["EmailId"];
-              $Street = $_POST["Street"];
-              $City = $_POST["City"];
-              $State = $_POST["State"];
-              $Zip = $_POST["Zip"];
-              $Country = $_POST["Country"];
-              $dob = $_POST["birthdate"];
-              echo $dob;
+              
+              
       
-              $sqlUpdateProfile = "UPDATE tbl_users SET dob=to_date('$dob'), Gender = '$gender', MobileNumber = $MobileNumber,EmergencyContact = $EmergencyContact, EmailId = '$EmailId', Street = '$Street',Zip = $Zip, Country = '$Country' WHERE pid = $pid ";
+              
            
-              echo "---SQL-- ".$sqlUpdateProfile;
+              
       
               if ($conn->query($sqlUpdateProfile) === TRUE) {
                 echo "Record updated successfully";
@@ -258,7 +272,13 @@
                                                 </tr>
                                                 <tr>
                                                    <td>Gender:</td>
-                                                   <td><input class="form-control" type="text" name="gender" id="gender" value = <?php echo $gender ?> size = 15></td>
+
+
+                                                   <td> <input type="radio" name="gender" value="Male" <?php echo ($gender=='Male')?'checked':'' ?> > Male
+                                                   <input type="radio" name="gender" value="Female" <?php echo ($gender=='Female')?'checked':'' ?> > Female </td>
+                                                  <!-- <td><input class="form-control" type="text" name="gender" id="gender" value = <?php echo $gender ?> size = 15></td> -->
+
+
                                                 </tr>
                                                 <tr>
                                                    <td>Mobile Number:</td>
