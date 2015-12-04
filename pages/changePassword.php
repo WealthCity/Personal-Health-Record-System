@@ -43,24 +43,58 @@
 </head>
 <script type="text/javascript">
 
-  function validatePassword()
-  {
-    var newpass = document.getElementById("newPwd").value;
-    var confirmPass = document.getElementById("conPwd").value;
-    
-    if(newpass == confirmPass)
+function validatePassword()
     {
-      document.getElementById("lblText").innerHTML = "Your passwords match!";
-      document.getElementById('lblText').style.color = "green";
-   
-    }
-    else
-    {
-     document.getElementById("lblText").innerHTML = "Passwords do not match.";
-     document.getElementById('lblText').style.color = "red";
+        var password = document.getElementById('newPwd');
+        var goodColor = "#66cc66";
+        var badColor = "#ff6666";
+        // at least one number, one lowercase and one uppercase letter
+        // at least 8 characters that are letters, numbers or the underscore
+        var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+        var message = document.getElementById('valPassMsg');
+        if(password.value.length<8)
+        {
+            password.style.backgroundColor = badColor;
+            message.style.color = badColor;
+            message.innerHTML = "Atleast 8 characters";
+        }
+        else if(re.test(password.value))
+        {
+            password.style.backgroundColor = goodColor;
+            message.style.color = goodColor;
+            message.innerHTML = "Strong Password!!";
+        } 
+        else
+        {
+            password.style.backgroundColor = badColor;
+            message.style.color = badColor;
+            message.innerHTML = "Must have 1 upper, 1 lower, 1 number " ;
+        }
     }
 
-  }
+function matchPassword()
+    {
+        var pass1 = document.getElementById('newPwd');
+        var pass2 = document.getElementById('conPwd');
+        //Store the Confimation Message Object ...
+        var message = document.getElementById('confirmMessage');
+        //Set the colors we will be using ...
+        var goodColor = "#66cc66";
+        var badColor = "#ff6666";
+        //Compare the values in the password field
+        //and the confirmation field
+        if(pass1.value == pass2.value){
+            pass2.style.backgroundColor = goodColor;
+            message.style.color = goodColor;
+            message.innerHTML = "Passwords Match!"
+        }else{
+            pass2.style.backgroundColor = badColor;
+            message.style.color = badColor;
+            message.innerHTML = "Passwords Do Not Match!"
+        }
+    }
+
+  
 
   function updatePassword()
   {
@@ -84,7 +118,6 @@
     session_start();
 
     $username = "";
-    $_SESSION["pid"] = 1001;
     $pid = $_SESSION["pid"];
 
 
@@ -307,11 +340,15 @@ $results = $conn->query($sqlPassword);
                       </tr>
                       <tr>
                         <td>New Password:</td>
-                        <td><input type="password" name="newPwd" id="newPwd"  size = 15></td>
+                        <td>
+                          <input type="password" name="newPwd" id="newPwd" onblur="validatePassword();" size = 15 >
+                          <span id="valPassMsg" class="confirmMessage"></span>
+                        </td>
                       </tr>
                       <tr>
                         <td>Confirm Password:</td>
-                        <td><input type="password" name="conPwd" id="conPwd" onblur = "validatePassword()" size = 15>
+                        <td><input type="password" name="conPwd" id="conPwd" onkeyup="matchPassword();" size = 15>
+                          <span id="confirmMessage" class="confirmMessage"></span>
                           <label type="text" id="lblText"><font color="red"></font></label> </td>
                       </tr>
                       
