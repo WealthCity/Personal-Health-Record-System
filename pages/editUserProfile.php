@@ -90,7 +90,7 @@
               $gender = $_POST["gender"];
               $MobileNumber = $_POST["MobileNumber"];
               $EmergencyContact = $_POST["EmergencyContact"];
-              $EmailId = $_POST["EmailId"];
+              //$EmailId = $_POST["EmailId"];
               $Street = $_POST["Street"];
               $City = $_POST["City"];
               $State = $_POST["State"];
@@ -117,13 +117,13 @@
                 {
                   echo "There was an error uploading the file, please try again!";
                 }
-                $sqlUpdateProfile = "UPDATE tbl_users SET dob=STR_TO_DATE('$dob','%m/%d/%YY'), profileimage = '$profileimageName', Gender = '$gender', MobileNumber = $MobileNumber,EmergencyContact = $EmergencyContact, EmailId = '$EmailId', Street = '$Street',Zip = $Zip, Country = '$Country' WHERE pid = $pid ";
+                $sqlUpdateProfile = "UPDATE tbl_users SET dob=STR_TO_DATE('$dob','%m/%d/%YY'), profileimage = '$profileimageName', Gender = '$gender', MobileNumber = $MobileNumber,EmergencyContact = $EmergencyContact, Street = '$Street',Zip = $Zip, Country = '$Country' WHERE pid = $pid ";
                //echo "---SQL-- Image= ".$sqlUpdateProfile; 
               }
               else
               {
 
-                $sqlUpdateProfile = "UPDATE tbl_users SET dob=STR_TO_DATE('$dob','%m/%d/%YY'), Gender = '$gender', MobileNumber = $MobileNumber,EmergencyContact = $EmergencyContact, EmailId = '$EmailId', Street = '$Street',Zip = $Zip, Country = '$Country' WHERE pid = $pid ";
+                $sqlUpdateProfile = "UPDATE tbl_users SET dob=STR_TO_DATE('$dob','%m/%d/%YY'), Gender = '$gender', MobileNumber = $MobileNumber,EmergencyContact = $EmergencyContact, Street = '$Street',Zip = $Zip, Country = '$Country' WHERE pid = $pid ";
                // echo "---SQL--NoImage= ".$sqlUpdateProfile;
               }
       
@@ -287,10 +287,6 @@
                                                 <tr>
                                                    <td>Emergency Contact:</td>
                                                    <td><input class="form-control" type="text" name="EmergencyContact" id="EmergencyContact" value = <?php echo $EmergencyContact ?> size = 15></td>
-                                                </tr>
-                                                <tr>
-                                                   <td>Email ID:</td>
-                                                   <td><input class="form-control" type="text" name="EmailId" id="EmailId" value = <?php echo $EmailId ?> size = 15></td>
                                                 </tr>
                                                 <tr>
                                                   <td colspan="2" style="text-align:center;font-weight:bold">Address</td>
