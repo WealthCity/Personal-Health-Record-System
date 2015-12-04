@@ -11,20 +11,17 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="stylesheet" type="text/css" href="../css/linechart.css">
-<<<<<<< HEAD
-=======
+    
+      <link rel="stylesheet" type="text/css" href="../css/avatar.css">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
->>>>>>> refs/remotes/origin/master
+ 
     <!-- load the d3.js library -->    
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script type="text/javascript" src="../js/linechart.js"></script>
 
-<<<<<<< HEAD
     <title>SB Admin 2 - Bootstrap Admin Theme</title>
-=======
-    <title>PHR</title>
->>>>>>> refs/remotes/origin/master
 
+    <title>PHR</title>
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -43,7 +40,7 @@
 
     <!-- jQuery -->
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
-\
+
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <script type="text/javascript">
@@ -148,22 +145,14 @@
                 <center>
                     <div class="row">                        
                         <div class="col-lg-7">                            
-<<<<<<< HEAD
-                            <div class="table-responsive" style="border:1px solid lightgrey;border-radius:7px;height:500px;margin:auto;">
+
+                            <div class="table-responsive" style="width:106%;border:1px solid lightgrey;border-radius:7px;height:500px;margin:auto;">
                                 <div class="panel panel-default">
                                     <div class="panel-heading"><b>VITALS</b></div>
                                 <div >
                                 <table  class="table table-bordered table-hover table-striped" id="vitalsTable">                                            
                                     <tbody>                                                
-=======
-                            <div class="table-responsive" >
-                                <div class="panel panel-default">
-                                    <div class="panel-heading"><b>VITALS</b></div>
-                                <div>
-                                <table  class="table table-bordered table-hover table-striped" id="vitalsTable">                                    
-                                                                                    
->>>>>>> refs/remotes/origin/master
-                                        <?php
+                                     <?php
                                             
                                             $jsonString = $_SESSION["vitalJsonString"];
                                         ?>
@@ -171,10 +160,7 @@
                                             var result1 = '<?php echo $jsonString; ?>';                                                    
                                             var result = result1.substring(0, result1.length - 1); 
                                             var jsonresult = $.parseJSON("["+result+"]");
-<<<<<<< HEAD
-                                            console.log(jsonresult[0]["value"]);
-=======
->>>>>>> refs/remotes/origin/master
+
 
                                             function comp(a, b) 
                                             {
@@ -183,22 +169,8 @@
 
                                             jsonresult = jsonresult.sort(comp);
 
-<<<<<<< HEAD
-                                            var vitalCols = "<tr><th>Vital SIgn</th><th>Value</th><th>Unit</th><th>Measurement Time</th></tr>";
-                                            for(var i in jsonresult)
-                                            {
-                                                vitalCols += "<tr><td>"+jsonresult[i]["vitalsign"]+"</td>";
-                                                vitalCols += "<td>" +jsonresult[i]["value"] +"</td>"
-                                                vitalCols += "<td>" + jsonresult[i]["unit"]+"</td>"
-                                                vitalCols += "<td>" + jsonresult[i]["measurement_time"]+"</td></tr>"
-                                            }
-
-                                            $("#vitalsTable").html(vitalCols);
-
-                                        </script>
-                                    </tbody>
-=======
-                                            var vitalCols = "<thead><tr><th width=30%>Vital SIgn</th><th width=20%>Value</th><th width=20%>Unit</th><th width=30%>Measurement Time</th></tr></thead><tbody style='width:97.5%' height=500px>";
+                                            
+                                            var vitalCols = "<thead><tr><th width=30%>Vital SIgn</th><th width=20%>Value</th><th width=20%>Unit</th><th width=30%>Measurement Time</th></tr></thead><tbody style='width:100%' height=500px>";
                                             for(var i in jsonresult)
                                             {
                                                 vitalCols += "<tr><td width=30%>"+jsonresult[i]["vitalsign"]+"</td>";
@@ -210,7 +182,7 @@
                                             $("#vitalsTable").html(vitalCols+"</tbody>");
 
                                         </script>
->>>>>>> refs/remotes/origin/master
+
                                 </table>
                                 </div>
                                 </div>
