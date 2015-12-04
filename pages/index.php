@@ -213,10 +213,10 @@
                                 <!-- /.col-lg-5 -->
 
                                 <div class="col-lg-6">
-                                    <div style="" class="table-responsive">
-                                        <div  class="panel panel-default">
+                                    <div style="" class="table-responsive" >
+                                        <div  class="panel panel-default table-responsive" style="height:480px;">
                                         <div class="panel-heading"><b>LAB TESTS</b></div>
-                                        <div >
+                                        <div>
                                         <table class="table table-bordered table-hover table-striped" id="labTestsTable">                                            
                                                                                             
                                                 <?php
