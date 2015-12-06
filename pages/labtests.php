@@ -76,8 +76,8 @@
                     <ul class="nav" id="side-menu">
                         <li>
                             <div class="profile-avatar">
-                                <img class="img-responsive" src="avatar.jpg" alt="profile picture">
-                                <center><h5 style="font-weight:bold;">Welcome John</h5></center>
+                                <img class="img-responsive" src=<?php echo $_SESSION["imagePath"]; ?> alt="profile picture">
+                                <center><h5 style="font-weight:bold;">Welcome <?php echo $_SESSION["username"]; ?></h5></center>
                             </div>
                         </li>
                         <li>
