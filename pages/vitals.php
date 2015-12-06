@@ -2,6 +2,12 @@
 <html lang="en">
 <?php
     session_start();
+    if(!isset($_SESSION["pid"]) || $_SESSION["pid"]==="")
+    {
+        header("Location: login.php"); 
+        exit();
+    }
+
 ?>
 <head>
 
@@ -18,8 +24,6 @@
     <!-- load the d3.js library -->    
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script type="text/javascript" src="../js/linechart.js"></script>
-
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
 
     <title>PHR</title>
     <!-- Bootstrap Core CSS -->
@@ -99,8 +103,8 @@
                     <ul class="nav" id="side-menu">
                         <li>
                             <div class="profile-avatar">
-                                <img class="img-responsive" src="avatar.jpg" alt="profile picture">
-                                <center><h5 style="font-weight:bold;">Welcome John</h5></center>
+                                <img class="img-responsive" src=<?php echo $_SESSION["imagePath"]; ?> alt="profile picture">
+                                <center><h5 style="font-weight:bold;">Welcome <?php echo $_SESSION["username"]; ?></h5></center>
                             </div>
                         </li>
                         <li>
