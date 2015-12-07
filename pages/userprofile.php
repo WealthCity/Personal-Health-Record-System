@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>PHR</title>
+    <title>PHR System</title>
 
 
     <!-- jQuery -->
