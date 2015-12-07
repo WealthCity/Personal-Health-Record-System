@@ -25,7 +25,7 @@
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script type="text/javascript" src="../js/linechart.js"></script>
 
-    <title>PHR</title>
+    <title>PHR System</title>
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
