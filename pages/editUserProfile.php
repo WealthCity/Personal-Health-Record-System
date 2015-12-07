@@ -45,13 +45,6 @@
    <?php
 
       session_start();
-
-      // if(!isset($_SESSION["pid"]) || $_SESSION["pid"]==="")
-      // {
-      //     header("Location: login.php"); 
-      //     exit();
-      // }
-      
       $username = "";
       $pid = $_SESSION["pid"];
       $profileimageName = "";
@@ -118,22 +111,13 @@
                   echo "There was an error uploading the file, please try again!";
                 }
                 $sqlUpdateProfile = "UPDATE tbl_users SET dob=STR_TO_DATE('$dob','%m/%d/%YY'), profileimage = '$profileimageName', Gender = '$gender', MobileNumber = $MobileNumber,EmergencyContact = $EmergencyContact, Street = '$Street',Zip = $Zip, Country = '$Country' WHERE pid = $pid ";
-               //echo "---SQL-- Image= ".$sqlUpdateProfile; 
               }
               else
               {
 
                 $sqlUpdateProfile = "UPDATE tbl_users SET dob=STR_TO_DATE('$dob','%m/%d/%YY'), Gender = '$gender', MobileNumber = $MobileNumber,EmergencyContact = $EmergencyContact, Street = '$Street',Zip = $Zip, Country = '$Country' WHERE pid = $pid ";
-               // echo "---SQL--NoImage= ".$sqlUpdateProfile;
               }
-      
-              
-              
-      
-              
-           
-              
-      
+
               if ($conn->query($sqlUpdateProfile) === TRUE) {
                 echo "Record updated successfully";
                 $_SESSION["pid"] = $pid;
@@ -264,9 +248,7 @@
                                                           singleDatePicker: true,
                                                           showDropdowns: true
 
-                                                        })/*.on('changeDate', function (ev) {
-                                                              $(this).datepicker('hide');
-                                                          });*/
+                                                        })
                                                       </script>
                                                    </td>
                                                 </tr>
