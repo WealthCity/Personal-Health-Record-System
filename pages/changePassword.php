@@ -138,7 +138,6 @@ if( isset( $_POST['submit_form'] ) )
             else
             {
                 $row = $results->fetch_row();
-               // echo "pwd = ".$row[0];
                 $userPassword = $row[0];
             }
 
@@ -192,35 +191,6 @@ if( isset( $_POST['submit_form'] ) )
             
           }
 
-
-
-/* 
-
- <?php 
-      
-      $_SESSION["pid"] = 1001;
-      $pid = $_SESSION["pid"];
-
-      $sqlPassword = "SELECT Password FROM tbl_users WHERE pid = $pid";
-      echo $sqlPassword;
-
-
-
-$results = $conn->query($sqlPassword);
-        
-        if(!$results)
-        {
-            echo "Sorry!! Information not found";
-        }
-        else
-        {
-            $row = $results->fetch_row();
-            echo "pwd = ".$row[0];
-
-        }
-
-    ?>
-*/
 ?>
 
 <body>
