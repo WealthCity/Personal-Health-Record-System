@@ -1,7 +1,15 @@
 
 <html>
 
-   <?php session_start(); ?>
+  <?php 
+    session_start();
+    if(!isset($_SESSION["pid"]) || $_SESSION["pid"]==="")
+    {
+        header("Location: login.php"); 
+        exit();
+    } 
+
+  ?>
    <head>
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -49,7 +57,7 @@
                <span class="icon-bar"></span>
                <span class="icon-bar"></span>
                </button>
-               <a class="navbar-brand" href="index.html">PHR</a>
+               <a class="navbar-brand" href="index.html">PHR System</a>
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-top-links navbar-right">
@@ -63,7 +71,7 @@
                      <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                      </li>
                      <li class="divider"></li>
-                     <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                     <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                      </li>
                   </ul>
                   <!-- /.dropdown-user -->
@@ -76,8 +84,8 @@
                     <ul class="nav" id="side-menu">
                         <li>
                             <div class="profile-avatar">
-                                <img class="img-responsive" src=<?php echo $_SESSION["imagePath"]; ?> alt="profile picture">
-                                <center><h5 style="font-weight:bold;">Welcome <?php echo $_SESSION["username"]; ?></h5></center>
+                                <img class="img-responsive" src=<?php echo $_SESSION["avatarpath"] ?> alt="profile picture">
+                                <center><h5 style="font-weight:bold;"><?php echo $_SESSION["username"]  ?></h5></center>
                             </div>
                         </li>
                         <li>
@@ -108,15 +116,15 @@
             <!-- /.navbar-static-side -->
          </nav>
          <div id="page-wrapper">
-            <div class="row" style="margin-left:2%">
-               <div class="col-lg-6">
-                  <h1 class="page-header">Lab Tests</h1>
+            <div class="row" style="margin-left:15px;">
+               <div class="col-lg-12">
+                  <h1 class="page-header">Lab Tests History</h1>
                </div>
                <!-- /.col-lg-12 -->
                <div class="col-lg-6">
                   <div style="" class="table-responsive">
                      <div  class="panel panel-default" style="height: 603px;">
-                        <div class="panel-heading"><b>LAB TESTS</b></div>
+                        <div class="panel-heading" style="text-align:center"><b>LAB TESTS</b></div>
                            <table class="table table-bordered table-hover table-striped" id="labTestsTable">
                               <?php                                                    
                                  $jsonString = $_SESSION["labTestsJsonString"];
@@ -134,7 +142,7 @@
                                  
                                  jsonresult = jsonresult.sort(comp);
                                  var latestDate = new Date(jsonresult[0]["testdate"]);
-                                 var vitalCols = "<thead><tr><th width='15%'>Test Name</th><th width='10%'>Value</th><th width='20%'>Reference Min</th><th width='20%'>Reference Max</th><th width='10%'>Unit</th><th width='25%'>Test Date</th></tr></thead><tbody  height=500px>";
+                                 var vitalCols = "<thead><tr><th width='15%'>Test Name</th><th width='10%'>Value</th><th width='20%'>Reference Min</th><th width='20%'>Reference Max</th><th width='10%'>Unit</th><th width='25%'>Test Date</th></tr></thead><tbody  height=522px>";
                                  for(var i in jsonresult)
                                  {
                                      vitalCols += "<tr><td width='15%'>"+jsonresult[i]["testname"]+"</td>";

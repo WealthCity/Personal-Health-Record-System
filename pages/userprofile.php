@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>PHR System</title>
+    <title>PHR</title>
 
 
     <!-- jQuery -->
@@ -41,7 +41,11 @@
 
 <?php
     session_start();
-
+    if(!isset($_SESSION["pid"]) || $_SESSION["pid"]==="")
+    {
+      header("Location: login.php"); 
+      exit();
+    }
     $username = "";
     $pid = $_SESSION["pid"];
 
@@ -98,7 +102,7 @@
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -123,9 +127,8 @@
                     <ul class="nav" id="side-menu">
                         <li>
                             <div class="profile-avatar">
-                                <img class="img-responsive" src= <?php echo $imageName ?> alt="profile picture">
-                                
-                                <center><h5 style="font-weight:bold;">Welcome John</h5></center>
+                                <img class="img-responsive" src=<?php echo $_SESSION["avatarpath"] ?> alt="profile picture">
+                                <center><h5 style="font-weight:bold;"><?php echo $_SESSION["username"]  ?></h5></center>
                             </div>
                         </li>
                         <li>

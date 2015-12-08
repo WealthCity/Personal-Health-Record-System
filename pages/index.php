@@ -13,18 +13,20 @@
 
     $sqlProfile ="SELECT * FROM tbl_users WHERE pid = $pid ";
     
-            $results = $conn->query($sqlProfile);
-        
-        if(!$results)
-        {
-            echo "Sorry!! Information not found";
-        }
-        else
-        {
-            $row = $results->fetch_row();
-            $username = $row[1]." ".$row[2];
-            $imageName = "../profilePictures/".$row[5];
-        }
+    $results = $conn->query($sqlProfile);
+    
+    if(!$results)
+    {
+        echo "Sorry!! Information not found";
+    }
+    else
+    {
+        $row = $results->fetch_row();
+        $username = $row[1]." ".$row[2];
+        $imageName = "../profilePictures/".$row[5];
+        $_SESSION["username"] = $username;
+        $_SESSION["avatarpath"] = $imageName; 
+    }
 ?>
 <head>
 
@@ -41,6 +43,7 @@
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <link href="../css/avatar.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
     <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
@@ -56,7 +59,7 @@
 
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
+    
 </head>
 
 
@@ -84,7 +87,7 @@
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -99,7 +102,7 @@
                     
                     // open submenu on click of main menu
                     $('a[href="#"]').click(function(){
-                        $(this).toggleClass('active-me');
+                        $(this).toggleClass('active');
                        $(this).next('.nav-second-level').slideToggle(1000);
                     });
                 });
@@ -154,8 +157,7 @@
                                     <div class="table-responsive" >
                                         <div class="panel panel-default">
                                         <div class="panel-heading"><b>VITALS</b></div>
-                                        <div >
-                                        <table  class="table table-bordered table-hover table-striped" id="vitalsTable">                                            
+                                        <table  class="table table-bordered table-hover table-striped" id="vitalsTable" style="height:440px">                                            
                                                                                             
                                                 <?php
                                                     $pid= $_SESSION["pid"];
@@ -185,7 +187,7 @@
                                                     }
 
                                                     jsonresult = jsonresult.sort(comp);
-                                                    var vitalCols = "<thead><tr><th width=30%>Vital SIgn</th><th width=20%>Value</th><th width=20%>Unit</th><th width=30%>Measurement Time</th></tr></thead><tbody>";
+                                                    var vitalCols = "<thead><tr><th width=30%>Vital SIgn</th><th width=20%>Value</th><th width=20%>Unit</th><th width=30%>Measurement Time</th></tr></thead><tbody height=400px>";
                                                     var latestDate = new Date(jsonresult[0]["measurement_time"]);
                                                     //console.log(latestDate.getDate()+"/"+latestDate.getMonth()+"/"+latestDate.getFullYear());
                                                     for(var i in jsonresult)
@@ -205,7 +207,6 @@
 
                                                 </script>
                                         </table>
-                                        </div>
                                     </div>
                                     </div>
                                     <!-- /.table-responsive -->
@@ -248,7 +249,7 @@
                                                     jsonresult = jsonresult.sort(comp);
 
                                                     var latestDate = new Date(jsonresult[0]["testdate"]);
-                                                    var vitalCols = "<thead><tr><th width='15%'>Test Name</th><th width='10%'>Value</th><th width='20%'>Reference Min</th><th width='20%'>Reference Max</th><th width='10%'>Unit</th><th width='25%'>Test Date</th></tr></thead><tbody height=300px>";
+                                                    var vitalCols = "<thead><tr><th width='15%'>Test Name</th><th width='10%'>Value</th><th width='20%'>Reference Min</th><th width='20%'>Reference Max</th><th width='10%'>Unit</th><th width='25%'>Test Date</th></tr></thead><tbody height=395px>";
                                                     for(var i in jsonresult)
                                                     {
                                                         var newDate = new Date(jsonresult[i]["testdate"]);
@@ -274,11 +275,7 @@
                                     <!-- /.table-responsive -->
                                 </div>
                                 <!-- /.col-lg-6  -->
-                                
-                                <div class="col-lg-8">
-                                    <div id="morris-bar-chart"></div>
-                                </div>
-                                <!-- /.col-lg-8 (nested) -->
+                            
                             </div>
                             <!-- /.row -->
                             <div class="row">
@@ -286,7 +283,7 @@
                                     <div class="table-responsive">
                                         <div class="panel panel-default">
                                         <div class="panel-heading"><b>MEDICATION</b></div>
-                                        <table  class="table table-bordered table-hover table-striped" style="height:150px;" id="medicTable">                                            
+                                        <table  class="table table-bordered table-hover table-striped" style="height:433px;" id="medicTable">                                            
                                                                                             
                                                 <?php
                                                     $pid=$_SESSION["pid"];
@@ -318,7 +315,7 @@
                                                     jsonresult = jsonresult.sort(comp);
 
                                                     var latestDate = new Date(jsonresult[0]["presc_date"]);
-                                                    var vitalCols = "<thead><tr><th width=35%>Medication</th><th width=35%>Prescription Date</th><th width=30%>Quantity</th></tr></thead><tbody>";
+                                                    var vitalCols = "<thead><tr><th width=35%>Medication</th><th width=35%>Prescription Date</th><th width=30%>Quantity</th></tr></thead><tbody  height=395px>";
                                                     for(var i in jsonresult)
                                                     {
                                                         var newDate = new Date(jsonresult[i]["presc_date"]);

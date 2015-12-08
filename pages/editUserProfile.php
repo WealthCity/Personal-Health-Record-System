@@ -45,6 +45,11 @@
    <?php
 
       session_start();
+      if(!isset($_SESSION["pid"]) || $_SESSION["pid"]==="")
+      {
+          header("Location: login.php"); 
+          exit();
+      }
       $username = "";
       $pid = $_SESSION["pid"];
       $profileimageName = "";
@@ -153,7 +158,7 @@
                   <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                   </a>
                   <ul class="dropdown-menu dropdown-user">
-                     <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                     <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                      </li>
                   </ul>
                   <!-- /.dropdown-user -->

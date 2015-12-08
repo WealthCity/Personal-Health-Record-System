@@ -25,7 +25,7 @@
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script type="text/javascript" src="../js/linechart.js"></script>
 
-    <title>PHR System</title>
+    <title>PHR</title>
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -89,7 +89,7 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -103,8 +103,8 @@
                     <ul class="nav" id="side-menu">
                         <li>
                             <div class="profile-avatar">
-                                <img class="img-responsive" src=<?php echo $_SESSION["imagePath"]; ?> alt="profile picture">
-                                <center><h5 style="font-weight:bold;">Welcome <?php echo $_SESSION["username"]; ?></h5></center>
+                                <img class="img-responsive" src=<?php echo $_SESSION["avatarpath"] ?> alt="profile picture">
+                                <center><h5 style="font-weight:bold;"><?php echo $_SESSION["username"]  ?></h5></center>
                             </div>
                         </li>
                         <li>
@@ -147,14 +147,14 @@
             <center>
              <div class="panel-body">
                 <center>
-                    <div class="row">                        
-                        <div class="col-lg-7">                            
+                    <div class="row" style="margin-left:15px">                        
+                        <div class="col-lg-7" style="padding-right: 0px;padding-left: 0;">                            
 
-                            <div class="table-responsive" style="width:106%;border:1px solid lightgrey;border-radius:7px;height:500px;margin:auto;">
-                                <div class="panel panel-default">
+                            <div class="">
+                              <div style="" class="table-responsive">
+                                 <div  class="panel panel-default" style="height: 607px;">
                                     <div class="panel-heading"><b>VITALS</b></div>
-                                <div >
-                                <table  class="table table-bordered table-hover table-striped" id="vitalsTable">                                            
+                                       <table class="table table-bordered table-hover table-striped"id="vitalsTable">                                            
                                     <tbody>                                                
                                      <?php
                                             
@@ -174,7 +174,7 @@
                                             jsonresult = jsonresult.sort(comp);
 
                                             
-                                            var vitalCols = "<thead><tr><th width=30%>Vital SIgn</th><th width=20%>Value</th><th width=20%>Unit</th><th width=30%>Measurement Time</th></tr></thead><tbody style='width:100%' height=500px>";
+                                            var vitalCols = "<thead><tr><th width=30%>Vital SIgn</th><th width=20%>Value</th><th width=20%>Unit</th><th width=30%>Measurement Time</th></tr></thead><tbody style='width:100%' height=527px>";
                                             for(var i in jsonresult)
                                             {
                                                 vitalCols += "<tr><td width=30%>"+jsonresult[i]["vitalsign"]+"</td>";

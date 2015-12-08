@@ -1,5 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+    session_start();
+    if(!isset($_SESSION["pid"]) || $_SESSION["pid"]==="")
+    {
+      header("Location: login.php"); 
+      exit();
+    }
+
+?>
 
 <head>
 
@@ -9,10 +18,16 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>PHR System</title>
+    <title>PHR</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+      <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link href="../css/avatar.css" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 
     <!-- MetisMenu CSS -->
     <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
@@ -56,7 +71,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php">PHR</a>
+                <a class="navbar-brand" href="index.php">PHR System</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -72,7 +87,7 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -86,8 +101,8 @@
                     <ul class="nav" id="side-menu">
                         <li>
                             <div class="profile-avatar">
-                                <img class="img-responsive" src="avatar.jpg" alt="profile picture">
-                                <center><h5 style="font-weight:bold;">Welcome John</h5></center>
+                                <img class="img-responsive" src=<?php echo $_SESSION["avatarpath"] ?> alt="profile picture">
+                                <center><h5 style="font-weight:bold;"><?php echo $_SESSION["username"]  ?></h5></center>
                             </div>
                         </li>
                         <li>
@@ -121,7 +136,53 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Dashboard</h1>
+                    <h1 class="page-header">Medication History</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+                <div  id="linechart" ></div>
+                <script type="text/javascript">fun();</script>
+            </div>
+            <div class="row" style="margin-left:15px;">
+                <div class="col-lg-7" style="padding-right: 0px;padding-left: 0;">
+                    <div class="table-responsive">
+                                        <div class="panel panel-default" style='height:580px'>
+                                        <div class="panel-heading"><b>MEDICATION</b></div>
+                                        <table  class="table table-bordered table-hover table-striped" style="height:150px;" id="medicTable">                                            
+                                                                                            
+                                                <?php
+                                                    
+                                                    $jsonString = $_SESSION["medicationJsonString"];
+
+                                                ?>
+                                                <script type="text/javascript">
+                                                    var result1 = '<?php echo $jsonString; ?>';                                                    
+                                                    var result = result1.substring(0, result1.length - 1); 
+                                                    var jsonresult = $.parseJSON("["+result+"]");
+                                                    //console.log(jsonresult[0]["medic"]);
+
+                                                    function comp(a, b) 
+                                                    {
+                                                        return new Date(b["presc_date"]).getTime() - new Date(a["presc_date"]).getTime();
+                                                    }
+
+                                                    jsonresult = jsonresult.sort(comp);
+
+                                                    var latestDate = new Date(jsonresult[0]["presc_date"]);
+                                                    var vitalCols = "<thead><tr><th width=35%>Medication</th><th width=35%>Prescription Date</th><th width=30%>Quantity</th></tr></thead><tbody height='500px'>";
+                                                    for(var i in jsonresult)
+                                                    {
+                                                        vitalCols += "<tr><td width=35%>"+jsonresult[i]["medic"]+"</td>";
+                                                        vitalCols += "<td width=35%>" +jsonresult[i]["presc_date"] +"</td>";
+                                                        vitalCols += "<td width=30%>" + jsonresult[i]["quantity"]+"</td></tr>";
+                                                    }
+
+                                                    $("#medicTable").html(vitalCols+"</tbody>");
+
+                                                </script>
+                                        </table>
+                                    </div>
+                                    </div>
+                                    <!-- /.table-responsive -->
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -133,8 +194,6 @@
     </div>
     <!-- /#wrapper -->
 
-    <!-- jQuery -->
-    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -145,7 +204,6 @@
     <!-- Morris Charts JavaScript -->
     <script src="../bower_components/raphael/raphael-min.js"></script>
     <script src="../bower_components/morrisjs/morris.min.js"></script>
-    <script src="../js/morris-data.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
