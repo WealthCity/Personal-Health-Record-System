@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<title>Area Chart</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script type="text/javascript"
+	src="http://mbostock.github.com/d3/d3.js?2.4.5"></script>
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js">
+	
+</script>
+<style>
+
+svg {
+  font: 10px sans-serif;
+}
+
+.area {
+  fill: steelblue;
+  clip-path: url(#clip);
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.brush .extent {
+  stroke: #fff;
+  fill-opacity: .125;
+  shape-rendering: crispEdges;
+}
+
+</style>
+<script type="text/javascript" src="areachart.js"></script>
+</head>
+<body>
+
+
+		<!---------------------- Area Chart ---------------------------------------->
+
+		<tr>
+			<td>
+				<div class="div_RootBody" id="area_chart_1">
+					<h3 class="h3_Body">PHR oral temperature Area Chart</h3>
+				</div> <script
+					src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+				<div class="div_RootBody" id="area_chart_1">
+					<script>
+						areaChart();
+					</script>
+				</div>
+			</td>
+		</tr>
+	</table>
+	<!--------------------------- Area Chart End ---------------------------->
+</body>
+
+</html>
