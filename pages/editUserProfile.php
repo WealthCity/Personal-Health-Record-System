@@ -32,6 +32,9 @@
       <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
       <link rel="stylesheet" href="../css/animate.css">
       <link href="../css/avatar.css" rel="stylesheet">
+      <style type="text/css">        
+          
+      </style>
 
 
    </head>

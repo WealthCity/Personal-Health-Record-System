@@ -12,7 +12,6 @@ function count(key,data){
 function areaChart(){
 
 
-
   var margin = {top: 10, right: 10, bottom: 100, left: 40},
       margin2 = {top: 330, right: 10, bottom: 20, left: 40}, 
       width = 860 - margin.left - margin.right,
@@ -39,15 +38,15 @@ function areaChart(){
       .interpolate("monotone")
       .x(function(d) { return x(d.measurement_time); })
       .y0(height)
-      .y1(function(d) { return y(d.values); });
+      .y1(function(d) { return y(d.value); });
 
   var area2 = d3.svg.area()
       .interpolate("monotone")
       .x(function(d) {  return x2(d.measurement_time); })
       .y0(height2)
-      .y1(function(d) {  return y2(d.values); });
+      .y1(function(d) {  return y2(d.value); });
 
-  var svg = d3.select("body").append("svg")
+  var svg = d3.select("#areachart").append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom);
 
@@ -74,7 +73,9 @@ function areaChart(){
       .attr("class", "context")
       .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
 
-  d3.json("patient_records.json", function(error,data1) {
+  var circlegroup=null;
+
+  d3.json("../data/patient records.json", function(error,data1) {
 
     //data = data1.map(function(d){ if(d.vitalsign == "Oral Temperature" )return d; else delete d;})
     var data = $.grep(data1, function (element, index) {
@@ -85,7 +86,7 @@ function areaChart(){
     data = data.map(function(d){return type(d);})
     
     x.domain(d3.extent(data.map(function(d) { return d.measurement_time;})));
-    y.domain([0, d3.max(data.map(function(d) {return d.values; }))]);
+    y.domain([0, d3.max(data.map(function(d) {return d.value; }))]);
     x2.domain(x.domain());
     y2.domain(y.domain());
       
@@ -121,19 +122,33 @@ function areaChart(){
         .selectAll("rect")
         .attr("y", -6)
         .attr("height", height2 + 7);
+
+    circlegroup  = focus.append("g");
+    circlegroup.selectAll('.dot')
+    .data(data)
+    .enter().append("circle")
+    .attr('class', 'dot')
+    .attr("cx",function(d){ return x(d.measurement_time)})
+    .attr("cy", function(d){ return y(d.value);})
+    .attr("r", function(d){ return 4;})
+    .on('mouseover', function(d){ d3.select(this).attr('r', 8)})
+    .on('mouseout', function(d){ d3.select(this).attr('r', 4)}); 
+
   });
 
   function brushed() {
     x.domain(brush.empty() ? x2.domain() : brush.extent());
     focus.select(".area").attr("d", area);
     focus.select(".x.axis").call(xAxis);
+    circlegroup.selectAll(".dot")
+      .attr("cx",function(d){return x(d.measurement_time)})
+      .attr("cy", function(d){return y(d.value)});
+
   }
 
   function type(d) {
     d.measurement_time = parseDate((d.measurement_time).split(" ")[0]);
-    d.values = +d.values;
-    //console.log(d.date);
-    //console.log(d.price);
+    d.value = +d.value;
     return d;
   }
 }

@@ -11,18 +11,18 @@
 ?>
 <head>
     <link rel="icon" type="image/png" href="../img/icon1.png">
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+
     <link rel="stylesheet" type="text/css" href="../css/linechart.css">
     
  
     <!-- load the d3.js library -->    
     <script src="http://d3js.org/d3.v3.min.js"></script>
-    <script type="text/javascript" src="../js/linechart.js"></script>
+    <script src="../dist/js/d3.tip.v0.6.3.js" charset="utf-8"></script>
 
     <title>PHR</title>
     <!-- Bootstrap Core CSS -->
@@ -43,13 +43,20 @@
 
     <!-- jQuery -->
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    
     <link rel="stylesheet" href="../css/animate.css">
 
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     
+    
     <link rel="stylesheet" type="text/css" href="../css/avatar.css">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/areachart.css">
+    
+    <script type="text/javascript" src="../js/areaChartOralTemp.js"></script>
+    
+
 </head>
 
 <body>
@@ -145,8 +152,18 @@
                     <h1 class="page-header">Vitals History</h1>
                 </div>
                 <!-- /.col-lg-12 -->
+                <!-- 
                 <div  id="linechart" ></div>
                 <script type="text/javascript">fun();</script>
+                 -->
+                <div class="div_RootBody" id="area_chart_1">
+                    <h4 class="h3_Body" id="chartitle">Oral Temperature Area Chart</h3>
+                </div> 
+                <div class="div_RootBody" id="areachart">
+                    <script>
+                        areaChart();
+                    </script>
+                </div>
             </div>
             <center>
              <div class="panel-body">
