@@ -5,7 +5,7 @@
 <html lang="en">
 
 <head>
-
+    <link rel="icon" type="image/png" href="../img/icon1.png">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,8 +20,6 @@
 
     <link href="../css/datepicker.css" rel="stylesheet">
     <script src="../js/bootstrap-datepicker.js"></script>
-
-     <link href="../css/avatar.css" rel="stylesheet">
      
 
     <!-- Bootstrap Core CSS -->
@@ -41,6 +39,9 @@
 
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="../css/animate.css">
+     <link href="../css/avatar.css" rel="stylesheet">
 
 
 </head>
@@ -211,7 +212,10 @@ if( isset( $_POST['submit_form'] ) )
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">PHR System </a>            
+                <a href="index.php" style="margin-left:20px;">
+                    <img src="../img/icon1.png" style="margin-top:10px;" width="50" height="50"  />
+                    <h1 style="margin-left:20px;float:right;" >PHR System</h1>
+                </a>            
             </div>
             <!-- /.navbar-header -->
 
@@ -281,7 +285,7 @@ if( isset( $_POST['submit_form'] ) )
             <!-- /.navbar-static-side -->
         </nav>
 
-        <div id="page-wrapper">
+        <div id="page-wrapper" class="site-header animated fadeIn">
             <div class="row">
                 <div class="col-lg-12">
 

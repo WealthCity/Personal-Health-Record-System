@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-
+	<link rel="icon" type="image/png" href="img/icon1.png">
 	<style>
 		#canvas .circle {
 			display: inline-block;
@@ -31,9 +31,11 @@
 		<div class="header-wrapper">
 			<div class="row">
 				<div class="col-md-4">
-					<div class="site-branding">
-						 <img src="img/icon1.png" width="50" height="50" style="float:right; margin-right:70px;"/>
-						<a href="#"><h1>PHR System</h1></a>
+					<div class="site-branding" style="text-align:center">
+						<a href="#">
+							<img src="img/icon1.png" width="50" height="50" />
+							<h1>PHR System</h1>
+						</a>
 					</div>
 				</div>
 				<a href="#" class="toggle-nav hidden-md hidden-lg">
@@ -89,17 +91,10 @@
 					<div id="canvas">
 					<div style="float:left; display:inline;"></div>
 							<div class="circle" id="circles-1"></div>
-<!-- <div style="float:right; display:inline;">Blood Pressure</div>
- -->							<!-- <button id="add_button" style="margin-right:100px">Value +10</button> -->
 							<div class="circle" id="circles-2"></div>
 							<br>
-							<!-- <button id="substract_button">Value -10</button> -->
 							<div class="circle" id="circles-3"></div>
-							<!-- <button id="add_width_button">Width +10</button> -->
 							<div class="circle" id="circles-4"></div>
-							<!-- <button id="substract_width_button">Width -10</button> -->
-							<!-- <div class="circle" id="circles-5"></div>
-							<button id="colors_button">Swap colors</button> -->
 							<br/>
 							
 						</div>
@@ -162,37 +157,6 @@
 									colors:     colors[i - 1]
 								}));
 
-
-							document.getElementById('add_button').onclick = function()
-							{
-							    for(var i = 0, l = circles.length; i < l; i++)
-									circles[i].update(circles[i]._value + 10, 250);
-							};
-
-							document.getElementById('substract_button').onclick = function()
-							{
-								for(var i = 0, l = circles.length; i < l; i++)
-									circles[i].update(circles[i]._value - 10, 250);
-							};
-
-							document.getElementById('add_width_button').onclick = function()
-							{
-								for(var i = 0, l = circles.length; i < l; i++)
-									circles[i].updateWidth(circles[i]._strokeWidth + 10);
-							};
-
-							document.getElementById('substract_width_button').onclick = function()
-							{
-								for(var i = 0, l = circles.length; i < l; i++)
-									circles[i].updateWidth(circles[i]._strokeWidth - 10);
-							};
-
-							document.getElementById('colors_button').onclick = function()
-							{
-								colors = shuffle(colors);
-								for(var i = 0, l = circles.length; i < l; i++)
-									circles[i].updateColors(colors[i]);
-							};
 						</script>
 						<!-- circle code end -->
 				</div>
@@ -270,7 +234,6 @@
 				<div class="row">
 					<div class="col-md-4 col-sm-6 p-1 animated umScaleIn">
 						<div class="project-item">
-							<img src="img/1.jpg" alt="">
 							<div class="overlay">
 								<h4><a href="#">Project One</a></h4>
 							</div>

@@ -11,6 +11,7 @@
 ?>
 
 <head>
+    <link rel="icon" type="image/png" href="../img/icon1.png">
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,9 +24,7 @@
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
-      <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <link href="../css/avatar.css" rel="stylesheet">
-
+    
     <!-- jQuery -->
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 
@@ -40,10 +39,13 @@
 
     <!-- Morris Charts CSS -->
     <link href="../bower_components/morrisjs/morris.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/animate.css">
 
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-                 
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link href="../css/avatar.css" rel="stylesheet">
+             
 
 </head>
 
@@ -60,7 +62,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php">PHR System</a>
+                <a href="index.php" style="margin-left:20px;">
+                    <img src="../img/icon1.png" style="margin-top:10px;" width="50" height="50"  />
+                    <h1 style="margin-left:20px;float:right;" >PHR System</h1>
+                </a>  
             </div>
             <!-- /.navbar-header -->
 
@@ -132,7 +137,7 @@
             <!-- /.navbar-static-side -->
         </nav>
 
-        <div id="page-wrapper">
+        <div id="page-wrapper" class="site-header animated fadeIn">
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">Medication History</h1>
