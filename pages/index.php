@@ -102,6 +102,8 @@
                     
                     // open submenu on click of main menu
                     $('a[href="#"]').click(function(){
+                        
+                        $("#arrow").toggleClass("fa-angle-down")
                         $(this).toggleClass('active');
                        $(this).next('.nav-second-level').slideToggle(1000);
                     });
@@ -112,15 +114,15 @@
                     <ul class="nav" id="side-menu">
                         <li>
                             <div class="profile-avatar">
-                                <img class="img-responsive" src=<?php echo $imageName ?> alt="profile picture">
-                                <center><h5 style="font-weight:bold;">Welcome <?php echo $username; ?></h5></center>
+                                <img class="img-responsive" src=<?php echo $_SESSION["avatarpath"]; ?> alt="profile picture">
+                                <center><h5 style="font-weight:bold;">Welcome <?php echo $_SESSION["username"]; ?></h5></center>
                             </div>
                         </li>
                         <li>
                             <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> History<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> History<span id="arrow" class="fa fa-angle-left" style="float:right;"></span></a>
                             <div class="nav nav-second-level">
                                 <div>                                    
                                     <a href="vitals.php"><i class="glyphicon glyphicon-zoom-in"></i>  Vitals</a>
@@ -151,7 +153,7 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-            <div class="panel-body">
+            <div class="panel-body" style="margin-left:40px">
                             <div class="row">
                                 <div class="col-lg-5">
                                     <div class="table-responsive" >
@@ -213,7 +215,7 @@
                                 </div>
                                 <!-- /.col-lg-5 -->
 
-                                <div class="col-lg-6">
+                                <div class="col-lg-5">
                                     <div style="" class="table-responsive" >
                                         <div  class="panel panel-default table-responsive" style="height:480px;">
                                         <div class="panel-heading"><b>LAB TESTS</b></div>
@@ -274,7 +276,7 @@
                                     </div>
                                     <!-- /.table-responsive -->
                                 </div>
-                                <!-- /.col-lg-6  -->
+                                <!-- /.col-lg-5  -->
                             
                             </div>
                             <!-- /.row -->

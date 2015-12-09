@@ -117,7 +117,9 @@
                     
                     // open submenu on click of main menu
                     $('a[href="#"]').click(function(){
-                        $(this).toggleClass('active-me');
+                        
+                        $("#arrow").toggleClass("fa-angle-down")
+                        $(this).toggleClass('active');
                        $(this).next('.nav-second-level').slideToggle(1000);
                     });
                 });
@@ -127,15 +129,15 @@
                     <ul class="nav" id="side-menu">
                         <li>
                             <div class="profile-avatar">
-                                <img class="img-responsive" src=<?php echo $_SESSION["avatarpath"] ?> alt="profile picture">
-                                <center><h5 style="font-weight:bold;"><?php echo $_SESSION["username"]  ?></h5></center>
+                                <img class="img-responsive" src=<?php echo $_SESSION["avatarpath"]; ?> alt="profile picture">
+                                <center><h5 style="font-weight:bold;"> <?php echo $_SESSION["username"]; ?></h5></center>
                             </div>
                         </li>
                         <li>
                             <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> History<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> History<span id="arrow" class="fa fa-angle-left" style="float:right;"></span></a>
                             <div class="nav nav-second-level">
                                 <div>                                    
                                     <a href="vitals.php"><i class="glyphicon glyphicon-zoom-in"></i>  Vitals</a>

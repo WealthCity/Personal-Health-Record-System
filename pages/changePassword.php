@@ -13,6 +13,7 @@
     <meta name="author" content="">
 
     <title>PHR</title>
+    
 
     <!-- jQuery -->
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
@@ -21,6 +22,7 @@
     <script src="../js/bootstrap-datepicker.js"></script>
 
      <link href="../css/avatar.css" rel="stylesheet">
+     
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -39,6 +41,7 @@
 
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
 
 </head>
 <script type="text/javascript">
@@ -129,7 +132,6 @@ function matchPassword()
 if( isset( $_POST['submit_form'] ) )
 {
      $sqlPassword = "SELECT Password FROM tbl_users WHERE pid = $pid";
-     // echo $sqlPassword;
       $userPassword = "";
       $oldPwd =  $_POST["oldPwd"]; 
       $newPwd = $_POST["newPwd"]; 
@@ -179,8 +181,6 @@ if( isset( $_POST['submit_form'] ) )
         else
         {
             $row = $results->fetch_row();
-            echo "id = ".$row[0];
-            echo "name = ".$row[1];
             $username = $row[1]." ".$row[2];
             $dob = $row[3];
             $gender = $row[4];
@@ -211,7 +211,7 @@ if( isset( $_POST['submit_form'] ) )
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">PHR System <?php echo "PID = ".$_SESSION["pid"]; ?>  </a>            
+                <a class="navbar-brand" href="index.html">PHR System </a>            
             </div>
             <!-- /.navbar-header -->
 
@@ -237,7 +237,9 @@ if( isset( $_POST['submit_form'] ) )
                     
                     // open submenu on click of main menu
                     $('a[href="#"]').click(function(){
-                        $(this).toggleClass('active-me');
+                        
+                        $("#arrow").toggleClass("fa-angle-down")
+                        $(this).toggleClass('active');
                        $(this).next('.nav-second-level').slideToggle(1000);
                     });
                 });
@@ -247,27 +249,26 @@ if( isset( $_POST['submit_form'] ) )
                     <ul class="nav" id="side-menu">
                         <li>
                             <div class="profile-avatar">
-                                <img class="img-responsive" src= <?php echo $imageName ?> alt="profile picture">
-                                
-                                <center><h5 style="font-weight:bold;">Welcome John</h5></center>
+                                <img class="img-responsive" src=<?php echo $_SESSION["avatarpath"]; ?> alt="profile picture">
+                                <center><h5 style="font-weight:bold;"> <?php echo $_SESSION["username"]; ?></h5></center>
                             </div>
                         </li>
                         <li>
                             <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> History<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="vitals.php">Vitals</a>
-                                </li>
-                                <li>
-                                    <a href="labtests.php">Lab Test Results</a>
-                                </li>
-                                <li>
-                                    <a href="medication.php">Medication</a>
-                                </li>
-                            </ul>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> History<span id="arrow" class="fa fa-angle-left" style="float:right;"></span></a>
+                            <div class="nav nav-second-level">
+                                <div>                                    
+                                    <a href="vitals.php"><i class="glyphicon glyphicon-zoom-in"></i>  Vitals</a>
+                                </div>
+                                <div>
+                                    <a href="labtests.php"><i class="glyphicon glyphicon-zoom-in"></i>  Lab Test Results</a>
+                                </div>
+                                <div>
+                                    <a href="medication.php"><i class="glyphicon glyphicon-zoom-in"></i>  Medication</a>
+                                </div>
+                            </div>
                             <!-- /.nav-second-level -->
                         </li>                        
                         <li>
@@ -288,11 +289,9 @@ if( isset( $_POST['submit_form'] ) )
 
     <div class="container">
       <div class="row">
-      <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
-           <a href="editUserprofile.php"> <i class="fa fa-user fa-fw"></i> Edit Profile</a>
+      <div class="col-md-9  toppad">
+           <a class="pull-right" href="editUserprofile.php"> <i class="fa fa-user fa-fw"></i> Edit Profile</a>
        <br>
-
-<p class=" text-info"></p>
       </div>
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
    
@@ -305,34 +304,32 @@ if( isset( $_POST['submit_form'] ) )
               <div class="row">
                 
             <form method="post" action="changePassword.php"> 
-                <div class=" col-md-9 col-lg-9 "> 
+                <div style="width: 90%;margin:25px"> 
                   <table class="table table-user-information">
                     <tbody>
             
                       <tr>
-                        <td>Old Password:</td>
-                        <td> <input type="password" name="oldPwd" id="oldPwd" size = 15> </td>
+                        <td  style="vertical-align: inherit;">Old Password:</td>
+                        <td style="vertical-align: inherit;"> <input type="password" class="form-control" name="oldPwd" id="oldPwd" size = 15> </td>
                       </tr>
                       <tr>
-                        <td>New Password:</td>
-                        <td>
-                          <input type="password" name="newPwd" id="newPwd" onblur="validatePassword();" size = 15 >
+                        <td style="vertical-align: inherit;">New Password:</td>
+                        <td style="vertical-align: inherit;">
+                          <input type="password" class="form-control" name="newPwd" id="newPwd" onblur="validatePassword();" size = 15 >
                           <span id="valPassMsg" class="confirmMessage"></span>
                         </td>
                       </tr>
                       <tr>
-                        <td>Confirm Password:</td>
-                        <td><input type="password" name="conPwd" id="conPwd" onkeyup="matchPassword();" size = 15>
+                        <td style="vertical-align: inherit;">Confirm Password:</td>
+                        <td style="vertical-align: inherit;"><input type="password" class="form-control" name="conPwd" id="conPwd" onkeyup="matchPassword();" size = 15>
                           <span id="confirmMessage" class="confirmMessage"></span>
                           <label type="text" id="lblText"><font color="red"></font></label> </td>
                       </tr>
                       
                       <tr>
-                        <td><input type="Submit" class="btn btn-primary" name="submit_form" value="Update Password"  ></td>
-                        <td><input type="Button" class="btn btn-warning" value="Cancel" onclick = "buttonCancel()" ></td>
+                        <td style="vertical-align: inherit;"><input type="Submit" class="btn btn-primary" name="submit_form" value="Update Password"  ></td>
+                        <td style="vertical-align: inherit;"><input type="Button" class="btn btn-warning" value="Cancel" onclick = "buttonCancel()" ></td>
                       </tr>
-                    
-                     
                     </tbody>
                   </table>
                   </div>

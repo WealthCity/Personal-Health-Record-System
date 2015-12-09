@@ -43,18 +43,7 @@
 
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript">
-        $(document).ready(function() {
-            // hide all second level
-            $('.nav-second-level').hide();
-            
-            // open submenu on click of main menu
-            $('a[href="#"]').click(function(){
-                $(this).toggleClass('active-me');
-               $(this).next('.nav-second-level').slideToggle(1000);
-            });
-        });
-    </script>               
+                 
 
 </head>
 
@@ -82,12 +71,8 @@
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li>
+                            <a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -96,20 +81,34 @@
             </ul>
             <!-- /.navbar-top-links -->
 
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    // hide all second level
+                    $('.nav-second-level').hide();
+                    
+                    // open submenu on click of main menu
+                    $('a[href="#"]').click(function(){
+                        
+                        $("#arrow").toggleClass("fa-angle-down")
+                        $(this).toggleClass('active');
+                       $(this).next('.nav-second-level').slideToggle(1000);
+                    });
+                });
+            </script>
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
                             <div class="profile-avatar">
-                                <img class="img-responsive" src=<?php echo $_SESSION["avatarpath"] ?> alt="profile picture">
-                                <center><h5 style="font-weight:bold;"><?php echo $_SESSION["username"]  ?></h5></center>
+                                <img class="img-responsive" src=<?php echo $_SESSION["avatarpath"]; ?> alt="profile picture">
+                                <center><h5 style="font-weight:bold;"> <?php echo $_SESSION["username"]; ?></h5></center>
                             </div>
                         </li>
                         <li>
                             <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> History<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> History<span id="arrow" class="fa fa-angle-left" style="float:right;"></span></a>
                             <div class="nav nav-second-level">
                                 <div>                                    
                                     <a href="vitals.php"><i class="glyphicon glyphicon-zoom-in"></i>  Vitals</a>
@@ -138,15 +137,12 @@
                 <div class="col-lg-12">
                     <h1 class="page-header">Medication History</h1>
                 </div>
-                <!-- /.col-lg-12 -->
-                <div  id="linechart" ></div>
-                <script type="text/javascript">fun();</script>
             </div>
-            <div class="row" style="margin-left:15px;">
+            <div class="row" style="margin-left:40px;">
                 <div class="col-lg-7" style="padding-right: 0px;padding-left: 0;">
                     <div class="table-responsive">
                                         <div class="panel panel-default" style='height:580px'>
-                                        <div class="panel-heading"><b>MEDICATION</b></div>
+                                        <div class="panel-heading" style="text-align:center"><b>MEDICATION</b></div>
                                         <table  class="table table-bordered table-hover table-striped" style="height:150px;" id="medicTable">                                            
                                                                                             
                                                 <?php

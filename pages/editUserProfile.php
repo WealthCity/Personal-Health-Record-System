@@ -88,7 +88,7 @@
               $gender = $_POST["gender"];
               $MobileNumber = $_POST["MobileNumber"];
               $EmergencyContact = $_POST["EmergencyContact"];
-              //$EmailId = $_POST["EmailId"];
+              $EmailId = $_POST["EmailId"];
               $Street = $_POST["Street"];
               $City = $_POST["City"];
               $State = $_POST["State"];
@@ -107,20 +107,19 @@
         
                 if(move_uploaded_file($_FILES["uploadedfile"]["tmp_name"], "../profilePictures/" . $newfilename))
                 {
-                  echo "The file ".  basename( $_FILES['uploadedfile']['name']). 
-                " has been uploaded";
-                $profileimageName = $newfilename;
+                  echo "The file ".  basename( $_FILES['uploadedfile']['name']). " has been uploaded";
+                  $profileimageName = $newfilename;
                 }
                 else
                 {
                   echo "There was an error uploading the file, please try again!";
                 }
-                $sqlUpdateProfile = "UPDATE tbl_users SET dob=STR_TO_DATE('$dob','%m/%d/%YY'), profileimage = '$profileimageName', Gender = '$gender', MobileNumber = $MobileNumber,EmergencyContact = $EmergencyContact, Street = '$Street',Zip = $Zip, Country = '$Country' WHERE pid = $pid ";
+                $sqlUpdateProfile = "UPDATE tbl_users SET dob=STR_TO_DATE('$dob','%m/%d/%YY'), EmailId='$EmailId', profileimage = '$profileimageName', Gender = '$gender', MobileNumber = $MobileNumber,EmergencyContact = $EmergencyContact, Street = '$Street',Zip = $Zip, Country = '$Country' WHERE pid = $pid ";
               }
               else
               {
 
-                $sqlUpdateProfile = "UPDATE tbl_users SET dob=STR_TO_DATE('$dob','%m/%d/%YY'), Gender = '$gender', MobileNumber = $MobileNumber,EmergencyContact = $EmergencyContact, Street = '$Street',Zip = $Zip, Country = '$Country' WHERE pid = $pid ";
+                $sqlUpdateProfile = "UPDATE tbl_users SET dob=STR_TO_DATE('$dob','%m/%d/%YY'), EmailId='$EmailId', Gender = '$gender', MobileNumber = $MobileNumber,EmergencyContact = $EmergencyContact, Street = '$Street',Zip = $Zip, Country = '$Country' WHERE pid = $pid ";
               }
 
               if ($conn->query($sqlUpdateProfile) === TRUE) {
@@ -167,52 +166,52 @@
             </ul>
             <!-- /.navbar-top-links -->
             <script type="text/javascript">
-               $(document).ready(function() {
-                   // hide all second level
-                   $('.nav-second-level').hide();
-                   
-                   // open submenu on click of main menu
-                   $('a[href="#"]').click(function(){
-                       $(this).toggleClass('active-me');
-                      $(this).next('.nav-second-level').slideToggle(1000);
-                   });
-               });
+                $(document).ready(function() {
+                    // hide all second level
+                    $('.nav-second-level').hide();
+                    
+                    // open submenu on click of main menu
+                    $('a[href="#"]').click(function(){
+                        
+                        $("#arrow").toggleClass("fa-angle-down")
+                        $(this).toggleClass('active');
+                       $(this).next('.nav-second-level').slideToggle(1000);
+                    });
+                });
             </script>
             <div class="navbar-default sidebar" role="navigation">
-               <div class="sidebar-nav navbar-collapse">
-                  <ul class="nav" id="side-menu">
-                     <li>
-                        <div class="profile-avatar">
-                           <img class="img-responsive" src= <?php echo $imageName ?> alt="profile picture"> 
-                           <center>
-                              <h5 style="font-weight:bold;">Welcome John</h5>
-                           </center>
-                        </div>
-                     </li>
-                     <li>
-                        <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                     </li>
-                     <li>
-                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> History<span class="fa arrow"></span></a>
-                        <div class="nav nav-second-level">
-                            <div>                                    
-                                <a href="vitals.php"><i class="glyphicon glyphicon-zoom-in"></i>  Vitals</a>
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <div class="profile-avatar">
+                                <img class="img-responsive" src=<?php echo $_SESSION["avatarpath"]; ?> alt="profile picture">
+                                <center><h5 style="font-weight:bold;">Welcome <?php echo $_SESSION["username"]; ?></h5></center>
                             </div>
-                            <div>
-                                <a href="labtests.php"><i class="glyphicon glyphicon-zoom-in"></i>  Lab Test Results</a>
+                        </li>
+                        <li>
+                            <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> History<span id="arrow" class="fa fa-angle-left" style="float:right;"></span></a>
+                            <div class="nav nav-second-level">
+                                <div>                                    
+                                    <a href="vitals.php"><i class="glyphicon glyphicon-zoom-in"></i>  Vitals</a>
+                                </div>
+                                <div>
+                                    <a href="labtests.php"><i class="glyphicon glyphicon-zoom-in"></i>  Lab Test Results</a>
+                                </div>
+                                <div>
+                                    <a href="medication.php"><i class="glyphicon glyphicon-zoom-in"></i>  Medication</a>
+                                </div>
                             </div>
-                            <div>
-                                <a href="medication.php"><i class="glyphicon glyphicon-zoom-in"></i>  Medication</a>
-                            </div>
-                        </div>
-                        <!-- /.nav-second-level -->
-                     </li>
-                     <li>
-                        <a href="userprofile.php"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                     </li>
-                  </ul>
-               </div>
-               <!-- /.sidebar-collapse -->
+                            <!-- /.nav-second-level -->
+                        </li>                        
+                        <li>
+                            <a href="userprofile.php"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
             </div>
             <!-- /.navbar-static-side -->
          </nav>
@@ -221,8 +220,8 @@
                <div class="col-lg-12">
                   <div class="container">
                      <div class="row">
-                        <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
-                           <a href="changePassword.php"> <i class="fa fa-user fa-fw"></i> Change Password</a>
+                        <div class="col-md-9  toppad">
+                           <a class="pull-right" href="changePassword.php"> <i class="fa fa-user fa-fw"></i> Change Password</a>
                            <br>
                            <p class=" text-info"></p>
                         </div>
@@ -238,11 +237,11 @@
                                           <table class="table table-user-information">
                                              <tbody style="overflow-y:inherit;position:inherit;">                                               
                                                 <tr>
-                                                   <td><label for="file">Upload Photo:</label> </td>
+                                                   <td style="vertical-align:inherit;" ><label for="file">Upload Photo:</label> </td>
                                                     <td>  <input type="file" class="form-control" name="uploadedfile" id="uploadedfile"></td>
                                                 </tr>
                                                 <tr>
-                                                   <td>Date of Birth:</td>
+                                                   <td style="vertical-align:inherit;" >Date of Birth:</td>
                                                    <td>  
                                                       <div class="input-group input-append date" id="datePicker">
                                                         <input  type="text" id="birthdate" class="form-control" value=<?php echo $dob ?> name="birthdate" />
@@ -258,48 +257,51 @@
                                                    </td>
                                                 </tr>
                                                 <tr>
-                                                   <td>Gender:</td>
+                                                   <td style="vertical-align:inherit;" >Gender:</td>
 
 
                                                    <td> <input type="radio" name="gender" value="Male" <?php echo ($gender=='Male')?'checked':'' ?> > Male
                                                    <input type="radio" name="gender" value="Female" <?php echo ($gender=='Female')?'checked':'' ?> > Female </td>
-                                                  <!-- <td><input class="form-control" type="text" name="gender" id="gender" value = <?php echo $gender ?> size = 15></td> -->
-
+                                                  
 
                                                 </tr>
                                                 <tr>
-                                                   <td>Mobile Number:</td>
+                                                   <td style="vertical-align:inherit;" >Mobile Number:</td>
                                                    <td><input class="form-control" type="text" name="MobileNumber" id="MobileNumber" value = <?php echo $MobileNumber ?> size = 15></td>
                                                 </tr>
                                                 <tr>
-                                                   <td>Emergency Contact:</td>
+                                                   <td style="vertical-align:inherit;" >Email Id:</td>
+                                                   <td><input class="form-control" type="text" name="EmailId" id="EmailId" value = <?php echo $EmailId ?> size = 15></td>
+                                                </tr>
+                                                <tr>
+                                                   <td style="vertical-align:inherit;" >Emergency Contact:</td>
                                                    <td><input class="form-control" type="text" name="EmergencyContact" id="EmergencyContact" value = <?php echo $EmergencyContact ?> size = 15></td>
                                                 </tr>
                                                 <tr>
-                                                  <td colspan="2" style="text-align:center;font-weight:bold">Address</td>
+                                                  <td colspan="2" style="text-align:center;font-weight:bold;vertical-align:inherit;">Address</td>
                                                 </tr>
                                                 <tr>
-                                                   <td>Street:</td>
+                                                   <td style="vertical-align:inherit;" >Street:</td>
                                                    <td><input class="form-control" type="text" name="Street" id="Street" value = <?php echo $Street ?> size = 15></td>
                                                 </tr>
                                                 <tr>
-                                                   <td>City:</td>
+                                                   <td style="vertical-align:inherit;" >City:</td>
                                                    <td><input class="form-control" type="text" name="City" id="City" value = <?php echo $City ?> size = 15></td>
                                                 </tr>
                                                 <tr>
-                                                   <td>State:</td>
+                                                   <td style="vertical-align:inherit;" >State:</td>
                                                    <td><input class="form-control" type="text" name="State" id="State" value = <?php echo $State ?> size = 15></td>
                                                 </tr>
                                                 <tr>
-                                                   <td>Zip:</td>
+                                                   <td style="vertical-align:inherit;" >Zip:</td>
                                                    <td><input class="form-control" type="text" name="Zip" id="Zip" value = <?php echo $Zip ?> size = 15></td>
                                                 </tr>
                                                 <tr>
-                                                   <td>Country:</td>
+                                                   <td style="vertical-align:inherit;" >Country:</td>
                                                    <td><input class="form-control" type="text" name="Country" id="Country" value = <?php echo $Country ?> size = 15></td>
                                                 </tr>
                                                 <tr>
-                                                   <td style="text-align:center"><input class="btn btn-primary" type="Submit" value="Update Profile" onclick = "updateProfile()" ></td>
+                                                   <td style="vertical-align:inherit;"  style="text-align:center"><input class="btn btn-primary" type="Submit" value="Update Profile" onclick = "updateProfile()" ></td>
                                                    <td style="text-align:center"><input class="btn btn-warning" type="Button" value="Cancel" onclick = "buttonCancel()" ></td>
                                                 </tr>
                                              </tbody>
