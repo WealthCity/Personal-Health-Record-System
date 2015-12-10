@@ -156,7 +156,7 @@ if( isset( $_POST['submit_form'] ) )
                 
                 if ($conn->query($sqlUpdatePassword) === TRUE) {
                         $message = "Password updated successfully";
-                        echo "<script type='text/javascript'>alert('$message');</script>";
+                        echo "<script>location.href='userprofile.php';</script>";
                     } else {
                         echo "Error updating record: " . $conn->error;
                     }

@@ -75,6 +75,7 @@
               $dob = $row[15];
               $gender = $row[4];
               $imageName = "../profilePictures/".$row[5];
+              $_SESSION["avatarpath"] =  $imageName;
               $profileimageName = $row[5];
               $MobileNumber = $row[6];
               $EmergencyContact = $row[7];
