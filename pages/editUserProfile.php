@@ -307,7 +307,7 @@ function checkEmail() {
                                                 </tr>
                                                 <tr>
                                                    <td style="vertical-align:inherit;" >Mobile Number:</td>
-                                                   <td><input class="form-control" type="text" name="MobileNumber" id="MobileNumber" maxlength="14" onblur="ValidateNo();" required="required"  placeholder="Mobile Number" value = <?php echo $MobileNumber ?> ></td>
+                                                   <td><input class="form-control" type="text" name="MobileNumber" id="MobileNumber" maxlength="10" onblur="ValidateNo();" required="required"  placeholder="Mobile Number" value = <?php echo $MobileNumber ?> ></td>
                                                 </tr>
                                                 <tr>
                                                    <td style="vertical-align:inherit;" >Email Id:</td>
