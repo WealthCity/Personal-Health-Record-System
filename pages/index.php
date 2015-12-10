@@ -209,7 +209,6 @@
                                                             vitalCols += "<td width=30%>" + jsonresult[i]["measurement_time"]+"</td></tr>";
                                                         }
                                                     }
-
                                                             
                                                     $("#vitalsTable").html(vitalCols+"</tbody>");
 
@@ -241,6 +240,13 @@
                                                         while($row = $results->fetch_row())
                                                             $jsonString.='{"testname":"'.$row[1].'","value":'. $row[2].',"reference_min":'. $row[3].',"reference_max":'. $row[4].',"unit":"'. $row[5].'","testdate":"'. $row[6].'"},';
                                                     }
+
+                                                    /*// Write JSON to the file for reference in line chart
+                                                    $myfile = fopen("../data/patient lab tests.json", "w") or die("Unable to open file!");
+                                                    $txt = $jsonString;
+                                                    fwrite($myfile, $txt);
+                                                    fclose($myfile);*/
+
                                                     $_SESSION["labTestsJsonString"]=$jsonString;
                                                 ?>
                                                 <script type="text/javascript">

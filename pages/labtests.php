@@ -8,7 +8,7 @@
         header("Location: login.php"); 
         exit();
     } 
-
+     $jsonString = $_SESSION["labTestsJsonString"];
   ?>
    <head>
     <link rel="icon" type="image/png" href="../img/icon1.png">
@@ -36,6 +36,28 @@
       <link rel="stylesheet" href="../css/animate.css">
       <link rel="stylesheet" type="text/css" href="../css/style.css">
       <link rel="stylesheet" type="text/css" href="../css/avatar.css">
+
+    <link rel="stylesheet" type="text/css" href="../css/areachart.css">
+    <script type="text/javascript" src="../dist/js/jquery-dateFormat.js"></script>
+    <script type="text/javascript" src="../js/areaChartLabTests.js"></script> 
+    <!-- load the d3.js library -->    
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+     <style type="text/css">
+    div.tooltip {   
+  !position: absolute;           
+  text-align: center;           
+  width: 120px;                  
+  height: 40px;                 
+  padding: 2px;             
+  font: 14px sans-serif;        
+  background: white;  
+  border: 1px solid grey; 
+  box-shadow: 3px 2px 1px black;      
+  border-radius: 8px;           
+  pointer-events: none;
+  vertical-align: middle;
+}
+    </style>
       
    </head>
    <body>
@@ -125,27 +147,50 @@
                   <h1 class="page-header">Lab Tests History</h1>
                </div>
                <!-- /.col-lg-12 -->
-               <div class="col-lg-6" style="margin-left:40px;">
+               <div class="row" style="margin-bottom:20px;">
+                <h4 style="margin-left:40px;float:left;width:170px"> Select Vital Sign : </h4>
+                <select class="form-control" id="filter" style="float:left;width: 300px;">  </select>                  
+            </div>
+            
+                <div class="row" id="area_chart_1">
+                    <h4 class="col-lg-7" style="text-align:center" id="chartitle"></h3>
+                </div> 
+                <div class="row" style="margin-left:30px;"id="areachart">
+                    <script>
+                         var result1 = '<?php echo $jsonString; ?>';                                                    
+                         var result = result1.substring(0, result1.length - 1); 
+                         var jsonresult = $.parseJSON("["+result+"]");
+                         //console.log(jsonresult[0]["value"]);
+                         
+                         function comp(a, b) 
+                         {
+                             return new Date(b["testdate"]).getTime() - new Date(a["testdate"]).getTime();
+                         }
+                         
+                         jsonresult = jsonresult.sort(comp);
+
+                        var selectedMetric = "GLU" ;
+                        var dataFilePath = "../data/patient lab tests.json";
+                        areaChart(selectedMetric,dataFilePath);
+                        $("#chartitle").fadeIn("slow").html(selectedMetric);
+                     
+
+                        $("#filter").change(function(){
+                        $("#areachart,#chartitle").fadeOut("slow", function(){
+                            selectedMetric = $("#filter").val();
+                            $("#chartitle").fadeIn("slow").html(selectedMetric)
+                            $("#areachart").empty().html(areaChart(selectedMetric,dataFilePath)).fadeIn("slow");
+                        });});
+                    </script>
+                </div>
+               <div class="col-lg-6" style="margin-left:40px;margin-top:40px;">
                   <div style="" class="table-responsive">
                      <div  class="panel panel-default" style="height: 603px;">
                         <div class="panel-heading" style="text-align:center"><b>LAB TESTS</b></div>
                            <table class="table table-bordered table-hover table-striped" id="labTestsTable">
-                              <?php                                                    
-                                 $jsonString = $_SESSION["labTestsJsonString"];
-                                 ?>
+                              
                               <script type="text/javascript">
-                                 var result1 = '<?php echo $jsonString; ?>';                                                    
-                                 var result = result1.substring(0, result1.length - 1); 
-                                 var jsonresult = $.parseJSON("["+result+"]");
-                                 //console.log(jsonresult[0]["value"]);
-                                 
-                                 function comp(a, b) 
-                                 {
-                                     return new Date(b["testdate"]).getTime() - new Date(a["testdate"]).getTime();
-                                 }
-                                 
-                                 jsonresult = jsonresult.sort(comp);
-                                 var latestDate = new Date(jsonresult[0]["testdate"]);
+                                
                                  var vitalCols = "<thead><tr><th width='15%'>Test Name</th><th width='10%'>Value</th><th width='20%'>Reference Min</th><th width='20%'>Reference Max</th><th width='10%'>Unit</th><th width='25%'>Test Date</th></tr></thead><tbody  height=522px>";
                                  for(var i in jsonresult)
                                  {

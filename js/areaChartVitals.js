@@ -1,4 +1,4 @@
-function areaChart(selectedMetric){
+function areaChart(selectedMetric,dataFilePath){
 
 var div = d3.select("body").append("div")   
     .attr("class", "tooltip")               
@@ -28,7 +28,7 @@ var div = d3.select("body").append("div")
 
   var area = d3.svg.area()
       .interpolate("linear")
-      .x(function(d) { console.log(d); return x(d.measurement_time); })
+      .x(function(d) { return x(d.measurement_time); })
       .y0(height)
       .y1(function(d) { return y(d.value); });
 
@@ -83,7 +83,7 @@ var div = d3.select("body").append("div")
     });   
     $("#filter").html(vitaloptions);
   }
-  d3.json("../data/patient records.json", function(error,data1) {
+  d3.json(dataFilePath, function(error,data1) {
 
     //data = data1.map(function(d){ if(d.vitalsign == "Oral Temperature" )return d; else delete d;})
     var data = $.grep(data1, function (element, index) {
@@ -97,13 +97,13 @@ var div = d3.select("body").append("div")
     data = data.sort(comp);
     
     if(selectedMetric == "Oral Temperature")
-    populateFilter(data1);
+      populateFilter(data1);
     
-    console.log(data)
+    //console.log(data)
     data = data.map(function(d){return type(d);})
     
     x.domain(d3.extent(data.map(function(d) { return d.measurement_time;})));
-    y.domain([0, d3.max(data.map(function(d) {return d.value; }))]);
+    y.domain([0, Math.ceil(d3.max(data.map(function(d) {return d.value; }))/10)*10]);
     x2.domain(x.domain());
     y2.domain(y.domain());
       

@@ -1,17 +1,8 @@
-function count(key,data){
+function areaChart(selectedMetric,dataFilePath){
 
-  var dateCountMap =  [];
-  data.forEach(function(d){
-    dateCountMap[(d["measurement_time"]).split("T")[0]] = (dateCountMap[(d["measurement_time"]).split("T")[0]] + 1) || 1 ;
-  })
-  console.log(dateCountMap)
-
-}
-
-
-function areaChart(){
-
-
+var div = d3.select("body").append("div")   
+    .attr("class", "tooltip")               
+    .style("opacity", 0);
 
   var margin = {top: 10, right: 10, bottom: 100, left: 40},
       margin2 = {top: 330, right: 10, bottom: 20, left: 40}, 
@@ -23,7 +14,7 @@ function areaChart(){
   var parseDate = d3.time.format("%m/%d/%Y").parse;
 
   var x = d3.time.scale().range([0, width]),
-      x2 = d3.time.scale().range([0, width-20]),
+      x2 = d3.time.scale().range([0, width]),
       y = d3.scale.linear().range([height, 0]),
       y2 = d3.scale.linear().range([height2, 0]);
 
@@ -36,18 +27,19 @@ function areaChart(){
       .on("brush", brushed);
 
   var area = d3.svg.area()
-      .interpolate("bundle")
-      .x(function(d) { return x(d.measurement_time); })
+      .interpolate("linear")
+      .x(function(d) { return x(d.testdate); })
       .y0(height)
-      .y1(function(d) { return y(d.values); });
+      .y1(function(d) { return y(d.value); });
 
   var area2 = d3.svg.area()
-      .interpolate("bundle")
-      .x(function(d) {  return x2(d.measurement_time); })
+      .interpolate("linear ")
+      .x(function(d) {  return x2(d.testdate); })
       .y0(height2)
-      .y1(function(d) {  return y2(d.values); });
+      .y1(function(d) {  return y2(d.value); });
 
-  var svg = d3.select("body").append("svg")
+  
+  var svg = d3.select("#areachart").append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom);
 
@@ -74,18 +66,46 @@ function areaChart(){
       .attr("class", "context")
       .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
 
-  d3.json("patient_records.json", function(error,data1) {
 
-    //data = data1.map(function(d){ if(d.vitalsign == "Oral Temperature" )return d; else delete d;})
+
+  var circlegroup=null;
+
+  function populateFilter(data1)
+  {
+    var uniquevitals =[];
+    var vitaloptions="";
+    data1.forEach(function(d) {
+      if($.inArray(d.testname,uniquevitals)==-1)
+      {
+        vitaloptions += '<option value="'+d.testname+'">'+d.testname+'</option>';  
+        uniquevitals.push(d.testname) 
+      }
+    });   
+    $("#filter").html(vitaloptions);
+  }
+  d3.json(dataFilePath, function(error,data1) {
+
+   
+    //console.log(data1)
     var data = $.grep(data1, function (element, index) {
-    return element.vitalsign == "Peripheral Pulse Rate";
-    })
-    
+      return element.testname == selectedMetric;
+    });
+
     console.log(data)
+    function comp(a, b) {
+        return new Date(b["testdate"]).getTime() - new Date(a["testdate"]).getTime();
+    }
+
+    data = data.sort(comp);
+    
+    if(selectedMetric == "GLU")
+      populateFilter(data1);
+    
+    //console.log(data)
     data = data.map(function(d){return type(d);})
     
-    x.domain(d3.extent(data.map(function(d) { return d.measurement_time;})));
-    y.domain([0, d3.max(data.map(function(d) {return d.values; }))]);
+    x.domain(d3.extent(data.map(function(d) { return d.testdate;})));
+    y.domain([0, Math.ceil(d3.max(data.map(function(d) {return d.value; }))/10)*10]);
     x2.domain(x.domain());
     y2.domain(y.domain());
       
@@ -121,19 +141,47 @@ function areaChart(){
         .selectAll("rect")
         .attr("y", -6)
         .attr("height", height2 + 7);
+
+    circlegroup  = focus.append("g");
+    circlegroup.selectAll('.dot')
+    .data(data)
+    .enter().append("circle")
+    .attr('class', 'dot')
+    .attr("cx",function(d){ return x(d.testdate)})
+    .attr("cy", function(d){ return y(d.value);})
+    .attr("r", function(d){ return 4;})
+    .on("mouseover", function(d) {      
+            div.transition()        
+                .duration(200)      
+                .style("opacity", .9);      
+            div .html("Date :" + $.format.date(d.testdate,'dd/MM/yyyy') + "<br> Value : "  + d.value)  
+                .style("left", (d3.event.pageX) + "px")     
+                .style("top", (d3.event.pageY - 28) + "px");    
+            })                  
+        .on("mouseout", function(d) {       
+            div.transition()        
+                .duration(500)      
+                .style("opacity", 0);   
+        });
+    //.on('mouseover', function(d){ d3.select(this).attr('r', 8)})
+    //.on('mouseout', function(d){ d3.select(this).attr('r', 4)}); 
+
   });
 
   function brushed() {
     x.domain(brush.empty() ? x2.domain() : brush.extent());
     focus.select(".area").attr("d", area);
     focus.select(".x.axis").call(xAxis);
+    circlegroup.selectAll(".dot")
+      .attr("cx",function(d){return x(d.testdate)})
+      .attr("cy", function(d){return y(d.value)});
+
   }
 
   function type(d) {
-    d.measurement_time = parseDate((d.measurement_time).split(" ")[0]);
-    d.values = +d.values;
-    //console.log(d.date);
-    //console.log(d.price);
+    console.log(d)
+    d.testdate = parseDate(((d.testdate)+"").split(" ")[0]);
+    d.value = +d.value;
     return d;
   }
 }

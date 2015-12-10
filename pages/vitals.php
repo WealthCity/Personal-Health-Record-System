@@ -15,10 +15,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
-
-    <link rel="stylesheet" type="text/css" href="../css/linechart.css">
-    
+    <meta name="author" content="">    
  
     <!-- load the d3.js library -->    
     <script src="http://d3js.org/d3.v3.min.js"></script>
@@ -53,7 +50,7 @@
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="stylesheet" type="text/css" href="../css/areachart.css">
     <script type="text/javascript" src="../dist/js/jquery-dateFormat.js"></script>
-    <script type="text/javascript" src="../js/areaChartOralTemp.js"></script>
+    <script type="text/javascript" src="../js/areaChartVitals.js"></script>
 
     <style type="text/css">
     div.tooltip {   
@@ -170,19 +167,20 @@
                 
             </div>
             <div class="row" style="margin-bottom:20px;">
-                <h4 style="margin-left:40px;float:left;width:20%"> Select Vital Sign : </h4>
-                <select class="form-control" id="filter" style="float:left;width: 25%;margin-top:5px;">  </select>                  
+                <h4 style="margin-left:40px;float:left;width:170px"> Select Vital Sign : </h4>
+                <select class="form-control" id="filter" style="float:left;width: 300px;">  </select>                  
             </div>
             
-                <div class="div_RootBody" id="area_chart_1">
-                    <h4 class="h3_Body" style="text-align:center" id="chartitle"></h3>
+                <div class="row" id="area_chart_1">
+                    <h4 class="col-lg-7" style="text-align:center" id="chartitle"></h3>
                 </div> 
-                <div class="div_RootBody" id="areachart">
+                <div class="row" style="margin-left:30px;"id="areachart">
                     <script>
                         var selectedMetric = "Oral Temperature" ;
-                        areaChart(selectedMetric);
-                        $("#chartitle").html(selectedMetric);
-                        $("#filter").change( function(){
+                        var dataFilePath = "../data/patient vitals.json";
+                        areaChart(selectedMetric,dataFilePath);
+                        $("#chartitle").fadeIn("slow").html(selectedMetric);
+                       /* $("#filter").change( function(){
                             selectedMetric = $(this).val();
                             console.log(selectedMetric)
                             $("#areachart").fadeOut();    
@@ -190,7 +188,14 @@
                             $("#chartitle").html(selectedMetric)
                             areaChart(selectedMetric);
                             $("#areachart").fadeIn();
-                        });
+                        });*/
+
+                        $("#filter").change(function(){
+                        $("#areachart,#chartitle").fadeOut("slow", function(){
+                            selectedMetric = $("#filter").val();
+                            $("#chartitle").fadeIn("slow").html(selectedMetric)
+                            $("#areachart").empty().html(areaChart(selectedMetric,dataFilePath)).fadeIn("slow");
+                        });});
                     </script>
                 </div>
             <center>
