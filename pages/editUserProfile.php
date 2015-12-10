@@ -279,11 +279,11 @@
                                                 </tr>
                                                 <tr>
                                                    <td style="vertical-align:inherit;" >Email Id:</td>
-                                                   <td><input class="form-control" type="text" name="EmailId" id="EmailId" value = <?php echo $EmailId ?> size = 15></td>
+                                                   <td><input class="form-control" type="email" name="EmailId" id="EmailId" value = <?php echo $EmailId ?> size = 15></td>
                                                 </tr>
                                                 <tr>
                                                    <td style="vertical-align:inherit;" >Emergency Contact:</td>
-                                                   <td><input class="form-control" type="text" name="EmergencyContact" id="EmergencyContact" value = <?php echo $EmergencyContact ?> size = 15></td>
+                                                   <td><input class="form-control" type="text" name="EmergencyContact" id="EmergencyContact" value = <?php echo $EmergencyContact ?> size = 10></td>
                                                 </tr>
                                                 <tr>
                                                   <td colspan="2" style="text-align:center;font-weight:bold;vertical-align:inherit;">Address</td>

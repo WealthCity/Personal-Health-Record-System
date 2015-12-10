@@ -22,7 +22,6 @@
  
     <!-- load the d3.js library -->    
     <script src="http://d3js.org/d3.v3.min.js"></script>
-    <script src="../dist/js/d3.tip.v0.6.3.js" charset="utf-8"></script>
 
     <title>PHR</title>
     <!-- Bootstrap Core CSS -->
@@ -53,9 +52,25 @@
     <link rel="stylesheet" type="text/css" href="../css/avatar.css">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="stylesheet" type="text/css" href="../css/areachart.css">
-    
+    <script type="text/javascript" src="../dist/js/jquery-dateFormat.js"></script>
     <script type="text/javascript" src="../js/areaChartOralTemp.js"></script>
-    
+
+    <style type="text/css">
+    div.tooltip {   
+  !position: absolute;           
+  text-align: center;           
+  width: 120px;                  
+  height: 40px;                 
+  padding: 2px;             
+  font: 14px sans-serif;        
+  background: white;  
+  border: 1px solid grey; 
+  box-shadow: 3px 2px 1px black;      
+  border-radius: 8px;           
+  pointer-events: none;
+  vertical-align: middle;
+}
+    </style>
 
 </head>
 
@@ -151,20 +166,33 @@
                 <div class="col-lg-12">
                     <h1 class="page-header">Vitals History</h1>
                 </div>
-                <!-- /.col-lg-12 -->
-                <!-- 
-                <div  id="linechart" ></div>
-                <script type="text/javascript">fun();</script>
-                 -->
+                <!-- /.col-lg-12 -->                
+                
+            </div>
+            <div class="row" style="margin-bottom:20px;">
+                <h4 style="margin-left:40px;float:left;width:20%"> Select Vital Sign : </h4>
+                <select class="form-control" id="filter" style="float:left;width: 25%;margin-top:5px;">  </select>                  
+            </div>
+            
                 <div class="div_RootBody" id="area_chart_1">
-                    <h4 class="h3_Body" id="chartitle">Oral Temperature Area Chart</h3>
+                    <h4 class="h3_Body" style="text-align:center" id="chartitle"></h3>
                 </div> 
                 <div class="div_RootBody" id="areachart">
                     <script>
-                        areaChart();
+                        var selectedMetric = "Oral Temperature" ;
+                        areaChart(selectedMetric);
+                        $("#chartitle").html(selectedMetric);
+                        $("#filter").change( function(){
+                            selectedMetric = $(this).val();
+                            console.log(selectedMetric)
+                            $("#areachart").fadeOut();    
+                            $("#areachart").empty();
+                            $("#chartitle").html(selectedMetric)
+                            areaChart(selectedMetric);
+                            $("#areachart").fadeIn();
+                        });
                     </script>
                 </div>
-            </div>
             <center>
              <div class="panel-body">
                 <center>

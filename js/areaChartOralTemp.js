@@ -1,16 +1,8 @@
-function count(key,data){
+function areaChart(selectedMetric){
 
-  var dateCountMap =  [];
-  data.forEach(function(d){
-    dateCountMap[(d["measurement_time"]).split("T")[0]] = (dateCountMap[(d["measurement_time"]).split("T")[0]] + 1) || 1 ;
-  })
-  console.log(dateCountMap)
-
-}
-
-
-function areaChart(){
-
+var div = d3.select("body").append("div")   
+    .attr("class", "tooltip")               
+    .style("opacity", 0);
 
   var margin = {top: 10, right: 10, bottom: 100, left: 40},
       margin2 = {top: 330, right: 10, bottom: 20, left: 40}, 
@@ -35,17 +27,18 @@ function areaChart(){
       .on("brush", brushed);
 
   var area = d3.svg.area()
-      .interpolate("monotone")
-      .x(function(d) { return x(d.measurement_time); })
+      .interpolate("linear")
+      .x(function(d) { console.log(d); return x(d.measurement_time); })
       .y0(height)
       .y1(function(d) { return y(d.value); });
 
   var area2 = d3.svg.area()
-      .interpolate("monotone")
+      .interpolate("linear ")
       .x(function(d) {  return x2(d.measurement_time); })
       .y0(height2)
       .y1(function(d) {  return y2(d.value); });
 
+  
   var svg = d3.select("#areachart").append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom);
@@ -73,14 +66,38 @@ function areaChart(){
       .attr("class", "context")
       .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
 
+
+
   var circlegroup=null;
 
+  function populateFilter(data1)
+  {
+    var uniquevitals =[];
+    var vitaloptions="";
+    data1.forEach(function(d) {
+      if($.inArray(d.vitalsign,uniquevitals)==-1)
+      {
+        vitaloptions += '<option value="'+d.vitalsign+'">'+d.vitalsign+'</option>';  
+        uniquevitals.push(d.vitalsign) 
+      }
+    });   
+    $("#filter").html(vitaloptions);
+  }
   d3.json("../data/patient records.json", function(error,data1) {
 
     //data = data1.map(function(d){ if(d.vitalsign == "Oral Temperature" )return d; else delete d;})
     var data = $.grep(data1, function (element, index) {
-    return element.vitalsign == "Oral Temperature";
-    })
+      return element.vitalsign == selectedMetric;
+    });
+
+    function comp(a, b) {
+        return new Date(b["measurement_time"]).getTime() - new Date(a["measurement_time"]).getTime();
+    }
+
+    data = data.sort(comp);
+    
+    if(selectedMetric == "Oral Temperature")
+    populateFilter(data1);
     
     console.log(data)
     data = data.map(function(d){return type(d);})
@@ -131,8 +148,21 @@ function areaChart(){
     .attr("cx",function(d){ return x(d.measurement_time)})
     .attr("cy", function(d){ return y(d.value);})
     .attr("r", function(d){ return 4;})
-    .on('mouseover', function(d){ d3.select(this).attr('r', 8)})
-    .on('mouseout', function(d){ d3.select(this).attr('r', 4)}); 
+    .on("mouseover", function(d) {      
+            div.transition()        
+                .duration(200)      
+                .style("opacity", .9);      
+            div .html("Date :" + $.format.date(d.measurement_time,'dd/MM/yyyy') + "<br> Value : "  + d.value)  
+                .style("left", (d3.event.pageX) + "px")     
+                .style("top", (d3.event.pageY - 28) + "px");    
+            })                  
+        .on("mouseout", function(d) {       
+            div.transition()        
+                .duration(500)      
+                .style("opacity", 0);   
+        });
+    //.on('mouseover', function(d){ d3.select(this).attr('r', 8)})
+    //.on('mouseout', function(d){ d3.select(this).attr('r', 4)}); 
 
   });
 
