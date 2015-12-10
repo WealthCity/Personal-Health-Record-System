@@ -39,6 +39,37 @@
 
    </head>
    <script>
+   
+/* Mobile number validation */
+      function ValidateNo() {
+           var phoneNo = document.getElementById('MobileNumber');
+   
+       if (phoneNo.value == "" || phoneNo.value == null) {
+               alert("Please enter your Mobile No.");
+               return false;
+           }
+           if (phoneNo.value.length < 10 || phoneNo.value.length > 10) {
+               alert("Mobile No. is not valid, Please Enter 10 Digit Mobile No.");
+               return false;
+           }
+           return true;
+           }
+      
+/*email validation */
+
+function checkEmail() {
+
+  var email = document.getElementById('EmailId');
+  var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+  if (!filter.test(email.value)) {
+    alert('Please provide a valid email address');
+    email.focus;
+    return false;
+  }
+}
+
+           
       function buttonCancel()
       {
        
@@ -276,38 +307,38 @@
                                                 </tr>
                                                 <tr>
                                                    <td style="vertical-align:inherit;" >Mobile Number:</td>
-                                                   <td><input class="form-control" type="text" name="MobileNumber" id="MobileNumber" value = <?php echo $MobileNumber ?> size = 15></td>
+                                                   <td><input class="form-control" type="text" name="MobileNumber" id="MobileNumber" maxlength="14" onblur="ValidateNo();" required="required"  placeholder="Mobile Number" value = <?php echo $MobileNumber ?> ></td>
                                                 </tr>
                                                 <tr>
                                                    <td style="vertical-align:inherit;" >Email Id:</td>
-                                                   <td><input class="form-control" type="email" name="EmailId" id="EmailId" value = <?php echo $EmailId ?> size = 15></td>
+                                                   <td><input class="form-control" type="text" name="EmailId" id="EmailId" required="required" onblur="checkEmail();"  placeholder="Email Id" value = <?php echo $EmailId ?> size = 15></td>
                                                 </tr>
                                                 <tr>
                                                    <td style="vertical-align:inherit;" >Emergency Contact:</td>
-                                                   <td><input class="form-control" type="text" name="EmergencyContact" id="EmergencyContact" value = <?php echo $EmergencyContact ?> size = 10></td>
+                                                   <td><input class="form-control" type="text" name="EmergencyContact" id="EmergencyContact"  onblur="ValidateNo();" placeholder="Emergency Contact" value = <?php echo $EmergencyContact ?> size = 15></td>
                                                 </tr>
                                                 <tr>
                                                   <td colspan="2" style="text-align:center;font-weight:bold;vertical-align:inherit;">Address</td>
                                                 </tr>
                                                 <tr>
                                                    <td style="vertical-align:inherit;" >Street:</td>
-                                                   <td><input class="form-control" type="text" name="Street" id="Street" value = <?php echo $Street ?> size = 15></td>
+                                                   <td><input class="form-control" type="text" name="Street" id="Street" required="required" placeholder="Street" value = <?php echo $Street ?> size = 15></td>
                                                 </tr>
                                                 <tr>
                                                    <td style="vertical-align:inherit;" >City:</td>
-                                                   <td><input class="form-control" type="text" name="City" id="City" value = <?php echo $City ?> size = 15></td>
+                                                   <td><input class="form-control" type="text" name="City" id="City"  required="required" placeholder="City" value = <?php echo $City ?> size = 15></td>
                                                 </tr>
                                                 <tr>
                                                    <td style="vertical-align:inherit;" >State:</td>
-                                                   <td><input class="form-control" type="text" name="State" id="State" value = <?php echo $State ?> size = 15></td>
+                                                   <td><input class="form-control" type="text" name="State" id="State"  required="required" placeholder="State" value = <?php echo $State ?> size = 15></td>
                                                 </tr>
                                                 <tr>
                                                    <td style="vertical-align:inherit;" >Zip:</td>
-                                                   <td><input class="form-control" type="text" name="Zip" id="Zip" value = <?php echo $Zip ?> size = 15></td>
+                                                   <td><input class="form-control" type="text" name="Zip" id="Zip"  required="required" placeholder="Zip" value = <?php echo $Zip ?> size = 15></td>
                                                 </tr>
                                                 <tr>
                                                    <td style="vertical-align:inherit;" >Country:</td>
-                                                   <td><input class="form-control" type="text" name="Country" id="Country" value = <?php echo $Country ?> size = 15></td>
+                                                   <td><input class="form-control" type="text" name="Country" id="Country"  required="required" placeholder="Country" value = <?php echo $Country ?> size = 15></td>
                                                 </tr>
                                                 <tr>
                                                    <td style="vertical-align:inherit;"  style="text-align:center"><input class="btn btn-primary" type="Submit" value="Update Profile" onclick = "updateProfile()" ></td>
