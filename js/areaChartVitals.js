@@ -1,4 +1,12 @@
-function areaChart(selectedMetric,dataFilePath){
+function findJSON(selectedMetric)
+{
+  for(index in normalRangeVital)
+  {
+    if(normalRangeVital[index]["vitalSign"] == selectedMetric)
+      return normalRangeVital[index];
+  }
+}
+
 
 var normalRangeVital =[
    {
@@ -8,7 +16,8 @@ var normalRangeVital =[
    },
    {
       "vitalSign":"Systolic Blood Pressure",
-      "min":120
+      "min":90,
+      "max":120
    },
    {
       "vitalSign":"Peripheral Pulse Rate",
@@ -17,7 +26,8 @@ var normalRangeVital =[
    },
    {
       "vitalSign":"Diastolic Blood Pressure",
-      "min":80
+      "min":60,
+      "max":80
    },
    {
       "vitalSign":"Respiratory Rate",
@@ -35,6 +45,11 @@ var normalRangeVital =[
       "max":100
    }
 ];
+
+
+function areaChart(selectedMetric,dataFilePath){
+
+var selectedRangeVital = findJSON(selectedMetric);
 
 var div = d3.select("body").append("div")   
     .attr("class", "tooltip")               
@@ -183,8 +198,10 @@ var div = d3.select("body").append("div")
     .attr('class', 'dot')
     .attr("cx",function(d){ return x(d.measurement_time)})
     .attr("cy", function(d){ return y(d.value);})
-    .attr("r", function(d){ return 4;})
-    .on("mouseover", function(d) {      
+    .attr("r", 4)
+    .attr("fill",function(d){ if(d.value < selectedRangeVital.max && d.value > selectedRangeVital.min){ console.log("green"); return "green";} else{ console.log("red"); return "red";} })
+    .on("mouseover", function(d) {  
+            d3.select(this).attr("r",8);
             div.transition()        
                 .duration(200)      
                 .style("opacity", .9);      
@@ -192,25 +209,30 @@ var div = d3.select("body").append("div")
                 .style("left", (d3.event.pageX) + "px")     
                 .style("top", (d3.event.pageY - 28) + "px");    
             })                  
-        .on("mouseout", function(d) {       
+        .on("mouseout", function(d) { 
+
+            d3.select(this).attr("r",4);      
             div.transition()        
                 .duration(500)      
                 .style("opacity", 0);   
         });
 
-    /*focus.append("line")          // attach a line
-    .style("stroke", "red")  // colour the line
-    .attr("x1", 0)     // x position of the first end of the line
-    .attr("y1", y(data[0].reference_min))      // y position of the first end of the line
-    .attr("x2", width)     // x position of the second end of the line
-    .attr("y2", y(data[0].reference_min));
-
     focus.append("line")          // attach a line
     .style("stroke", "red")  // colour the line
     .attr("x1", 0)     // x position of the first end of the line
-    .attr("y1", y(data[0].reference_max))      // y position of the first end of the line
+    .attr("y1", y(selectedRangeVital.min))      // y position of the first end of the line
     .attr("x2", width)     // x position of the second end of the line
-    .attr("y2", y(data[0].reference_max));*/
+    .attr("y2", y(selectedRangeVital.min));
+
+    if(selectedRangeVital.hasOwnProperty('max'))
+    {
+      focus.append("line")          // attach a line
+      .style("stroke", "red")  // colour the line
+      .attr("x1", 0)     // x position of the first end of the line
+      .attr("y1", y(selectedRangeVital.max) )      // y position of the first end of the line
+      .attr("x2", width)     // x position of the second end of the line
+      .attr("y2", y(selectedRangeVital.max) );
+    }
   });
 
   function brushed() {
