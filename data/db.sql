@@ -220,8 +220,8 @@ CREATE TABLE `tbl_users` (
 --
 
 INSERT INTO `tbl_users` (`pid`, `FirstName`, `LastName`, `DOB`, `Gender`, `profileimage`, `MobileNumber`, `EmergencyContact`, `EmailId`, `Password`, `Street`, `City`, `State`, `Zip`, `Country`) VALUES
-(1001, 'Pritesh', 'Gandhi', '1990-11-16', 'Male', '', 2246768899, 2247678888, 'demo@demo.com', 'demo111', '22 Taylor Ave', 'NYC', 'NY', 12601, 'USA'),
-(1002, 'Dinesh', 'Mendhe', '0000-00-00', '', '', 8458956778, 8452206577, 'demo1@demo.com', 'demo111', 'Washington St', 'Poughkeepsie ', 'NY', 12601, 'USA');
+(1001, 'Pritesh', 'Gandhi', '1990-11-16', 'Male', '1448940970.jpg', 2246768899, 2247678888, 'demo@demo.com', 'demo111', '22 Taylor Ave', 'NYC', 'NY', 12601, 'USA'),
+(1002, 'Dinesh', 'Mendhe', '0000-00-00', 'Male', '1449719511.jpg', 8458956778, 8452206577, 'demo1@demo.com', 'demo111', 'Washington St', 'Poughkeepsie ', 'NY', 12601, 'USA');
 
 -- --------------------------------------------------------
 
