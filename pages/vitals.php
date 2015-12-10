@@ -56,7 +56,7 @@
     div.tooltip {   
   !position: absolute;           
   text-align: center;           
-  width: 120px;                  
+  width: 130px;                  
   height: 40px;                 
   padding: 2px;             
   font: 14px sans-serif;        

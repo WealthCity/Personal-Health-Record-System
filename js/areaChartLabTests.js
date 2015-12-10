@@ -105,7 +105,7 @@ var div = d3.select("body").append("div")
     data = data.map(function(d){return type(d);})
     
     x.domain(d3.extent(data.map(function(d) { return d.testdate;})));
-    y.domain([0, Math.ceil(d3.max(data.map(function(d) {return d.value; }))/10)*10]);
+    y.domain([0, Math.ceil(d3.max(data.map(function(d) {return d.reference_max; }))/10)*10+10]);
     x2.domain(x.domain());
     y2.domain(y.domain());
       
@@ -163,8 +163,20 @@ var div = d3.select("body").append("div")
                 .duration(500)      
                 .style("opacity", 0);   
         });
-    //.on('mouseover', function(d){ d3.select(this).attr('r', 8)})
-    //.on('mouseout', function(d){ d3.select(this).attr('r', 4)}); 
+
+    focus.append("line")          // attach a line
+    .style("stroke", "red")  // colour the line
+    .attr("x1", 0)     // x position of the first end of the line
+    .attr("y1", y(data[0].reference_min))      // y position of the first end of the line
+    .attr("x2", width)     // x position of the second end of the line
+    .attr("y2", y(data[0].reference_min));
+
+    focus.append("line")          // attach a line
+    .style("stroke", "red")  // colour the line
+    .attr("x1", 0)     // x position of the first end of the line
+    .attr("y1", y(data[0].reference_max))      // y position of the first end of the line
+    .attr("x2", width)     // x position of the second end of the line
+    .attr("y2", y(data[0].reference_max));
 
   });
 

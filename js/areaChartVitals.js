@@ -1,5 +1,41 @@
 function areaChart(selectedMetric,dataFilePath){
 
+var normalRangeVital =[
+   {
+      "vitalSign":"Oral Temperature",
+      "min":96,
+      "max":99
+   },
+   {
+      "vitalSign":"Systolic Blood Pressure",
+      "min":120
+   },
+   {
+      "vitalSign":"Peripheral Pulse Rate",
+      "min":60,
+      "max":100
+   },
+   {
+      "vitalSign":"Diastolic Blood Pressure",
+      "min":80
+   },
+   {
+      "vitalSign":"Respiratory Rate",
+      "min":12,
+      "max":25
+   },
+   {
+      "vitalSign":"Apical Heart Rate",
+      "min":60,
+      "max":100
+   },
+   {
+      "vitalSign":"Oxygen Saturation",
+      "min":95,
+      "max":100
+   }
+];
+
 var div = d3.select("body").append("div")   
     .attr("class", "tooltip")               
     .style("opacity", 0);
@@ -75,7 +111,7 @@ var div = d3.select("body").append("div")
     var uniquevitals =[];
     var vitaloptions="";
     data1.forEach(function(d) {
-      if($.inArray(d.vitalsign,uniquevitals)==-1)
+      if(d.vitalsign != "Height" && $.inArray(d.vitalsign,uniquevitals)==-1)
       {
         vitaloptions += '<option value="'+d.vitalsign+'">'+d.vitalsign+'</option>';  
         uniquevitals.push(d.vitalsign) 
@@ -152,7 +188,7 @@ var div = d3.select("body").append("div")
             div.transition()        
                 .duration(200)      
                 .style("opacity", .9);      
-            div .html("Date :" + $.format.date(d.measurement_time,'dd/MM/yyyy') + "<br> Value : "  + d.value)  
+            div .html("Date :" + $.format.date(d.measurement_time,'dd/MM/yyyy') + "<br> Value : "  + d.value+" "+d.unit)  
                 .style("left", (d3.event.pageX) + "px")     
                 .style("top", (d3.event.pageY - 28) + "px");    
             })                  
@@ -161,9 +197,20 @@ var div = d3.select("body").append("div")
                 .duration(500)      
                 .style("opacity", 0);   
         });
-    //.on('mouseover', function(d){ d3.select(this).attr('r', 8)})
-    //.on('mouseout', function(d){ d3.select(this).attr('r', 4)}); 
 
+    /*focus.append("line")          // attach a line
+    .style("stroke", "red")  // colour the line
+    .attr("x1", 0)     // x position of the first end of the line
+    .attr("y1", y(data[0].reference_min))      // y position of the first end of the line
+    .attr("x2", width)     // x position of the second end of the line
+    .attr("y2", y(data[0].reference_min));
+
+    focus.append("line")          // attach a line
+    .style("stroke", "red")  // colour the line
+    .attr("x1", 0)     // x position of the first end of the line
+    .attr("y1", y(data[0].reference_max))      // y position of the first end of the line
+    .attr("x2", width)     // x position of the second end of the line
+    .attr("y2", y(data[0].reference_max));*/
   });
 
   function brushed() {
