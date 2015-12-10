@@ -148,7 +148,7 @@
                </div>
                <!-- /.col-lg-12 -->
                <div class="row" style="margin-bottom:20px;">
-                <h4 style="margin-left:40px;float:left;width:170px"> Select Vital Sign : </h4>
+                <h4 style="margin-left:40px;float:left;width:170px"> Select Lab Test : </h4>
                 <select class="form-control" id="filter" style="float:left;width: 300px;">  </select>                  
             </div>
             
@@ -160,8 +160,7 @@
                          var result1 = '<?php echo $jsonString; ?>';                                                    
                          var result = result1.substring(0, result1.length - 1); 
                          var jsonresult = $.parseJSON("["+result+"]");
-                         //console.log(jsonresult[0]["value"]);
-                         
+
                          function comp(a, b) 
                          {
                              return new Date(b["testdate"]).getTime() - new Date(a["testdate"]).getTime();
