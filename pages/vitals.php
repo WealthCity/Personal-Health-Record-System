@@ -180,15 +180,6 @@
                         var dataFilePath = "../data/patient vitals.json";
                         areaChart(selectedMetric,dataFilePath);
                         $("#chartitle").fadeIn("slow").html(selectedMetric);
-                       /* $("#filter").change( function(){
-                            selectedMetric = $(this).val();
-                            console.log(selectedMetric)
-                            $("#areachart").fadeOut();    
-                            $("#areachart").empty();
-                            $("#chartitle").html(selectedMetric)
-                            areaChart(selectedMetric);
-                            $("#areachart").fadeIn();
-                        });*/
 
                         $("#filter").change(function(){
                         $("#areachart,#chartitle").fadeOut("slow", function(){
@@ -199,7 +190,7 @@
                     </script>
                 </div>
             <center>
-             <div class="panel-body">
+             <div class="panel-body" style="margin-top:40px">
                 <center>
                     <div class="row" style="margin-left:15px">                        
                         <div class="col-lg-7" style="padding-right: 0px;padding-left: 0;">                            
