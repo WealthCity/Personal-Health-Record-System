@@ -111,6 +111,7 @@ function checkEmail() {
               $MobileNumber = $row[6];
               $EmergencyContact = $row[7];
               $EmailId = $row[8];
+              $MyEmailId = $row[8];
               $Street = $row[10];
               $City = $row[11];
               $State = $row[12];
@@ -120,8 +121,17 @@ function checkEmail() {
             }
       
       
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+           if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+
+              $newEmailId = $_POST["EmailId"];
+              $sqlExistingEmail="SELECT COUNT(*) FROM tbl_users WHERE EmailId='$newEmailId'";
+           // echo $sqlExistingEmail;
+              $res = $conn->query($sqlExistingEmail);
+               $row = $res->fetch_row();
+               // echo "row = ".$row[0];
+            if($MyEmailId == $newEmailId)
+            {
               $gender = $_POST["gender"];
               $MobileNumber = $_POST["MobileNumber"];
               $EmergencyContact = $_POST["EmergencyContact"];
@@ -169,8 +179,67 @@ function checkEmail() {
                   
               } else {
               echo "Sorry the website is down at the moment!!";
-              } 
-      
+              }
+
+            }
+            else if($row[0] >=1)
+            {
+              //  echo"name already exists";
+                $message = "Email ID already has been registered.";
+                echo "<script type='text/javascript'>alert('$message');</script>";
+            }
+            else
+            {
+              $gender = $_POST["gender"];
+              $MobileNumber = $_POST["MobileNumber"];
+              $EmergencyContact = $_POST["EmergencyContact"];
+              $EmailId = $_POST["EmailId"];
+              $Street = $_POST["Street"];
+              $City = $_POST["City"];
+              $State = $_POST["State"];
+              $Zip = $_POST["Zip"];
+              $Country = $_POST["Country"];
+              $dob = $_POST["birthdate"];
+
+
+              if(!($_FILES['uploadedfile']['name']===""))
+              {
+                $target_path = "../profilePictures/";
+                $target_path = $target_path . basename( $_FILES['uploadedfile']['name']); 
+                
+                $temp = explode(".", $_FILES["uploadedfile"]["name"]);
+                $newfilename = round(microtime(true)) . '.' . end($temp);
+        
+                if(move_uploaded_file($_FILES["uploadedfile"]["tmp_name"], "../profilePictures/" . $newfilename))
+                {
+                  echo "The file ".  basename( $_FILES['uploadedfile']['name']). " has been uploaded";
+                  $profileimageName = $newfilename;
+                }
+                else
+                {
+                  echo "There was an error uploading the file, please try again!";
+                }
+                $sqlUpdateProfile = "UPDATE tbl_users SET dob=STR_TO_DATE('$dob','%m/%d/%YY'), EmailId='$EmailId', profileimage = '$profileimageName', Gender = '$gender', MobileNumber = $MobileNumber,EmergencyContact = $EmergencyContact, Street = '$Street',Zip = $Zip, Country = '$Country' WHERE pid = $pid ";
+              }
+              else
+              {
+
+                $sqlUpdateProfile = "UPDATE tbl_users SET dob=STR_TO_DATE('$dob','%m/%d/%YY'), EmailId='$EmailId', Gender = '$gender', MobileNumber = $MobileNumber,EmergencyContact = $EmergencyContact, Street = '$Street',Zip = $Zip, Country = '$Country' WHERE pid = $pid ";
+              }
+
+              if ($conn->query($sqlUpdateProfile) === TRUE) {
+                echo "Record updated successfully";
+                $_SESSION["pid"] = $pid;
+                error_reporting(E_ALL | E_WARNING | E_NOTICE);
+                ini_set('display_errors', TRUE);
+                flush();
+                echo("<script>location.href = 'userprofile.php';</script>");
+                  
+              } else {
+              echo "Sorry the website is down at the moment!!";
+              }
+
+            }
           }
       
       ?>
@@ -307,7 +376,7 @@ function checkEmail() {
                                                 </tr>
                                                 <tr>
                                                    <td style="vertical-align:inherit;" >Mobile Number:</td>
-                                                   <td><input class="form-control" type="text" name="MobileNumber" id="MobileNumber" maxlength="14" onblur="ValidateNo();" required="required"  placeholder="Mobile Number" value = <?php echo $MobileNumber ?> ></td>
+                                                   <td><input class="form-control" type="text" name="MobileNumber" id="MobileNumber" maxlength="10" onblur="ValidateNo();" required="required"  placeholder="Mobile Number" value = <?php echo $MobileNumber ?> ></td>
                                                 </tr>
                                                 <tr>
                                                    <td style="vertical-align:inherit;" >Email Id:</td>
