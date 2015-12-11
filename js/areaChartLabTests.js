@@ -148,6 +148,7 @@ var div = d3.select("body").append("div")
     .enter().append("circle")
     .attr('class', 'dot')
     .attr("cx",function(d){ return x(d.testdate)})
+    .attr("fill",function(d){ if(d.value < d.reference_max && d.value > d.reference_min){ console.log("green"); return "green";} else{ console.log("red"); return "red";} })
     .attr("cy", function(d){ return y(d.value);})
     .attr("r", function(d){ return 4;})
     .on("mouseover", function(d) {      

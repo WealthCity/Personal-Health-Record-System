@@ -50,6 +50,7 @@
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="stylesheet" type="text/css" href="../css/areachart.css">
     <script type="text/javascript" src="../dist/js/jquery-dateFormat.js"></script>
+    <script type="text/javascript" src="../js/normalRangeVital.js"></script>
     <script type="text/javascript" src="../js/areaChartVitals.js"></script>
 
     <style type="text/css">

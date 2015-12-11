@@ -59,7 +59,7 @@
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="../css/avatar.css" rel="stylesheet">
-
+    <script type="text/javascript" src="../js/normalRangeVital.js"></script>
     <link rel="stylesheet" href="../css/animate.css">
     <link href="../css/style.css" rel="stylesheet">
     
@@ -187,7 +187,23 @@
                                                     var result1 = '<?php echo $jsonString; ?>';                                                    
                                                     var result = result1.substring(0, result1.length - 1); 
                                                     var jsonresult = $.parseJSON("["+result+"]");
-                                                    //console.log(jsonresult[0]["value"]);
+
+                                                    function colorVitals(d){
+                                                        
+                                                        if(d.vitalsign == "Height" || d.vitalsign == "Weight")
+                                                            return "white";
+                                                        var normalRange = findJSON(d.vitalsign);
+                                                        if(d.value < normalRange.max && d.value > normalRange.min)
+                                                            { 
+                                                                console.log("green"); 
+                                                                return "green";
+                                                            } 
+                                                        else
+                                                            { 
+                                                                console.log("red"); 
+                                                                return "red";
+                                                            }
+                                                    }
 
                                                     function comp(a, b) 
                                                     {
@@ -195,7 +211,7 @@
                                                     }
 
                                                     jsonresult = jsonresult.sort(comp);
-                                                    var vitalCols = "<thead><tr><th width=30%>Vital SIgn</th><th width=20%>Value</th><th width=20%>Unit</th><th width=30%>Measurement Time</th></tr></thead><tbody height=400px>";
+                                                    var vitalCols = "<thead><tr><th width=30%>Vital SIgn</th><th width=15%>Value</th><th width=15%>Unit</th><th width=30%>Measurement Time</th><th width=10%>Indicator</th></tr></thead><tbody height=400px>";
                                                     var latestDate = new Date(jsonresult[0]["measurement_time"]);
                                                     //console.log(latestDate.getDate()+"/"+latestDate.getMonth()+"/"+latestDate.getFullYear());
                                                     for(var i in jsonresult)
@@ -203,10 +219,11 @@
                                                         var newDate = new Date(jsonresult[i]["measurement_time"]);
                                                         if(latestDate.getDate() == newDate.getDate() && latestDate.getMonth() == newDate.getMonth() && latestDate.getFullYear() == newDate.getFullYear())                                 
                                                         {
-                                                            vitalCols += "<tr><td width=30%>"+jsonresult[i]["vitalsign"]+"</td>";
-                                                            vitalCols += "<td width=20%>" + jsonresult[i]["value"]+"</td>";
-                                                            vitalCols += "<td width=20%>" + jsonresult[i]["unit"]+"</td>";
-                                                            vitalCols += "<td width=30%>" + jsonresult[i]["measurement_time"]+"</td></tr>";
+                                                            vitalCols += "<tr><td width=29%>"+jsonresult[i]["vitalsign"]+"</td>";
+                                                            vitalCols += "<td width=14%>" + jsonresult[i]["value"]+"</td>";
+                                                            vitalCols += "<td width=15%>" + jsonresult[i]["unit"]+"</td>";
+                                                            vitalCols += "<td width=29.5%>" + jsonresult[i]["measurement_time"]+"</td>";
+                                                            vitalCols += "<td width=16%><div class='indicator' style='background:"+colorVitals(jsonresult[i])+";'></div></td></tr>";
                                                         }
                                                     }
                                                             
@@ -241,19 +258,26 @@
                                                             $jsonString.='{"testname":"'.$row[1].'","value":'. $row[2].',"reference_min":'. $row[3].',"reference_max":'. $row[4].',"unit":"'. $row[5].'","testdate":"'. $row[6].'"},';
                                                     }
 
-                                                    /*// Write JSON to the file for reference in line chart
-                                                    $myfile = fopen("../data/patient lab tests.json", "w") or die("Unable to open file!");
-                                                    $txt = $jsonString;
-                                                    fwrite($myfile, $txt);
-                                                    fclose($myfile);*/
-
                                                     $_SESSION["labTestsJsonString"]=$jsonString;
                                                 ?>
                                                 <script type="text/javascript">
                                                     var result1 = '<?php echo $jsonString; ?>';                                                    
                                                     var result = result1.substring(0, result1.length - 1); 
                                                     var jsonresult = $.parseJSON("["+result+"]");
-                                                    //console.log(jsonresult[0]["value"]);
+
+                                                    function colorLabTests(d){
+                                                        console.log(d)
+                                                        if(d["value"] < d["reference_max"] && d["value"] > d["reference_min"])
+                                                            { 
+                                                                console.log("green"); 
+                                                                return "green";
+                                                            } 
+                                                        else
+                                                            { 
+                                                                console.log("red"); 
+                                                                return "red";
+                                                            }
+                                                    }
 
                                                     function comp(a, b) 
                                                     {
@@ -263,18 +287,19 @@
                                                     jsonresult = jsonresult.sort(comp);
 
                                                     var latestDate = new Date(jsonresult[0]["testdate"]);
-                                                    var vitalCols = "<thead><tr><th width='15%'>Test Name</th><th width='10%'>Value</th><th width='20%'>Reference Min</th><th width='20%'>Reference Max</th><th width='10%'>Unit</th><th width='25%'>Test Date</th></tr></thead><tbody height=395px>";
+                                                    var vitalCols = "<thead><tr><th width='15%'>Test Name</th><th width='10%'>Value</th><th width='14%'>Reference Min</th><th width='14%'>Reference Max</th><th width='10%'>Unit</th><th width='25%'>Test Date</th><th width='10%'>Indicator</th></tr></thead><tbody height=395px>";
                                                     for(var i in jsonresult)
                                                     {
                                                         var newDate = new Date(jsonresult[i]["testdate"]);
                                                         if(latestDate.getDate() == newDate.getDate() && latestDate.getMonth() == newDate.getMonth() && latestDate.getFullYear() == newDate.getFullYear())                                 
                                                         {
-                                                            vitalCols += "<tr><td width='15%'>"+jsonresult[i]["testname"]+"</td>";
+                                                            vitalCols += "<tr><td width='14%'>"+jsonresult[i]["testname"]+"</td>";
                                                             vitalCols += "<td width='10%'>" +jsonresult[i]["value"] +"</td>"
-                                                            vitalCols += "<td width='20%'>" + jsonresult[i]["reference_min"]+"</td>"
-                                                            vitalCols += "<td width='20%'>" + jsonresult[i]["reference_max"]+"</td>"
+                                                            vitalCols += "<td width='14%'>" + jsonresult[i]["reference_min"]+"</td>"
+                                                            vitalCols += "<td width='14%'>" + jsonresult[i]["reference_max"]+"</td>"
                                                             vitalCols += "<td width='10%'>" + jsonresult[i]["unit"]+"</td>"
-                                                            vitalCols += "<td width='25%'>" + jsonresult[i]["testdate"]+"</td></tr>"
+                                                            vitalCols += "<td width='25%'>" + jsonresult[i]["testdate"]+"</td>";
+                                                            vitalCols += "<td width='13%'><div class='indicator' style='background:"+ colorLabTests(jsonresult[i]) +";'></div></td></tr>";
                                                         }
                                                     }
 
