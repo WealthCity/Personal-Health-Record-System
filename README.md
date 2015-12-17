@@ -16,3 +16,9 @@ compiled and maintained by each of your healthcare providers. A PHR
 is information about your health compiled and maintained by you.
 The difference is in how you use your PHR to improve the quality 
 of your healthcare.
+
+PHR System dashboard shows current information regarding Vital signs, 
+Lab Test Result and Medication. Vital column contain information like
+name of vital sign, value, unit of measurement and datetime of measurement.
+Lab test result table contains information such as lab test name, value, 
+reference min, reference max, unit and test date.
