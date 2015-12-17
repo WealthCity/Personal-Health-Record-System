@@ -21,4 +21,5 @@ PHR System dashboard shows current information regarding Vital signs,
 Lab Test Result and Medication. Vital column contain information like
 name of vital sign, value, unit of measurement and datetime of measurement.
 Lab test result table contains information such as lab test name, value, 
-reference min, reference max, unit and test date.
+reference min, reference max, unit and test date. Medication table contain
+information such as medication name, prescription date and quantity.
